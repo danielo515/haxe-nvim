@@ -7,7 +7,7 @@ This is a work in progress. It is very usable, in fact I use it in my personal c
 
 ## Not a plugin
 
-**This is not a Neovim plugin , it is a Haxe library to help you write neovim configurations and plugins using Haxe programming language **
+**This is not a Neovim plugin** , it is a Haxe library to help you write neovim configurations and plugins using Haxe programming language
 
 ## Just a mirror
 
