@@ -21,6 +21,8 @@ class Main {
   static function main() {
     vim.Api.nvim_create_user_command("HaxeCmd", (args) -> {
       Vim.print(args);
+      final spellRes = Spell.check("Hello bru! Hau are you?");
+      Vim.print(spellRes[1].first());
       vim.Ui.select(t(["a"]), {prompt: "Pick one sexy option"}, (choice, _) -> Vim.print(choice));
     }, {
       desc: "Testing from haxe",
