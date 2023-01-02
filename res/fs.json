@@ -1,0 +1,183 @@
+[
+  {
+    "annotations": [
+      "@param start (string) Initial file or directory.",
+      "@return (function) Iterator"
+    ],
+    "name": "parents",
+    "parameters": [
+      [
+        "String",
+        "start"
+      ]
+    ],
+    "fullyQualified_name": "M.parents",
+    "docs": [
+      " Iterate over all the parents of the given file or directory.",
+      " Example:",
+      " <pre>",
+      " local root_dir",
+      " for dir in vim.fs.parents(vim.api.nvim_buf_get_name(0)) do",
+      "   if vim.fn.isdirectory(dir .. \"/.git\") == 1 then",
+      "     root_dir = dir",
+      "     break",
+      "   end",
+      " end",
+      " if root_dir then",
+      "   print(\"Found git repository at\", root_dir)",
+      " end",
+      " </pre>"
+    ],
+    "return_type": "Function"
+  },
+  {
+    "annotations": [
+      "@param file (string) File or directory",
+      "@return (string) Parent directory of {file}"
+    ],
+    "name": "dirname",
+    "parameters": [
+      [
+        "String",
+        "file"
+      ]
+    ],
+    "fullyQualified_name": "M.dirname",
+    "docs": [
+      " Return the parent directory of the given file or directory"
+    ],
+    "return_type": "String"
+  },
+  {
+    "annotations": [
+      "@param file (string) File or directory",
+      "@return (string) Basename of {file}"
+    ],
+    "name": "basename",
+    "parameters": [
+      [
+        "String",
+        "file"
+      ]
+    ],
+    "fullyQualified_name": "M.basename",
+    "docs": [
+      " Return the basename of the given file or directory"
+    ],
+    "return_type": "String"
+  },
+  {
+    "annotations": [
+      "@param path (string) An absolute or relative path to the directory to iterate",
+      "@return Iterator over files and directories in {path}. Each iteration yields"
+    ],
+    "name": "dir",
+    "parameters": [
+      [
+        "String",
+        "path"
+      ]
+    ],
+    "fullyQualified_name": "M.dir",
+    "docs": [
+      " Return an iterator over the files and directories located in {path}",
+      "            over. The path is first normalized |vim.fs.normalize()|.",
+      "        two values: name and type. Each \"name\" is the basename of the file or",
+      "        directory relative to {path}. Type is one of \"file\" or \"directory\"."
+    ],
+    "return_type": "Function"
+  },
+  {
+    "annotations": [
+      "@param names (string|table|fun(name: string): boolean) Names of the files",
+      "@param opts (table) Optional keyword arguments:",
+      "@return (table) The paths of all matching files or directories"
+    ],
+    "name": "find",
+    "parameters": [
+      [
+        "Dynamic",
+        "names"
+      ],
+      [
+        "lua.Table<Int, Dynamic>",
+        "opts"
+      ]
+    ],
+    "fullyQualified_name": "M.find",
+    "docs": [
+      " Find files or directories in the given path.",
+      " Finds any files or directories given in {names} starting from {path}. If",
+      " {upward} is \"true\" then the search traverses upward through parent",
+      " directories; otherwise, the search traverses downward. Note that downward",
+      " searches are recursive and may search through many directories! If {stop}",
+      " is non-nil, then the search stops when the directory given in {stop} is",
+      " reached. The search terminates when {limit} (default 1) matches are found.",
+      " The search can be narrowed to find only files or or only directories by",
+      " specifying {type} to be \"file\" or \"directory\", respectively.",
+      "             and directories to find.",
+      "             Must be base names, paths and globs are not supported.",
+      "             If a function it is called per file and dir within the",
+      "             traversed directories to test if they match.",
+      "                       - path (string): Path to begin searching from. If",
+      "                              omitted, the current working directory is used.",
+      "                       - upward (boolean, default false): If true, search",
+      "                                upward through parent directories. Otherwise,",
+      "                                search through child directories",
+      "                                (recursively).",
+      "                       - stop (string): Stop searching when this directory is",
+      "                              reached. The directory itself is not searched.",
+      "                       - type (string): Find only files (\"file\") or",
+      "                              directories (\"directory\"). If omitted, both",
+      "                              files and directories that match {name} are",
+      "                              included.",
+      "                       - limit (number, default 1): Stop the search after",
+      "                               finding this many matches. Use `math.huge` to",
+      "                               place no limit on the number of matches."
+    ],
+    "return_type": "lua.Table<Int, Dynamic>"
+  },
+  {
+    "annotations": [],
+    "name": "add",
+    "parameters": [
+      [
+        "Dynamic",
+        "match"
+      ]
+    ],
+    "fullyQualified_name": "add",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [
+      "@param path (string) Path to normalize",
+      "@return (string) Normalized path"
+    ],
+    "name": "normalize",
+    "parameters": [
+      [
+        "String",
+        "path"
+      ]
+    ],
+    "fullyQualified_name": "M.normalize",
+    "docs": [
+      " Normalize a path to a standard format. A tilde (~) character at the",
+      " beginning of the path is expanded to the user's home directory and any",
+      " backslash (\\\\) characters are converted to forward slashes (/). Environment",
+      " variables are also expanded.",
+      " Example:",
+      " <pre>",
+      " vim.fs.normalize('C:\\\\Users\\\\jdoe')",
+      " => 'C:/Users/jdoe'",
+      " vim.fs.normalize('~/src/neovim')",
+      " => '/home/jdoe/src/neovim'",
+      " vim.fs.normalize('$XDG_CONFIG_HOME/nvim/init.vim')",
+      " => '/Users/jdoe/.config/nvim/init.vim'",
+      " </pre>"
+    ],
+    "return_type": "String"
+  }
+]

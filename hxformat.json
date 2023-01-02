@@ -1,0 +1,127 @@
+{
+  "indentation": {
+    "character": "  "
+  },
+  "sameLine": {
+    "caseBody": "next",
+    "tryCatch": "next",
+    "ifBody": "next",
+    "ifElse": "same",
+    "elseBody": "same",
+    "forBody": "same",
+    "whileBody": "same",
+    "comprehensionFor": "same"
+  },
+  "emptyLines": {
+    "finalNewline": true,
+    "lineCommentsBetweenFunctions": "none",
+    "interfaceEmptyLines": {
+      "beginType": 1
+    }
+  },
+  "wrapping": {
+    "functionSignature": {
+      "defaultWrap": "noWrap",
+      "rules": [
+        {
+          "conditions": [
+            {
+              "cond": "totalItemLength >= n",
+              "value": 80
+            }
+          ],
+          "type": "onePerLine"
+        }
+      ]
+    },
+    "arrayWrap": {
+      "rules": [
+        {
+          "conditions": [
+            {
+              "cond": "totalItemLength <= n",
+              "value": 80
+            }
+          ],
+          "type": "noWrap"
+        },
+        {
+          "conditions": [
+            {
+              "cond": "itemCount >= n",
+              "value": 10
+            }
+          ],
+          "type": "onePerLine"
+        },
+        {
+          "conditions": [
+            {
+              "cond": "anyItemLength >= n",
+              "value": 30
+            }
+          ],
+          "type": "onePerLine"
+        },
+        {
+          "conditions": [
+            {
+              "cond": "itemCount >= n",
+              "value": 4
+            }
+          ],
+          "type": "onePerLine"
+        }
+      ]
+    },
+    "callParameter": {
+      "defaultWrap": "noWrap",
+      "rules": [
+        {
+          "conditions": [
+            {
+              "cond": "totalItemLength >= n",
+              "value": 80
+            }
+          ],
+          "type": "onePerLine"
+        },
+        {
+          "conditions": [
+            {
+              "cond": "anyItemLength >= n",
+              "value": 100
+            }
+          ],
+          "type": "onePerLineAfterFirst"
+        },
+        {
+          "conditions": [
+            {
+              "cond": "lineLength >= n",
+              "value": 100
+            }
+          ],
+          "type": "onePerLineAfterFirst"
+        }
+      ]
+    }
+  },
+  "whitespace": {
+    "arrowFunctionsPolicy": "around",
+    "functionTypeHaxe3Policy": "around",
+    "functionTypeHaxe4Policy": "around",
+    "parenConfig": {
+      "conditionParens": {
+        "openingPolicy": "noneAfter",
+        "closingPolicy": "noneAfter"
+      },
+      "switchParens": {
+        "openingPolicy": "onlyAfter",
+        "closingPolicy": "around"
+      }
+    },
+    "typeParamOpenPolicy": "onlyAfter",
+    "typeParamClosePolicy": "onlyBefore"
+  }
+}

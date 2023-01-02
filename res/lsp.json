@@ -1,0 +1,1129 @@
+[
+  {
+    "annotations": [],
+    "name": "group_key",
+    "parameters": [
+      [
+        "Dynamic",
+        "group"
+      ]
+    ],
+    "fullyQualified_name": "group_key",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "get_group",
+    "parameters": [
+      [
+        "Dynamic",
+        "client"
+      ]
+    ],
+    "fullyQualified_name": "get_group",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "incremental_changes",
+    "parameters": [
+      [
+        "Dynamic",
+        "state"
+      ],
+      [
+        "Dynamic",
+        "encoding"
+      ],
+      [
+        "Dynamic",
+        "bufnr"
+      ],
+      [
+        "Dynamic",
+        "firstline"
+      ],
+      [
+        "Dynamic",
+        "lastline"
+      ],
+      [
+        "Dynamic",
+        "new_lastline"
+      ]
+    ],
+    "fullyQualified_name": "incremental_changes",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "init",
+    "parameters": [
+      [
+        "Dynamic",
+        "client"
+      ],
+      [
+        "Dynamic",
+        "bufnr"
+      ]
+    ],
+    "fullyQualified_name": "changetracking.init",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "_get_and_set_name",
+    "parameters": [
+      [
+        "Dynamic",
+        "client"
+      ],
+      [
+        "Dynamic",
+        "bufnr"
+      ],
+      [
+        "Dynamic",
+        "name"
+      ]
+    ],
+    "fullyQualified_name": "changetracking._get_and_set_name",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "reset_buf",
+    "parameters": [
+      [
+        "Dynamic",
+        "client"
+      ],
+      [
+        "Dynamic",
+        "bufnr"
+      ]
+    ],
+    "fullyQualified_name": "changetracking.reset_buf",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "reset",
+    "parameters": [
+      [
+        "Dynamic",
+        "client"
+      ]
+    ],
+    "fullyQualified_name": "changetracking.reset",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "next_debounce",
+    "parameters": [
+      [
+        "Dynamic",
+        "debounce"
+      ],
+      [
+        "Dynamic",
+        "buf_state"
+      ]
+    ],
+    "fullyQualified_name": "next_debounce",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "send_changes",
+    "parameters": [
+      [
+        "Dynamic",
+        "bufnr"
+      ],
+      [
+        "Dynamic",
+        "sync_kind"
+      ],
+      [
+        "Dynamic",
+        "state"
+      ],
+      [
+        "Dynamic",
+        "buf_state"
+      ]
+    ],
+    "fullyQualified_name": "send_changes",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "_reset_timer",
+    "parameters": [
+      [
+        "Dynamic",
+        "buf_state"
+      ]
+    ],
+    "fullyQualified_name": "changetracking._reset_timer",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "flush",
+    "parameters": [
+      [
+        "Dynamic",
+        "client"
+      ],
+      [
+        "Dynamic",
+        "bufnr"
+      ]
+    ],
+    "fullyQualified_name": "changetracking.flush",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "client",
+    "parameters": [],
+    "fullyQualified_name": "lsp.client",
+    "docs": [
+      "FIXME: DOC: Shouldn't need to use a dummy function",
+      " LSP client object. You can get an active client object via",
+      " |vim.lsp.get_client_by_id()| or |vim.lsp.get_active_clients()|.",
+      " - Methods:",
+      "  - request(method, params, [handler], bufnr)",
+      "     Sends a request to the server.",
+      "     This is a thin wrapper around {client.rpc.request} with some additional",
+      "     checking.",
+      "     If {handler} is not specified,  If one is not found there, then an error will occur.",
+      "     Returns: {status}, {[client_id]}. {status} is a boolean indicating if",
+      "     the notification was successful. If it is `false`, then it will always",
+      "     be `false` (the client has shutdown).",
+      "     If {status} is `true`, the function returns {request_id} as the second",
+      "     result. You can use this with `client.cancel_request(request_id)`",
+      "     to cancel the request.",
+      "  - request_sync(method, params, timeout_ms, bufnr)",
+      "     Sends a request to the server and synchronously waits for the response.",
+      "     This is a wrapper around {client.request}",
+      "     Returns: { err=err, result=result }, a dictionary, where `err` and `result` come from",
+      "     the |lsp-handler|. On timeout, cancel or error, returns `(nil, err)` where `err` is a",
+      "     string describing the failure reason. If the request was unsuccessful returns `nil`.",
+      "  - notify(method, params)",
+      "     Sends a notification to an LSP server.",
+      "     Returns: a boolean to indicate if the notification was successful. If",
+      "     it is false, then it will always be false (the client has shutdown).",
+      "  - cancel_request(id)",
+      "     Cancels a request with a given request id.",
+      "     Returns: same as `notify()`.",
+      "  - stop([force])",
+      "     Stops a client, optionally with force.",
+      "     By default, it will just ask the server to shutdown without force.",
+      "     If you request to stop a client which has previously been requested to",
+      "     shutdown, it will automatically escalate and force shutdown.",
+      "  - is_stopped()",
+      "     Checks whether a client is stopped.",
+      "     Returns: true if the client is fully stopped.",
+      "  - on_attach(client, bufnr)",
+      "     Runs the on_attach function from the client's config if it was defined.",
+      "     Useful for buffer-local setup.",
+      " - Members",
+      "  - {id} (number): The id allocated to the client.",
+      "  - {name} (string): If a name is specified on creation, that will be",
+      "    used. Otherwise it is just the client id. This is used for",
+      "    logs and messages.",
+      "  - {rpc} (table): RPC client object, for low level interaction with the",
+      "    client. See |vim.lsp.rpc.start()|.",
+      "  - {offset_encoding} (string): The encoding used for communicating",
+      "    with the server. You can modify this in the `config`'s `on_init` method",
+      "    before text is sent to the server.",
+      "  - {handlers} (table): The handlers used by the client as described in |lsp-handler|.",
+      "  - {requests} (table): The current pending requests in flight",
+      "    to the server. Entries are key-value pairs with the key",
+      "    being the request ID while the value is a table with `type`,",
+      "    `bufnr`, and `method` key-value pairs. `type` is either \"pending\"",
+      "    for an active request, or \"cancel\" for a cancel request.",
+      "  - {config} (table): copy of the table that was passed by the user",
+      "    to |vim.lsp.start_client()|.",
+      "  - {server_capabilities} (table): Response from the server sent on",
+      "    `initialize` describing the server's capabilities."
+    ],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [
+      "@param config table Same configuration as documented in |vim.lsp.start_client()|",
+      "@param opts nil|table Optional keyword arguments:",
+      "@return number|nil client_id"
+    ],
+    "name": "start",
+    "parameters": [
+      [
+        "lua.Table<Int, Dynamic>",
+        "config"
+      ],
+      [
+        "Dynamic",
+        "opts"
+      ]
+    ],
+    "fullyQualified_name": "lsp.start",
+    "docs": [
+      " Create a new LSP client and start a language server or reuses an already",
+      " running client if one is found matching `name` and `root_dir`.",
+      " Attaches the current buffer to the client.",
+      " Example:",
+      " <pre>",
+      " vim.lsp.start({",
+      "    name = 'my-server-name',",
+      "    cmd = {'name-of-language-server-executable'},",
+      "    root_dir = vim.fs.dirname(vim.fs.find({'pyproject.toml', 'setup.py'}, { upward = true })[1]),",
+      " })",
+      " </pre>",
+      " See |vim.lsp.start_client()| for all available options. The most important are:",
+      " - `name` arbitrary name for the LSP client. Should be unique per language server.",
+      " - `cmd` command (in list form) used to start the language server. Must be absolute, or found on",
+      "   `$PATH`. Shell constructs like `~` are not expanded.",
+      " - `root_dir` path to the project root. By default this is used to decide if an existing client",
+      "   should be re-used. The example above uses |vim.fs.find()| and |vim.fs.dirname()| to detect the",
+      "   root by traversing the file system upwards starting from the current directory until either",
+      "   a `pyproject.toml` or `setup.py` file is found.",
+      " - `workspace_folders` list of `{ uri:string, name: string }` tables specifying the project root",
+      "   folders used by the language server. If `nil` the property is derived from `root_dir` for",
+      "   convenience.",
+      " Language servers use this information to discover metadata like the",
+      " dependencies of your project and they tend to index the contents within the",
+      " project folder.",
+      " To ensure a language server is only started for languages it can handle,",
+      " make sure to call |vim.lsp.start()| within a |FileType| autocmd.",
+      " Either use |:au|, |nvim_create_autocmd()| or put the call in a",
+      " `ftplugin/<filetype_name>.lua` (See |ftplugin-name|)",
+      "             - reuse_client (fun(client: client, config: table): boolean)",
+      "                            Predicate used to decide if a client should be re-used.",
+      "                            Used on all running clients.",
+      "                            The default implementation re-uses a client if name",
+      "                            and root_dir matches.",
+      "             - bufnr (number)",
+      "                     Buffer handle to attach to if starting or re-using a",
+      "                     client (0 for current)."
+    ],
+    "return_type": "Null<Int>"
+  },
+  {
+    "annotations": [
+      "@param cmd: (table|string|fun(dispatchers: table):table) command string or",
+      "@param cmd_cwd: (string, default=|getcwd()|) Directory to launch",
+      "@param cmd_env: (table) Environment flags to pass to the LSP on",
+      "@param detached: (boolean, default true) Daemonize the server process so that it runs in a",
+      "@param workspace_folders (table) List of workspace folders passed to the",
+      "@param capabilities Map overriding the default capabilities defined by",
+      "@param handlers Map of language server method names to |lsp-handler|",
+      "@param settings Map with language server specific settings. These are",
+      "@param commands table Table that maps string of clientside commands to user-defined functions.",
+      "@param init_options Values to pass in the initialization request",
+      "@param name (string, default=client-id) Name in log messages.",
+      "@param get_language_id function(bufnr, filetype) -> language ID as string.",
+      "@param offset_encoding (default=\"utf-16\") One of \"utf-8\", \"utf-16\",",
+      "@param on_error Callback with parameters (code, ...), invoked",
+      "@param before_init Callback with parameters (initialize_params, config)",
+      "@param on_init Callback (client, initialize_result) invoked after LSP",
+      "@param on_exit Callback (code, signal, client_id) invoked on client",
+      "@param on_attach Callback (client, bufnr) invoked when client",
+      "@param trace:  \"off\" | \"messages\" | \"verbose\" | nil passed directly to the language",
+      "@param flags: A table with flags for the client. The current (experimental) flags are:",
+      "@param root_dir string Directory where the LSP",
+      "@returns Client id. |vim.lsp.get_client_by_id()| Note: client may not be"
+    ],
+    "name": "start_client",
+    "parameters": [
+      [
+        "Dynamic",
+        "config"
+      ]
+    ],
+    "fullyQualified_name": "lsp.start_client",
+    "docs": [
+      "FIXME: DOC: Currently all methods on the `vim.lsp.client` object are",
+      "documented twice: Here, and on the methods themselves (e.g.",
+      "`client.request()`). This is a workaround for the vimdoc generator script",
+      "not handling method names correctly. If you change the documentation on",
+      "either, please make sure to update the other as well.",
+      " Starts and initializes a client with the given configuration.",
+      " Parameter `cmd` is required.",
+      " The following parameters describe fields in the {config} table.",
+      " list treated like |jobstart()|. The command must launch the language server",
+      " process. `cmd` can also be a function that creates an RPC client.",
+      " The function receives a dispatchers table and must return a table with the",
+      " functions `request`, `notify`, `is_closing` and `terminate`",
+      " See |vim.lsp.rpc.request()| and |vim.lsp.rpc.notify()|",
+      " For TCP there is a built-in rpc client factory: |vim.lsp.rpc.connect()|",
+      " the `cmd` process. Not related to `root_dir`.",
+      " spawn.  Can be specified using keys like a map or as a list with `k=v`",
+      " pairs or both. Non-string values are coerced to string.",
+      " Example:",
+      " <pre>",
+      " { \"PRODUCTION=true\"; \"TEST=123\"; PORT = 8080; HOST = \"0.0.0.0\"; }",
+      " </pre>",
+      " separate process group from Nvim. Nvim will shutdown the process on exit, but if Nvim fails to",
+      " exit cleanly this could leave behind orphaned server processes.",
+      " language server. For backwards compatibility rootUri and rootPath will be",
+      " derived from the first workspace folder in this list. See `workspaceFolders` in",
+      " the LSP spec.",
+      " |vim.lsp.protocol.make_client_capabilities()|, passed to the language",
+      " server on initialization. Hint: use make_client_capabilities() and modify",
+      " its result.",
+      " - Note: To send an empty dictionary use",
+      "   `{[vim.type_idx]=vim.types.dictionary}`, else it will be encoded as an",
+      "   array.",
+      " returned to the language server if requested via `workspace/configuration`.",
+      " Keys are case-sensitive.",
+      " Commands passed to start_client take precedence over the global command registry. Each key",
+      " must be a unique command name, and the value is a function which is called if any LSP action",
+      " (code action, code lenses, ...) triggers the command.",
+      " as `initializationOptions`. See `initialize` in the LSP spec.",
+      " Defaults to the filetype.",
+      " or \"utf-32\" which is the encoding that the LSP server expects. Client does",
+      " not verify this is correct.",
+      " when the client operation throws an error. `code` is a number describing",
+      " the error. Other arguments may be passed depending on the error kind.  See",
+      " `vim.lsp.rpc.client_errors` for possible errors.",
+      " Use `vim.lsp.rpc.client_errors[code]` to get human-friendly name.",
+      " invoked before the LSP \"initialize\" phase, where `params` contains the",
+      " parameters being sent to the server and `config` is the config that was",
+      " passed to |vim.lsp.start_client()|. You can use this to modify parameters before",
+      " they are sent.",
+      " \"initialize\", where `result` is a table of `capabilities` and anything else",
+      " the server may send. For example, clangd sends",
+      " `initialize_result.offsetEncoding` if `capabilities.offsetEncoding` was",
+      " sent to it. You can only modify the `client.offset_encoding` here before",
+      " any notifications are sent. Most language servers expect to be sent client specified settings after",
+      " initialization. Neovim does not make this assumption. A",
+      " `workspace/didChangeConfiguration` notification should be sent",
+      "  to the server during on_init.",
+      " exit.",
+      " - code: exit code of the process",
+      " - signal: number describing the signal used to terminate (if any)",
+      " - client_id: client handle",
+      " attaches to a buffer.",
+      " server in the initialize request. Invalid/empty values will default to \"off\"",
+      " - allow_incremental_sync (bool, default true): Allow using incremental sync for buffer edits",
+      " - debounce_text_changes (number, default 150): Debounce didChange",
+      "       notifications to the server by the given number in milliseconds. No debounce",
+      "       occurs if nil",
+      " - exit_timeout (number|boolean, default false): Milliseconds to wait for server to",
+      "       exit cleanly after sending the \"shutdown\" request before sending kill -15.",
+      "       If set to false, nvim exits immediately after sending the \"shutdown\" request to the server.",
+      " server will base its workspaceFolders, rootUri, and rootPath",
+      " on initialization.",
+      " fully initialized. Use `on_init` to do any actions once",
+      " the client has been initialized."
+    ],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "resolve_handler",
+    "parameters": [
+      [
+        "Dynamic",
+        "method"
+      ]
+    ],
+    "fullyQualified_name": "resolve_handler",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "notification",
+    "parameters": [
+      [
+        "Dynamic",
+        "method"
+      ],
+      [
+        "Dynamic",
+        "params"
+      ]
+    ],
+    "fullyQualified_name": "dispatch.notification",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "server_request",
+    "parameters": [
+      [
+        "Dynamic",
+        "method"
+      ],
+      [
+        "Dynamic",
+        "params"
+      ]
+    ],
+    "fullyQualified_name": "dispatch.server_request",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "on_error",
+    "parameters": [
+      [
+        "Dynamic",
+        "code"
+      ],
+      [
+        "Dynamic",
+        "err"
+      ]
+    ],
+    "fullyQualified_name": "dispatch.on_error",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "set_defaults",
+    "parameters": [
+      [
+        "Dynamic",
+        "client"
+      ],
+      [
+        "Dynamic",
+        "bufnr"
+      ]
+    ],
+    "fullyQualified_name": "set_defaults",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "unset_defaults",
+    "parameters": [
+      [
+        "Dynamic",
+        "bufnr"
+      ]
+    ],
+    "fullyQualified_name": "unset_defaults",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "on_exit",
+    "parameters": [
+      [
+        "Dynamic",
+        "code"
+      ],
+      [
+        "Dynamic",
+        "signal"
+      ]
+    ],
+    "fullyQualified_name": "dispatch.on_exit",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "initialize",
+    "parameters": [],
+    "fullyQualified_name": "initialize",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "request",
+    "parameters": [
+      [
+        "Dynamic",
+        "method"
+      ],
+      [
+        "Dynamic",
+        "params"
+      ],
+      [
+        "Dynamic",
+        "handler"
+      ],
+      [
+        "Dynamic",
+        "bufnr"
+      ]
+    ],
+    "fullyQualified_name": "client.request",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "_sync_handler",
+    "parameters": [
+      [
+        "Dynamic",
+        "err"
+      ],
+      [
+        "Dynamic",
+        "result"
+      ]
+    ],
+    "fullyQualified_name": "_sync_handler",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "notify",
+    "parameters": [
+      [
+        "Dynamic",
+        "method"
+      ],
+      [
+        "Dynamic",
+        "params"
+      ]
+    ],
+    "fullyQualified_name": "client.notify",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "cancel_request",
+    "parameters": [
+      [
+        "Dynamic",
+        "id"
+      ]
+    ],
+    "fullyQualified_name": "client.cancel_request",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "stop",
+    "parameters": [
+      [
+        "Dynamic",
+        "force"
+      ]
+    ],
+    "fullyQualified_name": "client.stop",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "is_stopped",
+    "parameters": [],
+    "fullyQualified_name": "client.is_stopped",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "_on_attach",
+    "parameters": [
+      [
+        "Dynamic",
+        "bufnr"
+      ]
+    ],
+    "fullyQualified_name": "client._on_attach",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [
+      "@param bufnr (number) Buffer handle, or 0 for current",
+      "@param client_id (number) Client id"
+    ],
+    "name": "buf_attach_client",
+    "parameters": [
+      [
+        "Int",
+        "bufnr"
+      ],
+      [
+        "Int",
+        "client_id"
+      ]
+    ],
+    "fullyQualified_name": "lsp.buf_attach_client",
+    "docs": [
+      " Implements the `textDocument/did…` notifications required to track a buffer",
+      " for any language server.",
+      " Without calling this, the server won't be notified of changes to a buffer."
+    ],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [
+      "@param bufnr number Buffer handle, or 0 for current",
+      "@param client_id number Client id"
+    ],
+    "name": "buf_detach_client",
+    "parameters": [
+      [
+        "Int",
+        "bufnr"
+      ],
+      [
+        "Int",
+        "client_id"
+      ]
+    ],
+    "fullyQualified_name": "lsp.buf_detach_client",
+    "docs": [
+      " Detaches client from the specified buffer.",
+      " Note: While the server is notified that the text document (buffer)",
+      " was closed, it is still able to send notifications should it ignore this notification."
+    ],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [
+      "@param bufnr (number) Buffer handle, or 0 for current",
+      "@param client_id (number) the client id"
+    ],
+    "name": "buf_is_attached",
+    "parameters": [
+      [
+        "Int",
+        "bufnr"
+      ],
+      [
+        "Int",
+        "client_id"
+      ]
+    ],
+    "fullyQualified_name": "lsp.buf_is_attached",
+    "docs": [
+      " Checks if a buffer is attached for a particular client."
+    ],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [
+      "@param client_id number client id",
+      "@returns |vim.lsp.client| object, or nil"
+    ],
+    "name": "get_client_by_id",
+    "parameters": [
+      [
+        "Int",
+        "client_id"
+      ]
+    ],
+    "fullyQualified_name": "lsp.get_client_by_id",
+    "docs": [
+      " Gets a client by id, or nil if the id is invalid.",
+      " The returned client may not yet be fully initialized."
+    ],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [
+      "@param client_id number client id",
+      "@returns list of buffer ids"
+    ],
+    "name": "get_buffers_by_client_id",
+    "parameters": [
+      [
+        "Int",
+        "client_id"
+      ]
+    ],
+    "fullyQualified_name": "lsp.get_buffers_by_client_id",
+    "docs": [
+      " Returns list of buffers attached to client_id."
+    ],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [
+      "@param client_id client id or |vim.lsp.client| object, or list thereof",
+      "@param force boolean (optional) shutdown forcefully"
+    ],
+    "name": "stop_client",
+    "parameters": [
+      [
+        "Client",
+        "client_id"
+      ],
+      [
+        "Bool",
+        "force"
+      ]
+    ],
+    "fullyQualified_name": "lsp.stop_client",
+    "docs": [
+      " Stops a client(s).",
+      " You can also use the `stop()` function on a |vim.lsp.client| object.",
+      " To stop all clients:",
+      " <pre>",
+      " vim.lsp.stop_client(vim.lsp.get_active_clients())",
+      " </pre>",
+      " By default asks the server to shutdown, unless stop was requested",
+      " already for this client, then force-shutdown is attempted."
+    ],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [
+      "@param filter (table|nil) A table with key-value pairs used to filter the",
+      "@returns (table) List of |vim.lsp.client| objects"
+    ],
+    "name": "get_active_clients",
+    "parameters": [
+      [
+        "Null<lua.Table<Int, Dynamic>>",
+        "filter"
+      ]
+    ],
+    "fullyQualified_name": "lsp.get_active_clients",
+    "docs": [
+      " Get active clients.",
+      "              returned clients. The available keys are:",
+      "               - id (number): Only return clients with the given id",
+      "               - bufnr (number): Only return clients attached to this buffer",
+      "               - name (string): Only return clients with the given name"
+    ],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "check_clients_closed",
+    "parameters": [],
+    "fullyQualified_name": "check_clients_closed",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "_cancel_all_requests",
+    "parameters": [],
+    "fullyQualified_name": "_cancel_all_requests",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [
+      "@param bufnr (number) Buffer handle, or 0 for current.",
+      "@param method (string) LSP method name",
+      "@param params (optional, table) Parameters to send to the server",
+      "@param callback (function) The callback to call when all requests are finished.",
+      "@returns (function) A function that will cancel all requests which is the same as the one returned from `buf_request`."
+    ],
+    "name": "buf_request_all",
+    "parameters": [
+      [
+        "Int",
+        "bufnr"
+      ],
+      [
+        "String",
+        "method"
+      ],
+      [
+        "lua.Table<Int, Dynamic>",
+        "params"
+      ],
+      [
+        "Function",
+        "callback"
+      ]
+    ],
+    "fullyQualified_name": "lsp.buf_request_all",
+    "docs": [
+      " Unlike `buf_request`, this will collect all the responses from each server instead of handling them.",
+      " A map of client_id:request_result will be provided to the callback"
+    ],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [
+      "@param bufnr (number) Buffer handle, or 0 for current.",
+      "@param method (string) LSP method name",
+      "@param params (optional, table) Parameters to send to the server",
+      "@param timeout_ms (optional, number, default=1000) Maximum time in",
+      "@returns Map of client_id:request_result. On timeout, cancel or error,"
+    ],
+    "name": "buf_request_sync",
+    "parameters": [
+      [
+        "Int",
+        "bufnr"
+      ],
+      [
+        "String",
+        "method"
+      ],
+      [
+        "lua.Table<Int, Dynamic>",
+        "params"
+      ],
+      [
+        "Optional, number, default=1000",
+        "timeout_ms"
+      ]
+    ],
+    "fullyQualified_name": "lsp.buf_request_sync",
+    "docs": [
+      " Sends a request to all server and waits for the response of all of them.",
+      " Calls |vim.lsp.buf_request_all()| but blocks Nvim while awaiting the result.",
+      " Parameters are the same as |vim.lsp.buf_request()| but the return result is",
+      " different. Wait maximum of {timeout_ms} (default 1000) ms.",
+      "      milliseconds to wait for a result.",
+      "        returns `(nil, err)` where `err` is a string describing the failure",
+      "        reason."
+    ],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [
+      "@param bufnr [number] (optional): The number of the buffer",
+      "@param method [string]: Name of the request method",
+      "@param params [string]: Arguments to send to the server",
+      "@returns true if any client returns true; false otherwise"
+    ],
+    "name": "buf_notify",
+    "parameters": [
+      [
+        "Int",
+        "bufnr"
+      ],
+      [
+        "String",
+        "method"
+      ],
+      [
+        "String",
+        "params"
+      ]
+    ],
+    "fullyQualified_name": "lsp.buf_notify",
+    "docs": [
+      " Send a notification to a server"
+    ],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [
+      "@see |complete-functions|",
+      "@see |complete-items|",
+      "@see |CompleteDone|",
+      "@param findstart 0 or 1, decides behavior",
+      "@param base If findstart=0, text to match against",
+      "@returns (number) Decided by {findstart}:"
+    ],
+    "name": "omnifunc",
+    "parameters": [
+      [
+        "0 or 1, decides behavior",
+        "findstart"
+      ],
+      [
+        "If",
+        "base"
+      ]
+    ],
+    "fullyQualified_name": "lsp.omnifunc",
+    "docs": [
+      " Implements 'omnifunc' compatible LSP completion.",
+      " - findstart=0: column where the completion starts, or -2 or -3",
+      " - findstart=1: list of matches (actually just calls |complete()|)"
+    ],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [
+      "@param opts table options for customizing the formatting expression which takes the"
+    ],
+    "name": "formatexpr",
+    "parameters": [
+      [
+        "lua.Table<Int, Dynamic>",
+        "opts"
+      ]
+    ],
+    "fullyQualified_name": "lsp.formatexpr",
+    "docs": [
+      " Provides an interface between the built-in client and a `formatexpr` function.",
+      " Currently only supports a single client. This can be set via",
+      " `setlocal formatexpr=v:lua.vim.lsp.formatexpr()` but will typically or in `on_attach`",
+      " via ``vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr(#{timeout_ms:250})')``.",
+      "                   following optional keys:",
+      "                   * timeout_ms (default 500ms). The timeout period for the formatting request."
+    ],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [
+      "@param pattern Pattern used to find a workspace symbol",
+      "@param flags See |tag-function|",
+      "@returns A list of matching tags"
+    ],
+    "name": "tagfunc",
+    "parameters": [
+      [
+        "Dynamic",
+        "..."
+      ]
+    ],
+    "fullyQualified_name": "lsp.tagfunc",
+    "docs": [
+      " Provides an interface between the built-in client and 'tagfunc'.",
+      " When used with normal mode commands (e.g. |CTRL-]|) this will invoke",
+      " the \"textDocument/definition\" LSP method to find the tag under the cursor.",
+      " Otherwise, uses \"workspace/symbol\". If no results are returned from",
+      " any LSP servers, falls back to using built-in tags."
+    ],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [
+      "@param client_id (Number)",
+      "@returns true if client is stopped, false otherwise."
+    ],
+    "name": "client_is_stopped",
+    "parameters": [
+      [
+        "Int",
+        "client_id"
+      ]
+    ],
+    "fullyQualified_name": "lsp.client_is_stopped",
+    "docs": [],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [
+      "@param bufnr (optional, number): Buffer handle, or 0 for current",
+      "@returns (table) Table of (client_id, client) pairs",
+      "@deprecated Use |vim.lsp.get_active_clients()| instead."
+    ],
+    "name": "buf_get_clients",
+    "parameters": [
+      [
+        "Int",
+        "bufnr"
+      ]
+    ],
+    "fullyQualified_name": "lsp.buf_get_clients",
+    "docs": [
+      " Gets a map of client_id:client pairs for the given buffer, where each value",
+      " is a |vim.lsp.client| object."
+    ],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [
+      "@see |vim.lsp.log_levels|",
+      "@param level [number|string] the case insensitive level name or number"
+    ],
+    "name": "set_log_level",
+    "parameters": [
+      [
+        "Dynamic",
+        "level"
+      ]
+    ],
+    "fullyQualified_name": "lsp.set_log_level",
+    "docs": [
+      " Sets the global log level for LSP logging.",
+      " Levels by name: \"TRACE\", \"DEBUG\", \"INFO\", \"WARN\", \"ERROR\", \"OFF\"",
+      " Level numbers begin with \"TRACE\" at 0",
+      " Use `lsp.log_levels` for reverse lookup."
+    ],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [
+      "@returns (String) Path to logfile."
+    ],
+    "name": "get_log_path",
+    "parameters": [],
+    "fullyQualified_name": "lsp.get_log_path",
+    "docs": [
+      " Gets the path of the logfile used by the LSP client."
+    ],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [
+      "@param handler (function) See |lsp-handler|",
+      "@param override_config (table) Table containing the keys to override behavior of the {handler}"
+    ],
+    "name": "with",
+    "parameters": [
+      [
+        "Function",
+        "handler"
+      ],
+      [
+        "lua.Table<Int, Dynamic>",
+        "override_config"
+      ]
+    ],
+    "fullyQualified_name": "lsp.with",
+    "docs": [
+      " Function to manage overriding defaults for LSP handlers."
+    ],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [],
+    "name": "_with_extend",
+    "parameters": [
+      [
+        "Dynamic",
+        "name"
+      ],
+      [
+        "Dynamic",
+        "options"
+      ],
+      [
+        "Dynamic",
+        "user_config"
+      ]
+    ],
+    "fullyQualified_name": "lsp._with_extend",
+    "docs": [
+      " Helper function to use when implementing a handler.",
+      " This will check that all of the keys in the user configuration",
+      " are valid keys and make sense to include for this handler.",
+      " Will error on invalid keys (i.e. keys that do not exist in the options)"
+    ],
+    "return_type": "Void"
+  }
+]
