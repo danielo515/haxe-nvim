@@ -55,3 +55,22 @@ extern class Vim {
   public static function cmd(command:String):Void;
   public static function notify(message:String, level:String):Void;
 }
+
+abstract Vector3< A, B, C >(lua.Table< Int, Dynamic >) {
+  public function first():A {
+    return this[1];
+  }
+
+  public function second():B {
+    return this[2];
+  }
+
+  public function last():C {
+    return this[3];
+  }
+}
+
+@:native("vim.spell")
+extern class Spell {
+  public static function check(str:String):Array< Vector3< String, String, Int > >;
+}
