@@ -17,6 +17,7 @@ This repository is, as today 2023-01-02 a mirror of my personal dotfiles. The re
 
 I am just a newcomer to Haxe, so there are lots of places where I will appreciate contributions.
 Here is a list of things that are very welcome
+- [ ] A cool logo. If anything this project needs is a cool logo. 
 - [ ] Proper configurations to publish this to haxelib
 - [ ] A better lua annotations parser. I don't want to depend on anything but Haxe. Currently this library uses a very dumb parser for the Lua annotations. If you want to help there and improve it or write a new one you are welcome
 - [ ] Try this out. Yeah, just having this used by someone but me will probably be beneficial.
