@@ -52,6 +52,7 @@ extern class Vim {
     return Fn.expand(string);
   };
   public static function tbl_map< T, B >(fn:T -> B, tbl:LuaArray< T >):LuaArray< B >;
+  public static function list_extend< T >(dest:LuaArray< T >, src:LuaArray< T >):LuaArray< T >;
   public static function cmd(command:String):Void;
   public static function notify(message:String, level:String):Void;
 }

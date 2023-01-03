@@ -1,6 +1,9 @@
 package kickstart;
 
 import vim.Vimx;
+
+using vim.TableTools;
+
 import kickstart.LspConfig;
 import vim.Lsp;
 import vim.Vim;
@@ -77,6 +80,20 @@ extern class Luasnip {
   static function expand_or_jump():Void;
   static function jumpable(?direction:Int):Bool;
   static function jump(?direction:Int):Void;
+}
+
+extern class JsonSchemas {
+  public function schemas():LuaArray< {
+    url:String,
+    name:String,
+    fileMatch:LuaArray< String >,
+    description:String
+  } >;
+}
+
+@:luaRequire('schemastore')
+extern class SchemaStore {
+  static final json:JsonSchemas;
 }
 
 function keymaps() {
@@ -234,12 +251,12 @@ function main() {
           on_attach: onAttach,
           settings: t({
             json: t({
-              schemas: t([{
+              schemas: t([({
                 description: "Haxe format schema",
                 fileMatch: t(["hxformat.json"]),
                 name: "hxformat.schema.json",
                 url: "https://raw.githubusercontent.com/vshaxe/vshaxe/master/schemas/hxformat.schema.json",
-              }])
+              })]).concat(SchemaStore.json.schemas())
             })
           })
         });
