@@ -97,6 +97,8 @@ extern class SchemaStore {
 }
 
 function keymaps() {
+  Vim.g.mapleader = " ";
+  Vim.g.maplocalleader = ",";
   Keymap.set(
     t([Normal, Visual]),
     '<Space>',

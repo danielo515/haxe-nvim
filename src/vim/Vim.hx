@@ -46,6 +46,7 @@ extern class Keymap {
 @:native("vim")
 extern class Vim {
   public static final o:VimOpts;
+  public static final g:VimGOpts;
   @:native("pretty_print")
   static function print(args:Rest< Dynamic >):Void;
   static inline function expand(string:ExpandString):String {

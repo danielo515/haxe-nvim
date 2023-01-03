@@ -276,3 +276,10 @@ typedef VimOpts = {
   /* Enable undo file */
   var undofile:Bool;
 }
+
+typedef VimGOpts = {
+  /* Leader key to use */
+  var mapleader:String;
+  /* Local leader key to use */
+  var maplocalleader:String;
+}
