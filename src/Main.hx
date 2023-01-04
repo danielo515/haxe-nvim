@@ -13,24 +13,31 @@ class Main {
       desc: description,
       force: true,
       nargs: nargs,
+      complete: null,
       bang: false,
       range: Yes,
     });
   }
 
   static function main() {
-    vim.Api.nvim_create_user_command("HaxeCmd", (args) -> {
-      Vim.print(args);
-      final spellRes = Spell.check("Hello bru! Hau are you?");
-      Vim.print(spellRes[1].first());
-      vim.Ui.select(t(["a"]), {prompt: "Pick one sexy option"}, (choice, _) -> Vim.print(choice));
-    }, {
-      desc: "Testing from haxe",
-      force: true,
-      nargs: Any,
-      bang: true,
-      range: WholeFile,
-    });
+    vim.Api.create_user_command_completion(
+      "HaxeCmd",
+      (args) -> {
+        Vim.print(args);
+        final spellRes = Spell.check("Hello bru! Hau are you?");
+        Vim.print(spellRes[1].first());
+        vim.Ui.select(t(["a"]),
+          {prompt: "Pick one sexy option"},
+          (choice, _) -> Vim.print(choice));
+      },
+      CustomLua("require'packer'.plugin_complete"),
+      {
+        desc: "Testing from haxe",
+        force: true,
+        bang: true,
+        range: WholeFile,
+      }
+    );
 
     Vimx.autocmd('HaxeEvent', [BufWritePost], "*.hx", "Created from haxe", () -> {
       var filename = Vim.expand(ExpandString.plus(CurentFile, FullPath));

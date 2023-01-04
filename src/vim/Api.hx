@@ -56,11 +56,33 @@ extern class Api {
     opts:TableWrapper< {
       desc:String,
       force:Bool,
+      ?complete:String,
       ?nargs:Nargs,
       ?bang:Bool,
       ?range:CmdRange,
     } >
   ):Void;
+  static inline function create_user_command_completion(
+    command_name:String,
+    command:LuaObj< CommandCallbackArgs > -> Void,
+    complete:ArgComplete,
+    opts:{
+      desc:String,
+      force:Bool,
+      ?bang:Bool,
+      ?range:CmdRange,
+    }
+  ):Void {
+    final completeStr:String = complete;
+    nvim_create_user_command(command_name, command, {
+      desc: opts.desc,
+      force: true,
+      complete: completeStr,
+      nargs: ExactlyOne,
+      bang: opts.bang,
+      range: opts.range
+    });
+  };
   static function nvim_buf_create_user_command(
     bufnr:Buffer,
     command_name:String,

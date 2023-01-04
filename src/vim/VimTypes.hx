@@ -125,6 +125,27 @@ enum abstract NargsStr(String) {
  */
 typedef Nargs = EitherType< NargsInt, NargsStr >
 
+enum ArgCompleteEnum {
+  ArgList;
+  Custom(vimFn:String);
+  CustomLua(luaRef:String);
+}
+
+abstract ArgComplete(String) to String {
+  private inline function new(arg) {
+    this = arg;
+  }
+
+  @:from
+  public static inline function from(enumValue:ArgCompleteEnum):ArgComplete {
+    return switch (enumValue) {
+      case Custom(ref): new ArgComplete('custom,$ref');
+      case CustomLua(ref): new ArgComplete('customlist,v:lua.$ref');
+      case ArgList: new ArgComplete("arglist");
+    };
+  }
+}
+
 /**
   The type of range a user defined command accepts
  */
