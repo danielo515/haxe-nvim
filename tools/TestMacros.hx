@@ -8,10 +8,16 @@ typedef X = {
   arrWithObjs:Array< {x:String} >
 };
 
+typedef WithLambdas = TableWrapper< {
+  lambda1:Void -> Void,
+  nestedLambda:{lambda2:(Dynamic, Dynamic) -> Void}
+} >
+
 typedef W = TableWrapper< X >;
 extern function testMethod(x:W):Void;
+extern function testlambdas(x:WithLambdas):Void;
 
-function doY() {
+function lotOfNesting() {
   testMethod({
     doX: 99,
     test: true,
@@ -19,4 +25,8 @@ function doY() {
     nest: {a: {renest: 99, b: {c: {meganest: 88}}}},
     arrWithObjs: [{x: "inside array -> obj "}, {x: "second array -> obj "}],
   });
+}
+
+function objectWithLambdas() {
+  testlambdas({lambda1: () -> {}, nestedLambda: {lambda2: (a, b) -> trace(a, b)}});
 }

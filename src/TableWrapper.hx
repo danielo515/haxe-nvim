@@ -102,7 +102,7 @@ static function objToTable(obj:Expr):Expr {
             {field: f.name, expr: macro(TableWrapper.fromExpr(${fieldExprs.get(f.name)}) : $ct)};
 
           case TAnonymous(_):
-            {field: f.name, expr: objToTable(${fieldExprs.get(f.name)})};
+            {field: f.name, expr: objToTable(fieldExprs.get(f.name))};
           // case TInst(_.get().name => "Array", [TAnonymous(_)]):
           //   trace(currentFieldExpression.toString());
           //   {
@@ -111,7 +111,7 @@ static function objToTable(obj:Expr):Expr {
           //   }
 
           case _:
-            {field: f.name, expr: objToTable(${fieldExprs.get(f.name)})};
+            {field: f.name, expr: objToTable(fieldExprs.get(f.name))};
         }
       }];
 
