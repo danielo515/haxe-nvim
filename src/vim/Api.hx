@@ -48,6 +48,11 @@ abstract AutoCmdOpts(Table< String, Dynamic >) {
 @:native("vim.api")
 @:build(ApiGen.attachApi("api"))
 extern class Api {
+  /**
+    Returns a list of available tabpages
+   */
+  static function nvim_list_tabpages():LuaArray< Tabpage >;
+
   static function nvim_create_augroup(group:String, opts:GroupOpts):Group;
   static function nvim_create_autocmd(event:LuaArray< VimEvent >, opts:AutoCmdOpts):Int;
   static function nvim_create_user_command(

@@ -93,7 +93,7 @@
               "value": 100
             }
           ],
-          "type": "onePerLineAfterFirst"
+          "type": "onePerLine"
         },
         {
           "conditions": [
@@ -102,7 +102,7 @@
               "value": 100
             }
           ],
-          "type": "onePerLineAfterFirst"
+          "type": "onePerLine"
         }
       ]
     }
