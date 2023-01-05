@@ -9,10 +9,11 @@ typedef X = {
 };
 
 typedef WithLambdas = TableWrapper< {
-  lambda1:Void -> Void,
-  nestedLambda:{lambda2:(Dynamic, Dynamic) -> Void}
+  lambda1:(name:String, age:Int) -> Void,
+  nestedLambda:{lambda2:(Int, Int) -> Int}
 } >
 
+extern function log(arg:Dynamic):Void;
 typedef W = TableWrapper< X >;
 extern function testMethod(x:W):Void;
 extern function testlambdas(x:WithLambdas):Void;
@@ -28,5 +29,10 @@ function lotOfNesting() {
 }
 
 function objectWithLambdas() {
-  testlambdas({lambda1: () -> {}, nestedLambda: {lambda2: (a, b) -> trace(a, b)}});
+  testlambdas({
+    lambda1: (name:String, age:Int) -> {
+      Sys.println('Hello $name, good age $age');
+    },
+    nestedLambda: {lambda2: (a, b) -> (a + b)}
+  });
 }

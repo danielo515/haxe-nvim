@@ -60,7 +60,6 @@ static function objToTable(obj:Expr):Expr {
       case EArrayDecl(values):
         macro lua.Table.create(${ExprTools.map(obj, objToTable)}, null);
       case EFunction(kind, f):
-        trace("function", kind, f);
         obj;
       case _:
         ExprTools.map(obj, objToTable);
