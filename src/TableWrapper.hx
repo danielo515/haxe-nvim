@@ -59,6 +59,9 @@ static function objToTable(obj:Expr):Expr {
         macro lua.Table.create(null, $objExpr);
       case EArrayDecl(values):
         macro lua.Table.create(${ExprTools.map(obj, objToTable)}, null);
+      case EFunction(kind, f):
+        trace("function", kind, f);
+        obj;
       case _:
         ExprTools.map(obj, objToTable);
     }
@@ -110,6 +113,8 @@ static function objToTable(obj:Expr):Expr {
           //     expr: macro lua.Table.create(${ExprTools.map(currentFieldExpression, objToTable)})
           //   }
 
+          case TAbstract(_, _) | TFun(_, _):
+            {field: f.name, expr: (fieldExprs.get(f.name))};
           case _:
             {field: f.name, expr: objToTable(fieldExprs.get(f.name))};
         }

@@ -56,7 +56,7 @@ extern class Api {
     opts:TableWrapper< {
       desc:String,
       force:Bool,
-      ?complete:String,
+      ?complete:ArgComplete,
       ?nargs:Nargs,
       ?bang:Bool,
       ?range:CmdRange,
@@ -73,11 +73,10 @@ extern class Api {
       ?range:CmdRange,
     }
   ):Void {
-    final completeStr:String = complete;
     nvim_create_user_command(command_name, command, {
       desc: opts.desc,
       force: true,
-      complete: completeStr,
+      complete: complete,
       nargs: ExactlyOne,
       bang: opts.bang,
       range: opts.range
