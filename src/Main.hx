@@ -6,6 +6,7 @@ import lua.Table.create as t;
 
 using lua.NativeStringTools;
 using lua.Table;
+using vim.TableTools;
 using Lambda;
 using Test;
 
@@ -113,11 +114,10 @@ function copy_messages_to_clipboard(number:String) {
 }
 
 function nexTab() {
-  final pages = vim.Api.nvim_list_tabpages().toArray();
+  final pages = vim.Api.nvim_list_tabpages();
   final currentTab = vim.Api.nvim_get_current_tabpage();
-  final tabIdx = pages.findIndex(id -> id == currentTab);
-  Vim.print("pages", pages, "tabIdx", tabIdx, "current", currentTab);
-  vim.Api.nvim_set_current_tabpage(pages[tabIdx + 1].or(pages[0]));
+  final nextT = pages.findNext(id -> id == currentTab);
+  vim.Api.nvim_set_current_tabpage(nextT.or(pages[1]));
 }
 
 function copyGhUrl(?line) {

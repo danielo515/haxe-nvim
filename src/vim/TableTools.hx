@@ -2,6 +2,7 @@ package vim;
 
 import vim.VimTypes.LuaArray;
 import lua.Table;
+import lua.Lua;
 
 /**
   This is a collection of helpers to work with lua tables
@@ -22,4 +23,20 @@ final join = lua.Table.concat;
 function concat< T >(tableA:LuaArray< T >, tableB:LuaArray< T >):LuaArray< T > {
   final result = Vim.list_extend(Table.create(), tableA);
   return Vim.list_extend(result, tableB);
+}
+
+inline function pairs< T >(table:LuaArray< T >) {
+  return lua.PairTools.ipairsIterator(table);
+}
+
+function findNext< T >(table:LuaArray< T >, fn:T -> Bool):Null< T > {
+  final p = Lua.ipairs(table);
+  final next = p.next;
+  final t = p.table;
+  function loop(next, table, nextP:NextResult< Int, T >) {
+    return if (fn(
+      nextP.value
+    ))next(table, nextP.index).value else loop(next, table, next(table, nextP.index));
+  }
+  return loop(next, t, next(t, p.index));
 }
