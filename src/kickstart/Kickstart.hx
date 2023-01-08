@@ -189,7 +189,6 @@ function main() {
   Vim.o.breakindent = true;
   Vim.o.undofile = true;
   Vim.wo.Number = true;
-  Vim.wo.Colorcolumn = 'yes';
 
   keymaps();
   // -- Set lualine as statusline
