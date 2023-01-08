@@ -188,6 +188,8 @@ function main() {
   Vim.o.mouse = 'a';
   Vim.o.breakindent = true;
   Vim.o.undofile = true;
+  Vim.wo.Number = true;
+  Vim.wo.Colorcolumn = 'yes';
 
   keymaps();
   // -- Set lualine as statusline
@@ -230,7 +232,9 @@ function main() {
     },
   });
 
-  final capabilities = Cmp_nvim_lsp.default_capabilities(vim.Lsp.Protocol.make_client_capabilities());
+  final capabilities = Cmp_nvim_lsp.default_capabilities(
+    vim.Lsp.Protocol.make_client_capabilities()
+  );
 
   Neodev.setup();
   Mason.setup();

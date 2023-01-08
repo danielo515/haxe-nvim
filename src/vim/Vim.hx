@@ -1,5 +1,6 @@
 package vim;
 
+import vim.types.WOpts;
 import haxe.extern.EitherType;
 import haxe.Rest;
 import vim.VimTypes;
@@ -47,6 +48,7 @@ extern class Keymap {
 extern class Vim {
   public static final o:VimOpts;
   public static final g:VimGOpts;
+  public static final wo:WOpts;
   @:native("pretty_print")
   static function print(args:Rest< Dynamic >):Void;
   static inline function expand(string:ExpandString):String {
