@@ -1,5 +1,6 @@
 package vim;
 
+import vim.Vim.Fn;
 import vim.Api;
 import lua.StringMap;
 import vim.VimTypes;
@@ -7,7 +8,7 @@ import haxe.Constraints.Function;
 
 using Safety;
 
-@:expose("vim")
+@:expose("vimx")
 class Vimx {
   public static final autogroups:StringMap< Group > = new StringMap();
 
@@ -47,4 +48,11 @@ class Vimx {
     Vim.cmd(cmd);
     Vim.notify("Copied to clipboard", "info");
   }
+
+  /**
+    Returns the number of lines of the current file
+   */
+  public static function linesInCurrentWindow():Int {
+    return Fn.line('$', CurrentWindow);
+  };
 }
