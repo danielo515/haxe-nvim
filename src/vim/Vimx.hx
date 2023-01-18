@@ -50,9 +50,25 @@ class Vimx {
   }
 
   /**
-    Returns the number of lines of the current file
+    Returns the number of lines of the current file in the current window
    */
-  public static function linesInCurrentWindow():Int {
+  public static inline function linesInCurrentWindow():Int {
     return Fn.line('$', CurrentWindow);
+  };
+
+  /**
+    Returns the line number of the first visible line
+    on the current window
+   */
+  public static inline function firstLineVisibleCurrentWindow():Int {
+    return Fn.line('w0', CurrentWindow);
+  };
+
+  /**
+    Returns the line number of the last visible line
+    on the current window
+   */
+  public static inline function lastLineVisibleCurrentWindow():Int {
+    return Fn.line('w$', CurrentWindow);
   };
 }
