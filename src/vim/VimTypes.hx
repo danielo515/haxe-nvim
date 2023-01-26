@@ -267,17 +267,6 @@ enum abstract VimMode(String) {
   final Select = "x";
 }
 
-typedef VimOpts = {
-  /* Set highlight on search */
-  var hlsearch:Bool;
-  /* Enable mouse mode */
-  var mouse:String;
-  /* Enable or disable break indent */
-  var breakindent:Bool;
-  /* Enable undo file */
-  var undofile:Bool;
-}
-
 typedef VimGOpts = {
   /* Leader key to use */
   var mapleader:String;
