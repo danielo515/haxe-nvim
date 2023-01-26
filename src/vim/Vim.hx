@@ -47,6 +47,7 @@ extern class Keymap {
 @:native("vim")
 extern class Vim {
   public static final o:vim.types.Opt;
+  public static final go:vim.types.GOpt;
   public static final g:VimGOpts;
   public static final wo:WOpts;
   @:native("pretty_print")
