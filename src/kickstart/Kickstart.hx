@@ -189,6 +189,8 @@ function main() {
   Vim.o.breakindent = true;
   Vim.o.undofile = true;
   Vim.wo.Number = true;
+  // show the effects of a search / replace in a live preview window
+  Vim.o.inccommand = "split";
 
   keymaps();
   // -- Set lualine as statusline

@@ -1072,27 +1072,28 @@ typedef Opt = {
   // 	This is useful if you have a non-Hebrew keyboard.
   // 	See |rileft.txt|.
   public var hkmapp:Bool;
-  // `'hlsearch'`  `'hls'` 	boolean	(default on)
-  // 			global
-  // 	When there is a previous search pattern, highlight all its matches.
-  // 	The |hl-Search| highlight group determines the highlighting for all
-  // 	matches not under the cursor while the |hl-CurSearch| highlight group
-  // 	(if defined) determines the highlighting for the match under the
-  // 	cursor. If |hl-CurSearch| is not defined, then |hl-Search| is used for
-  // 	both. Note that only the matching text is highlighted, any offsets
-  // 	are not applied.
-  // 	See also: `'incsearch'`  and |:match|.
-  // 	When you get bored looking at the highlighted matches, you can turn it
-  // 	off with |:nohlsearch|.  This does not change the option value, as
-  // 	soon as you use a search command, the highlighting comes back.
-  // 	`'redrawtime'`  specifies the maximum time spent on finding matches.
-  // 	When the search pattern can match an end-of-line, Vim will try to
-  // 	highlight all of the matched text.  However, this depends on where the
-  // 	search starts.  This will be the first line in the window or the first
-  // 	line below a closed fold.  A match in a previous line which is not
-  // 	drawn may not continue in a newly drawn line.
-  // 	You can specify whether the highlight status is restored on startup
-  // 	with the `'h'`  flag in `'shada'`  |shada-h|.
+  /* 
+    `'hlsearch'`  `'hls'` 	boolean	(default on) global
+     When there is a previous search pattern, highlight all its matches.
+     The |hl-Search| highlight group determines the highlighting for all
+     matches not under the cursor while the |hl-CurSearch| highlight group
+     (if defined) determines the highlighting for the match under the
+     cursor. If |hl-CurSearch| is not defined, then |hl-Search| is used for
+     both. Note that only the matching text is highlighted, any offsets
+     are not applied.
+     See also: `'incsearch'`  and |:match|.
+     When you get bored looking at the highlighted matches, you can turn it
+     off with |:nohlsearch|.  This does not change the option value, as
+     soon as you use a search command, the highlighting comes back.
+     `'redrawtime'`  specifies the maximum time spent on finding matches.
+     When the search pattern can match an end-of-line, Vim will try to
+     highlight all of the matched text.  However, this depends on where the
+     search starts.  This will be the first line in the window or the first
+     line below a closed fold.  A match in a previous line which is not
+     drawn may not continue in a newly drawn line.
+     You can specify whether the highlight status is restored on startup
+     with the `'h'`  flag in `'shada'`  |shada-h|.
+   */
   public var hlsearch:Bool;
   // `'icon'` 			boolean	(default off, on when title can be restored)
   // 			global
