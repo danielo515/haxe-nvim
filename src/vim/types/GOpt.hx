@@ -1,4 +1,5 @@
 package vim.types;
+
 typedef GOpt = {
   // `'aleph'`  `'al'` 		number	(default 224)
   // 			global
@@ -4032,4 +4033,3 @@ typedef GOpt = {
   // 	More info here: |cmdline-completion|.
   public var wildmode:String;
 }
-
