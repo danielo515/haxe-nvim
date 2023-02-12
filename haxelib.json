@@ -1,0 +1,20 @@
+{
+  "name": "haxe-nvim",
+  "url": "https://github.com/danielo515/haxe-nvim",
+  "license": "MIT",
+  "tags": [
+    "nvim",
+    "externs"
+  ],
+  "description": "Create neovim plugins using Haxe",
+  "version": "0.1.0",
+  "classPath": "src/",
+  "releasenote": "Basic stuff works",
+  "contributors": [
+    "danielo515"
+  ],
+  "dependencies": {
+    "tink_macro": ""
+  },
+  "main": "vim.Vim"
+}
