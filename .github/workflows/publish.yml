@@ -28,7 +28,7 @@ jobs:
         file-name: haxelib.json
         diff-search: true
     - name: Create Release
-      if: steps.check.outputs.changed
+      if: steps.check.outputs.changed == 'true'
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
