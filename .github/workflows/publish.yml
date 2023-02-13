@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
       #
       # ADD TEST/BUILD STEPS HERE
@@ -21,7 +21,7 @@ jobs:
       released: ${{ steps.check.outputs.version }} # expose release.outputs.released for the "publish" job
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - uses: EndBug/version-check@v1
       id: check
       with:
@@ -46,7 +46,7 @@ jobs:
     needs: release
     if: needs.release.outputs.released
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: krdlab/setup-haxe@v1
         with:
           haxe-version: 4.1.2
