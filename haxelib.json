@@ -9,7 +9,7 @@
   "description": "Create neovim plugins using Haxe",
   "version": "0.1.1",
   "classPath": "src/",
-  "releasenote": "Basic stuff works",
+  "releasenote": "Basic stuff works. Releasing...",
   "contributors": [
     "danielo515"
   ],
