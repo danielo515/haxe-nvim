@@ -44,6 +44,7 @@ function main() {
     Vim.print('Hello from axe', filename);
     return true;
   });
+
   command(
     "OpenInGh",
     "Open the current file in github",
@@ -123,7 +124,7 @@ function nexTab() {
 }
 
 function copyGhUrl(?line) {
-  final currentFile = vim.Fn.expand(CurentFile);
+  final currentFile = vim.Fn.expand(new ExpandString(CurentFile) + RelativePath);
   final curentBranch = get_branch();
   var lines = runGh(["browse", currentFile + line, "--no-browser", "--branch", curentBranch[1]]);
   switch (lines) {

@@ -232,6 +232,7 @@ enum abstract VimEvent(String) {
 // Yes, it is intentional that you can not create this from a string
 enum abstract PathModifier(String) to String {
   final FullPath = ":p";
+  final RelativePath = ":.";
   final Head = ":h";
   final Tail = ":t";
 }
@@ -265,6 +266,7 @@ enum abstract VimMode(String) {
   final Visual = "v";
   final Insert = "i";
   final Select = "x";
+  final OperatorPending = "o";
 }
 
 typedef VimGOpts = {
