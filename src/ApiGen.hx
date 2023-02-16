@@ -14,8 +14,17 @@ var patches = [
   } >
 ];
 
+function getLibraryBase() {
+  final base = Path.directory(haxe.macro.Context.resolvePath('vim/Vim.hx'));
+  return base;
+}
+
+function getResPath(filename:String):String {
+  return Path.join([getLibraryBase(), '../../res', filename]);
+}
+
 macro function generateApi():Void {
-  var specs = Json.parse(File.getContent('res/nvim-api.json'));
+  var specs = Json.parse(File.getContent(getResPath('nvim-api.json')));
 
   Context.defineType({
     pack: ["nvim"],
@@ -127,7 +136,7 @@ function parseTypeFromStr(typeString:String) {
 macro function attachApi(namespace:String):Array< Field > {
   var fields = Context.getBuildFields();
   final existingFields = fields.map(f -> f.name);
-  var specs:Array< FunctionWithDocs > = Json.parse(File.getContent('res/$namespace.json'));
+  var specs:Array< FunctionWithDocs > = Json.parse(File.getContent(getResPath('$namespace.json')));
   specs = specs.filter(x -> !existingFields.contains(x.name) && x.name != "");
 
   final failures = [];
