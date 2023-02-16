@@ -49,6 +49,11 @@ This library goes even further and not only prevents you from putting a `"string
 
 - Currently the output size is a bit beefy compared to plain Lua. I ported kickstart.lua, which is about 350 lines of code and the generated Lua is about ~1k lines. It is just 3 times larger, which is not that bad if you consider all the extra language features you get.
 - Duplicated STD. This library tries to use Neovim std as much as possible, but because the Haxe Lua output limitations there are always some Haxe STD helpers in the generated file. This paired with the inability of Haxe to output several files will make every plugin contain a copy of all the STD helper Haxe produces.
+
+# Example usage
+
+If you want an example or a bootstrap to start your own neovim plugin using haxe-nvim, take a look at the [template plugin](https://github.com/danielo515/haxe-nvim-example-plugin)
+
 # Acknowledgments
 
 I want to thank Rudy from the Haxe discord channel for his huge help with macros to reduce the overhead
