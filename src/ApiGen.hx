@@ -2,7 +2,6 @@ import haxe.Json;
 import haxe.io.Path;
 import haxe.macro.Context;
 import haxe.macro.Expr;
-import haxe.macro.MacroType;
 import sys.io.File;
 
 var patches = [
@@ -21,6 +20,10 @@ function getLibraryBase() {
 
 function getResPath(filename:String):String {
   return Path.join([getLibraryBase(), '../../res', filename]);
+}
+
+function getDumpPath(filename:String):String {
+  return Path.join([getLibraryBase(), '../../dump', filename]);
 }
 
 macro function generateApi():Void {
@@ -164,7 +167,7 @@ macro function attachApi(namespace:String):Array< Field > {
     }
   }];
   if (failures.length > 0) {
-    final handle = File.write(Path.join(['dump', namespace + '-error.json']), false);
+    final handle = File.write(getDumpPath(namespace + '-error.json'), false);
     handle.writeString(Json.stringify(failures, null, " "));
     handle.close();
   }
