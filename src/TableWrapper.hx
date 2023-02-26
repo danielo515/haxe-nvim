@@ -1,13 +1,27 @@
-// From https://try.haxe.org/#0D7f4371
+// From"" https://try.haxe.org/#0D7f4371
 #if macro
 import haxe.macro.Context;
 import haxe.macro.Expr;
 
 using haxe.macro.TypeTools;
 using haxe.macro.ExprTools;
+using Safety;
+using haxe.macro.ComplexTypeTools;
 
 var uniqueCount = 1;
 #end
+
+function uniqueValues< T >(array:Array< T >, indexer:(T) -> String) {
+  final index = new haxe.ds.StringMap< Bool >();
+  return [for (val in array) {
+    final key = indexer(val);
+    if (index.exists(key))
+      continue;
+    index.set(key, true);
+    val;
+  }];
+}
+
 // Class that transforms any Haxe object into a plain lua table
 // Thanks to @kLabz
 #if macro
@@ -36,7 +50,10 @@ static function extractObjFields(objExpr) {
   return switch Context.getTypedExpr(Context.typeExpr(objExpr)).expr {
     case EObjectDecl(inputFields):
       var inputFields = inputFields.copy();
-      {fieldExprs: [for (f in inputFields) f.field => f.expr], inputFields: inputFields};
+      {
+        fieldExprs: [for (f in inputFields) f.field => f.expr],
+        inputFields: inputFields
+      };
 
     case _:
       throw "Must be called with an anonymous object";
@@ -83,8 +100,13 @@ static function objToTable(obj:Expr):Expr {
       final inputFields = x.inputFields;
       final fieldExprs = x.fieldExprs;
 
-      var objFields:Array< ObjectField > = [for (f in fields) {
-        final currentFieldExpression = fieldExprs.get(f.name);
+      var generatedFields:Array< ObjectField > = [for (f in fields) {
+        final currentFieldExpression = fieldExprs.get(f.name).or(macro $v{null});
+
+        trace("currentFieldExpression", currentFieldExpression);
+        if (currentFieldExpression == null) {
+          continue;
+        }
         switch (f.type) {
           case _.toComplexType() => macro :Array< String > :{
             field:f.name,
@@ -113,19 +135,22 @@ static function objToTable(obj:Expr):Expr {
           //   }
 
           case TAbstract(_, _) | TFun(_, _):
-            {field: f.name, expr: (fieldExprs.get(f.name))};
+            {field: f.name, expr: (currentFieldExpression)};
           case _:
-            {field: f.name, expr: objToTable(fieldExprs.get(f.name))};
+            {field: f.name, expr: objToTable(currentFieldExpression)};
         }
       }];
 
-      var inputObj = {expr: EObjectDecl(inputFields), pos: ex.pos};
-      var obj = {expr: EObjectDecl(objFields), pos: ex.pos};
+      final inputObj = {expr: EObjectDecl(inputFields), pos: ex.pos};
+      final obj = {
+        expr: EObjectDecl(uniqueValues(inputFields.concat(generatedFields), f -> f.field)),
+        pos: ex.pos
+      };
 
       final name = '_dce${uniqueCount++}';
       return macro @:mergeBlock {
         // Type checking; should be removed by dce
-        @:pos(ex.pos) final $name:$complexType = TableWrapper.check($inputObj);
+        @:pos(ex.pos) final $name:$complexType = TableWrapper.check($obj);
 
         // Actual table creation
         (cast lua.Table.create(null, $obj) : $complexType);

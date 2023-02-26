@@ -2,11 +2,13 @@ libs.hxml
 
 -D lua-vanilla
 -D luajit
+-D dump=pretty
 
 -dce std
 -cp src
 -cp tools
 
-TestMacros.hx
+# TestMacros.hx
+tools.test.Optionals
 
 --lua lua/danielo_nvim/test.lua

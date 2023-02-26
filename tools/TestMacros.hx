@@ -5,7 +5,8 @@ typedef X = {
   test:Bool,
   nest:{a:{renest:Int, b:{c:{meganest:Int}}}},
   objWithArr:{x:Array< {y:String} >},
-  arrWithObjs:Array< {x:String} >
+  arrWithObjs:Array< {x:String} >,
+  ?optionalField:Bool,
 };
 
 typedef WithLambdas = TableWrapper< {
@@ -25,6 +26,7 @@ function lotOfNesting() {
     objWithArr: {x: [{y: "obj -> array -> obj "}, {y: "second obj -> array -> obj "}]},
     nest: {a: {renest: 99, b: {c: {meganest: 88}}}},
     arrWithObjs: [{x: "inside array -> obj "}, {x: "second array -> obj "}],
+    optionalField: true,
   });
 }
 
