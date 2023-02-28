@@ -1,12 +1,13 @@
+package test;
+
 import TableWrapper;
 
-typedef X = {
+typedef WithNesting = {
   doX:Int,
   test:Bool,
   nest:{a:{renest:Int, b:{c:{meganest:Int}}}},
   objWithArr:{x:Array< {y:String} >},
-  arrWithObjs:Array< {x:String} >,
-  ?optionalField:Bool,
+  arrWithObjs:Array< {x:String} >
 };
 
 typedef WithLambdas = TableWrapper< {
@@ -15,7 +16,7 @@ typedef WithLambdas = TableWrapper< {
 } >
 
 extern function log(arg:Dynamic):Void;
-typedef W = TableWrapper< X >;
+typedef W = TableWrapper< WithNesting >;
 extern function testMethod(x:W):Void;
 extern function testlambdas(x:WithLambdas):Void;
 
@@ -26,7 +27,6 @@ function lotOfNesting() {
     objWithArr: {x: [{y: "obj -> array -> obj "}, {y: "second obj -> array -> obj "}]},
     nest: {a: {renest: 99, b: {c: {meganest: 88}}}},
     arrWithObjs: [{x: "inside array -> obj "}, {x: "second array -> obj "}],
-    optionalField: true,
   });
 }
 

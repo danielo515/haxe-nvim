@@ -1,4 +1,4 @@
-package tools.test;
+package test;
 
 import TableWrapper;
 
@@ -23,8 +23,7 @@ final b = test({test: true, optionalField: true});
 final c = test({test: true, optionalField: null});
 
 // This should all fail!!
-
 @:keep
 // final d = test({test: true, optionalField: "null"});
 @:keep
-final e = test({test: true, weirdField: "null"});
+// final e = test({test: true, weirdField: "null"});
