@@ -1,0 +1,2 @@
+test/should_fail/ExtraFields.hx:4: characters 31-63 : TableWrapper<{ weirdField : String, test : Bool, optionalField : Null<Bool> }> should be test.X
+test/should_fail/ExtraFields.hx:4: characters 31-63 : ... For function argument 'x'

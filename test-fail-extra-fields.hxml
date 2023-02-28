@@ -1,0 +1,4 @@
+test-base.hxml
+--lua
+-main test.should_fail.ExtraFields
+

@@ -1,18 +1,9 @@
-libs.hxml
-
--D lua-vanilla
--D luajit
-
--dce std
--cp src
--cp tools
--cp test
-
+test-base.hxml
 --each
 
 test.TestMacros
-
 --lua lua/test/TestMacros.lua
 
 # Ensure it's formatted for better diffs
---cmd stylua lua/test/
+--cmd stylua lua/test/TestMacros.lua
+

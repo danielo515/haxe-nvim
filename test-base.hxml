@@ -1,0 +1,10 @@
+libs.hxml
+
+-D lua-vanilla
+-D luajit
+-D dump=pretty
+
+-dce std
+-cp src
+-cp tools
+-cp test

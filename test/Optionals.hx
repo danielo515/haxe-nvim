@@ -14,16 +14,10 @@ function test(x:X) {
 // All these should compile and lead to the same compiled output
 
 @:keep
-final a = test({test: true,});
-
-@:keep
 final b = test({test: true, optionalField: true});
 
 @:keep
 final c = test({test: true, optionalField: null});
 
-// This should all fail!!
 @:keep
-// final d = test({test: true, optionalField: "null"});
-@:keep
-// final e = test({test: true, weirdField: "null"});
+final a = test({test: true,});

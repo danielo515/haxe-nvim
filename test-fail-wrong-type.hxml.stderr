@@ -1,0 +1,2 @@
+test/should_fail/WrongType.hx:4: characters 31-66 : TableWrapper<{ test : Bool, optionalField : String }> should be test.X
+test/should_fail/WrongType.hx:4: characters 31-66 : ... For function argument 'x'
