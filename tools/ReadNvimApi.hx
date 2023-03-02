@@ -51,6 +51,7 @@ typedef AnnotationMap = Map< String, Annotation >;
 
   function getFunctionBlocks(file) {
     final path = getPath(file);
+    trace('Parsing $path');
     final file = File.read(path, false).readAll().toString();
     return file.split("\n\n").filter(x -> x != "" && x != "---@meta").map(x -> x.split("\n"));
   }
@@ -203,7 +204,9 @@ typedef AnnotationMap = Map< String, Annotation >;
         fullyQualified_name: "",
         return_type: "Void"
       }, x);
-      if (block.name != "" && block.fullyQualified_name != "" && !acc.exists(x -> x.name == block.name))
+      if (block.name != "" && block.fullyQualified_name != "" && !acc.exists(
+        x -> x.name == block.name
+      ))
         acc.push(block);
       return acc;
     }, []);
@@ -260,9 +263,11 @@ class ReadNvimApi {
   }
 
   public static function getNvimRuntime() {
-    return switch (executeCommand("nvim",
+    return switch (executeCommand(
+      "nvim",
       ["--clean", "--headless", "--cmd", "echo $VIMRUNTIME | qa "],
-      true)) {
+      true
+    )) {
       case Error(error):
         Sys.println("Failed to get VIMRUNTIME");
         Sys.println(error);
@@ -332,6 +337,8 @@ class ReadNvimApi {
         writeFile('./res/lsp.json', lsp);
         final lspBuf = vimBuiltin.parsePath('lsp/buf.lua').filter(removePrivate);
         writeFile('./res/lsp_buf.json', lspBuf);
+        final filetype = vimBuiltin.parsePath('filetype.lua').filter(removePrivate);
+        writeFile('./res/filetype.json', filetype);
 
       case Error(error):
         Sys.println("Could not get neovim path, skip parsing");

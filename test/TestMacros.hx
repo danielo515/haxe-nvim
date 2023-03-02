@@ -7,7 +7,7 @@ typedef WithNesting = {
   test:Bool,
   nest:{a:{renest:Int, b:{c:{meganest:Int}}}},
   objWithArr:{x:Array< {y:String} >},
-  arrWithObjs:Array< {x:String} >
+  arrWithObjs:Array< {x:String} >,
 };
 
 typedef WithLambdas = TableWrapper< {

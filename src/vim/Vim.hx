@@ -75,6 +75,24 @@ abstract Vector3< A, B, C >(lua.Table< Int, Dynamic >) {
   }
 }
 
+abstract Vector4< A, B, C, D >(lua.Table< Int, Dynamic >) {
+  inline public function first():A {
+    return this[1];
+  }
+
+  inline public function second():B {
+    return this[2];
+  }
+
+  inline public function third():C {
+    return this[3];
+  }
+
+  inline public function last():D {
+    return this[4];
+  }
+}
+
 @:native("vim.spell")
 extern class Spell {
   public static function check(str:String):Array< Vector3< String, String, Int > >;

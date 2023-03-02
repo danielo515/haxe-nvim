@@ -2,15 +2,17 @@ package vim.plugin.types;
 
 import lua.Lua;
 
-abstract Plugin< T >(Null< T >) {
+abstract VimPlugin< T >(Null< T >) {
   inline function new(pluginName:String) {
     final requireResult = Lua.pcall(Lua.require, pluginName);
-    this = requireResult.value;
+    if (requireResult.status)
+      this = requireResult.value;
+    else this = null;
   }
 
   @:from
-  public static inline function from< T >(pluginName:String):Plugin< T > {
-    return new Plugin(pluginName);
+  public static inline function from< T >(pluginName:String):VimPlugin< T > {
+    return new VimPlugin(pluginName);
   }
 
   public inline function map< R >(f:T -> R):Null< R > {
