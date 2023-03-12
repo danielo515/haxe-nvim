@@ -1,30 +1,28 @@
 package vim;
 
+import haxe.Constraints.Function;
+import lua.Table;
 import vim.Vim.Fn;
+import vim.Vim.Loop;
 import vim.Api;
 import lua.StringMap;
 import vim.VimTypes;
-import haxe.Constraints.Function;
 
 using Safety;
+
+final pathSeparator = Loop.os_uname().sysname == 'Windows' ? '\\' : '/';
 
 @:expose("vimx")
 class Vimx {
   public static final autogroups:StringMap< Group > = new StringMap();
 
-  /**
-    Creates a new autocommand and associates it to the given group name.
-    If the group has not been registered before, it gets created and cached
-    so future commands with the same group name will re-use the same group.
-    Note that existing commands on the group created outside of this function
-    are not checked for existence.
-   */
-  static public function autocmd(
+  // internal wrapper
+  static function acmd(
     groupName:String,
     events:LuaArray< VimEvent >,
     pattern:String,
     ?description:String,
-    cb:Function
+    cb
   ) {
     var group:Group;
     switch (autogroups.get(groupName)) {
@@ -38,6 +36,33 @@ class Vimx {
       events,
       new AutoCmdOpts(pattern, cb, group, description.or('$groupName:[$pattern]'))
     );
+  }
+
+  /**
+    Creates a new autocommand and associates it to the given group name.
+    If the group has not been registered before, it gets created and cached
+    so future commands with the same group name will re-use the same group.
+    Note that existing commands on the group created outside of this function
+    are not checked for existence.
+   */
+  static public inline function autocmd(
+    groupName:String,
+    events:LuaArray< VimEvent >,
+    pattern:String,
+    ?description:String,
+    cb:Function
+  ) {
+    acmd(groupName, events, pattern, description, Cb(cb));
+  }
+
+  static public inline function autocmdStr(
+    groupName:String,
+    events:LuaArray< VimEvent >,
+    pattern:String,
+    ?description:String,
+    command:String
+  ) {
+    acmd(groupName, events, pattern, description, Str(command));
   }
 
   /**
@@ -71,4 +96,36 @@ class Vimx {
   public static inline function lastLineVisibleCurrentWindow():Int {
     return Fn.line('w$', CurrentWindow);
   };
+
+  /**
+    Given a list of paths as strings, joins them using the
+    path separator.
+    This is supposed to be used from Haxe code
+   */
+  public static function join_paths(paths:Array< String >):String {
+    return paths.join(pathSeparator);
+  }
+
+  /**
+    Little wrapper that returns true if a file exists and is readable
+   */
+  public static function file_exists(path:String):Bool {
+    return if (Fn.filereadable(path) == 0) {
+      true;
+    } else {
+      false;
+    }
+  }
+
+  /**
+    Reads a json file and parses it if it exists.
+    Returns null if the file does not exist or is not readable
+   */
+  public static function read_json_file(path:String):Null< lua.Table< String, Dynamic > > {
+    if (file_exists(path)) {
+      return Fn.json_decode(Table.concat(Fn.readfile(path)));
+    } else {
+      return null;
+    }
+  }
 }

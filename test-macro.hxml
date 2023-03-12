@@ -1,4 +1,9 @@
 test-base.hxml
+# Generates the lua files
+# required to test the output of the macros
+# is still correct.
+# This is basically snapsot generation, so don't run to test things works, because that
+# is not the purpose
 --each
 
 test.TestMacros

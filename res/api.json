@@ -15,7 +15,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "opts"
+        "?opts"
       ]
     ],
     "fullyQualified_name": "vim.api.nvim__get_runtime",
@@ -454,7 +454,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "opts"
+        "?opts"
       ]
     ],
     "fullyQualified_name": "vim.api.nvim_buf_create_user_command",
@@ -700,7 +700,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "opts"
+        "?opts"
       ]
     ],
     "fullyQualified_name": "vim.api.nvim_buf_get_commands",
@@ -757,7 +757,7 @@
       "Return: ~",
       "    0-indexed (row, col) tuple or empty list () if extmark id was absent"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -838,7 +838,7 @@
       "Return: ~",
       "    List of [extmark_id, row, col] tuples in \"traversal order\"."
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -869,7 +869,7 @@
       "    Array of |maparg()|-like dictionaries describing mappings. The",
       "    \"buffer\" key holds the associated buffer handle."
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -918,7 +918,7 @@
       "Return: ~",
       "    Array of lines, or empty array for unloaded buffer."
     ],
-    "return_type": "Array<String>"
+    "return_type": "lua.Table<Int,String>"
   },
   {
     "annotations": [
@@ -956,7 +956,7 @@
       "    |nvim_buf_set_mark()|",
       "    |nvim_buf_del_mark()|"
     ],
-    "return_type": "Array<Int>"
+    "return_type": "lua.Table<Int,Int>"
   },
   {
     "annotations": [
@@ -1110,7 +1110,7 @@
       "Return: ~",
       "    Array of lines, or empty array for unloaded buffer."
     ],
-    "return_type": "Array<String>"
+    "return_type": "lua.Table<Int,String>"
   },
   {
     "annotations": [
@@ -1248,7 +1248,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "opts"
+        "?opts"
       ]
     ],
     "fullyQualified_name": "vim.api.nvim_buf_set_extmark",
@@ -1395,7 +1395,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "opts"
+        "?opts"
       ]
     ],
     "fullyQualified_name": "vim.api.nvim_buf_set_keymap",
@@ -1437,7 +1437,7 @@
         "strict_indexing"
       ],
       [
-        "Array<String>",
+        "lua.Table<Int,String>",
         "replacement"
       ]
     ],
@@ -1619,7 +1619,7 @@
         "end_col"
       ],
       [
-        "Array<String>",
+        "lua.Table<Int,String>",
         "replacement"
       ]
     ],
@@ -1704,7 +1704,7 @@
         "fn"
       ],
       [
-        "Array<Dynamic>",
+        "lua.Table<Int,Dynamic>",
         "args"
       ]
     ],
@@ -1737,7 +1737,7 @@
         "fn"
       ],
       [
-        "Array<Dynamic>",
+        "lua.Table<Int,Dynamic>",
         "args"
       ]
     ],
@@ -1801,7 +1801,7 @@
     "parameters": [
       [
         "Null<lua.Table<String, Dynamic>>",
-        "opts"
+        "?opts"
       ]
     ],
     "fullyQualified_name": "vim.api.nvim_clear_autocmds",
@@ -1844,11 +1844,11 @@
     "parameters": [
       [
         "Null<lua.Table<String, Dynamic>>",
-        "cmd"
+        "?cmd"
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "opts"
+        "?opts"
       ]
     ],
     "fullyQualified_name": "vim.api.nvim_cmd",
@@ -1930,7 +1930,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "opts"
+        "?opts"
       ]
     ],
     "fullyQualified_name": "vim.api.nvim_create_augroup",
@@ -1972,7 +1972,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "opts"
+        "?opts"
       ]
     ],
     "fullyQualified_name": "vim.api.nvim_create_autocmd",
@@ -2169,7 +2169,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "opts"
+        "?opts"
       ]
     ],
     "fullyQualified_name": "vim.api.nvim_create_user_command",
@@ -2432,7 +2432,7 @@
     "name": "nvim_echo",
     "parameters": [
       [
-        "Array<Dynamic>",
+        "lua.Table<Int,Dynamic>",
         "chunks"
       ],
       [
@@ -2543,7 +2543,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "opts"
+        "?opts"
       ]
     ],
     "fullyQualified_name": "vim.api.nvim_eval_statusline",
@@ -2636,7 +2636,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "opts"
+        "?opts"
       ]
     ],
     "fullyQualified_name": "vim.api.nvim_exec_autocmds",
@@ -2741,7 +2741,7 @@
     "parameters": [
       [
         "Null<lua.Table<String, Dynamic>>",
-        "opts"
+        "?opts"
       ]
     ],
     "fullyQualified_name": "vim.api.nvim_get_autocmds",
@@ -2796,7 +2796,7 @@
       "    • buflocal (boolean): true if the autocommand is buffer local.",
       "    • buffer (number): the buffer number."
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -2896,7 +2896,7 @@
     "parameters": [
       [
         "Null<lua.Table<String, Dynamic>>",
-        "opts"
+        "?opts"
       ]
     ],
     "fullyQualified_name": "vim.api.nvim_get_commands",
@@ -2922,7 +2922,7 @@
     "parameters": [
       [
         "Null<lua.Table<String, Dynamic>>",
-        "opts"
+        "?opts"
       ]
     ],
     "fullyQualified_name": "vim.api.nvim_get_context",
@@ -3108,7 +3108,7 @@
       "    Array of |maparg()|-like dictionaries describing mappings. The",
       "    \"buffer\" key is always zero."
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -3149,7 +3149,7 @@
       "    |nvim_buf_set_mark()|",
       "    |nvim_del_mark()|"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -3261,7 +3261,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "opts"
+        "?opts"
       ]
     ],
     "fullyQualified_name": "vim.api.nvim_get_option_value",
@@ -3325,7 +3325,7 @@
       "Return: ~",
       "    Array of child process ids, empty if process not found."
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -3365,7 +3365,7 @@
       "Return: ~",
       "    list of absolute paths to the found files"
     ],
-    "return_type": "Array<String>"
+    "return_type": "lua.Table<Int,String>"
   },
   {
     "annotations": [
@@ -3540,7 +3540,7 @@
       "Return: ~",
       "    List of buffer handles"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -3556,7 +3556,7 @@
       "    Array of Dictionaries, each describing a channel with the format",
       "    specified at |nvim_get_chan_info()|."
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -3571,7 +3571,7 @@
       "Return: ~",
       "    List of paths"
     ],
-    "return_type": "Array<String>"
+    "return_type": "lua.Table<Int,String>"
   },
   {
     "annotations": [
@@ -3586,7 +3586,7 @@
       "Return: ~",
       "    List of tabpage handles"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -3606,7 +3606,7 @@
       "    • \"ext_...\" Requested UI extensions, see |ui-option|",
       "    • \"chan\" Channel id of remote UI (not present for TUI)"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -3621,7 +3621,7 @@
       "Return: ~",
       "    List of window handles"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -3747,7 +3747,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "config"
+        "?config"
       ]
     ],
     "fullyQualified_name": "vim.api.nvim_open_win",
@@ -4167,7 +4167,7 @@
     "name": "nvim_put",
     "parameters": [
       [
-        "Array<String>",
+        "lua.Table<Int,String>",
         "lines"
       ],
       [
@@ -4419,7 +4419,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "opts"
+        "?opts"
       ]
     ],
     "fullyQualified_name": "vim.api.nvim_set_decoration_provider",
@@ -4487,7 +4487,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "val"
+        "?val"
       ]
     ],
     "fullyQualified_name": "vim.api.nvim_set_hl",
@@ -4608,7 +4608,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "opts"
+        "?opts"
       ]
     ],
     "fullyQualified_name": "vim.api.nvim_set_keymap",
@@ -4692,7 +4692,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "opts"
+        "?opts"
       ]
     ],
     "fullyQualified_name": "vim.api.nvim_set_option_value",
@@ -4941,7 +4941,7 @@
       "Return: ~",
       "    List of windows in `tabpage`"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -5147,7 +5147,7 @@
       "Return: ~",
       "    (row, col) tuple"
     ],
-    "return_type": "Array<Int>"
+    "return_type": "lua.Table<Int,Int>"
   },
   {
     "annotations": [
@@ -5249,7 +5249,7 @@
       "Return: ~",
       "    (row, col) tuple with the window position"
     ],
-    "return_type": "Array<Int>"
+    "return_type": "lua.Table<Int,Int>"
   },
   {
     "annotations": [
@@ -5423,7 +5423,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "config"
+        "?config"
       ]
     ],
     "fullyQualified_name": "vim.api.nvim_win_set_config",
@@ -5455,7 +5455,7 @@
         "window"
       ],
       [
-        "Array<Int>",
+        "lua.Table<Int,Int>",
         "pos"
       ]
     ],

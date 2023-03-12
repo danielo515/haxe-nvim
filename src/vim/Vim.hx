@@ -23,6 +23,7 @@ extern class Fn {
   static function executable(binaryName:String):Int;
   static function json_encode(value:Dynamic):String;
   static function json_decode(json:String):Table< String, Dynamic >;
+  // static function readfile(fname:String, ?type:String, ?max:Int):LuaArray< String >;
 }
 
 @:native("vim.keymap")
@@ -44,6 +45,12 @@ extern class Keymap {
   ):Void;
 }
 
+@:native("vim.loop")
+extern class Loop {
+  /* Gives information about the host system */
+  public static function os_uname():Table< String, String >;
+}
+
 @:native("vim")
 extern class Vim {
   public static final o:vim.types.Opt;
@@ -59,38 +66,6 @@ extern class Vim {
   public static function list_extend< T >(dest:LuaArray< T >, src:LuaArray< T >):LuaArray< T >;
   public static function cmd(command:String):Void;
   public static function notify(message:String, level:String):Void;
-}
-
-abstract Vector3< A, B, C >(lua.Table< Int, Dynamic >) {
-  inline public function first():A {
-    return this[1];
-  }
-
-  inline public function second():B {
-    return this[2];
-  }
-
-  inline public function last():C {
-    return this[3];
-  }
-}
-
-abstract Vector4< A, B, C, D >(lua.Table< Int, Dynamic >) {
-  inline public function first():A {
-    return this[1];
-  }
-
-  inline public function second():B {
-    return this[2];
-  }
-
-  inline public function third():C {
-    return this[3];
-  }
-
-  inline public function last():D {
-    return this[4];
-  }
 }
 
 @:native("vim.spell")

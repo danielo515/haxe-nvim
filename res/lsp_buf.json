@@ -200,6 +200,115 @@
   },
   {
     "annotations": [
+      "@param options (table|nil) Can be used to specify FormattingOptions.",
+      "@see https://microsoft.github.io/language-server-protocol/specification#textDocument_formatting"
+    ],
+    "name": "formatting",
+    "parameters": [
+      [
+        "Null<lua.Table<Int, Dynamic>>",
+        "options"
+      ]
+    ],
+    "fullyQualified_name": "M.formatting",
+    "docs": [
+      " Formats the current buffer.",
+      " Some unspecified options will be automatically derived from the current",
+      " Neovim options."
+    ],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [
+      "@param options table|nil with valid `FormattingOptions` entries",
+      "@param timeout_ms (number) Request timeout",
+      "@see |vim.lsp.buf.format()|"
+    ],
+    "name": "formatting_sync",
+    "parameters": [
+      [
+        "Null<lua.Table<Int, Dynamic>>",
+        "options"
+      ],
+      [
+        "Int",
+        "timeout_ms"
+      ]
+    ],
+    "fullyQualified_name": "M.formatting_sync",
+    "docs": [
+      " Performs |vim.lsp.buf.formatting()| synchronously.",
+      " Useful for running on save, to make sure buffer is formatted prior to being",
+      " saved. {timeout_ms} is passed on to |vim.lsp.buf_request_sync()|. Example:",
+      " <pre>",
+      " autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()",
+      " </pre>"
+    ],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [
+      "@param options (table|nil) `FormattingOptions` entries",
+      "@param timeout_ms (number|nil) Request timeout",
+      "@param order (table|nil) List of client names. Formatting is requested from clients"
+    ],
+    "name": "formatting_seq_sync",
+    "parameters": [
+      [
+        "Null<lua.Table<Int, Dynamic>>",
+        "options"
+      ],
+      [
+        "Null<Int>",
+        "timeout_ms"
+      ],
+      [
+        "Null<lua.Table<Int, Dynamic>>",
+        "order"
+      ]
+    ],
+    "fullyQualified_name": "M.formatting_seq_sync",
+    "docs": [
+      " Formats the current buffer by sequentially requesting formatting from attached clients.",
+      " Useful when multiple clients with formatting capability are attached.",
+      " Since it's synchronous, can be used for running on save, to make sure buffer is formatted",
+      " prior to being saved. {timeout_ms} is passed on to the |vim.lsp.client| `request_sync` method.",
+      " Example:",
+      " <pre>",
+      " vim.api.nvim_command[[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]",
+      " </pre>"
+    ],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [
+      "@param options Table with valid `FormattingOptions` entries.",
+      "@param start_pos ({number, number}, optional) mark-indexed position.",
+      "@param end_pos ({number, number}, optional) mark-indexed position."
+    ],
+    "name": "range_formatting",
+    "parameters": [
+      [
+        "Table",
+        "options"
+      ],
+      [
+        "{number, number}, optional",
+        "start_pos"
+      ],
+      [
+        "{number, number}, optional",
+        "end_pos"
+      ]
+    ],
+    "fullyQualified_name": "M.range_formatting",
+    "docs": [
+      " Formats a given range."
+    ],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [
       "@param new_name string|nil If not provided, the user will be prompted for a new",
       "@param options table|nil additional options"
     ],
@@ -489,6 +598,40 @@
       "           If in visual mode this defaults to the active selection.",
       "           Table must contain `start` and `end` keys with {row, col} tuples",
       "           using mark-like indexing. See |api-indexing|"
+    ],
+    "return_type": "Void"
+  },
+  {
+    "annotations": [
+      "@param context table|nil `CodeActionContext` of the LSP specification:",
+      "@param start_pos ({number, number}, optional) mark-indexed position.",
+      "@param end_pos ({number, number}, optional) mark-indexed position."
+    ],
+    "name": "range_code_action",
+    "parameters": [
+      [
+        "Null<lua.Table<Int, Dynamic>>",
+        "context"
+      ],
+      [
+        "{number, number}, optional",
+        "start_pos"
+      ],
+      [
+        "{number, number}, optional",
+        "end_pos"
+      ]
+    ],
+    "fullyQualified_name": "M.range_code_action",
+    "docs": [
+      " Performs |vim.lsp.buf.code_action()| for a given range.",
+      "               - diagnostics: (table|nil)",
+      "                             LSP `Diagnostic[]`. Inferred from the current",
+      "                             position if not provided.",
+      "               - only: (table|nil)",
+      "                      List of LSP `CodeActionKind`s used to filter the code actions.",
+      "                      Most language servers support values like `refactor`",
+      "                      or `quickfix`."
     ],
     "return_type": "Void"
   },

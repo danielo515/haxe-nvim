@@ -8,10 +8,20 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-
-      #
-      # ADD TEST/BUILD STEPS HERE
-      #
+    - name: Setup haxe
+      uses: krdlab/setup-haxe@v1
+      with:
+        haxe-version: 4.2.5
+    - uses: danielo515/stylua-action@1.0.1
+      name: Setup stylua so we can run it on build
+      with:
+        token: ${{ secrets.github_token }}
+        version: 0.16.0 
+    - name: Run haxe tests
+      run: |
+        haxelib install --always libs.hxml
+        haxe test-macro.hxml
+        haxe tests.hxml
 
   release:
     name: Check version & Create release

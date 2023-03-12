@@ -59,7 +59,7 @@ typedef AnnotationMap = Map< String, Annotation >;
   static function formatTypeStr(type:String):String {
     return switch (type) {
       case '$kind[]':
-        'Array<${formatTypeStr(kind)}>';
+        'lua.Table<Int,${formatTypeStr(kind)}>';
       case 'any': 'Dynamic';
       case 'number' | 'Number': 'Int';
       case 'table' | 'List': 'lua.Table<Int, Dynamic>';
@@ -133,14 +133,20 @@ typedef AnnotationMap = Map< String, Annotation >;
     }, result);
   }
 
-  static function parseFunctionArgs(annotations:AnnotationMap, args) {
+  /**
+   * Generates the parameters list for a function.
+   * It tries to match the real function arguments with the
+   * ones in the documentation, which are provided in the annotations map.
+   * If they can not be determined, it will use the type Dynamic.
+   */
+  static function parseFunctionArgs(annotations:AnnotationMap, args:String) {
     final args:Array< String > = args.split(',').map(StringTools.trim);
     return switch (args) {
       case [''] | []:
         [];
       case args:
         args.map(x -> switch (annotations.get(x)) {
-          case Optional(name, type): ['Null<$type>', name];
+          case Optional(name, type): ['Null<$type>', '?$name'];
           case Param(name, type): [type, name];
           case _: ['Dynamic', x];
         });
@@ -226,7 +232,6 @@ typedef AnnotationMap = Map< String, Annotation >;
 }
 
 class ReadNvimApi {
-  final rawData:ApiData;
   final outputPath:String;
 
   public final nvimPath:Result< String >;
@@ -236,7 +241,6 @@ class ReadNvimApi {
   public function new(outputPath:String) {
     final bytes = readMsgpack();
     this.outputPath = outputPath;
-    rawData = MsgPack.decode(bytes);
     nvimPath = getNvimRuntime();
   }
 
@@ -263,11 +267,12 @@ class ReadNvimApi {
   }
 
   public static function getNvimRuntime() {
-    return switch (executeCommand(
-      "nvim",
-      ["--clean", "--headless", "--cmd", "echo $VIMRUNTIME | qa "],
-      true
-    )) {
+    return switch (executeCommand("nvim", [
+      "--clean",
+      "--headless",
+      "--cmd",
+      "echo $VIMRUNTIME | qa "
+    ], true)) {
       case Error(error):
         Sys.println("Failed to get VIMRUNTIME");
         Sys.println(error);
@@ -297,7 +302,6 @@ class ReadNvimApi {
   }
 
   static function main() {
-    final vimApi = new ReadNvimApi('./res/nvim-api.json');
     final tmpDir = switch (getTmpDir("nvim-api")) {
       case Ok(dirPath):
         Sys.println('Using $dirPath as temp folder');
@@ -315,6 +319,7 @@ class ReadNvimApi {
         Sys.println("Failed clone neodev repo");
         return;
     };
+    // Extracting info from neodev repository
     final neoDev = new AnnotationParser((leaf) -> Path.join([tmpDir, "types", "stable", leaf]));
 
     try {
@@ -327,9 +332,11 @@ class ReadNvimApi {
       Sys.println(e);
       Sys.println("Error during parsing, proceeding to cleanup");
     }
+    final vimApi = new ReadNvimApi('./res/nvim-api.json');
     // vimApi.cleanup(tmpDir);
     switch (vimApi.nvimPath) {
       case Ok(path):
+        // Extracting info from neovim runtime path
         final vimBuiltin = new AnnotationParser((leaf) -> Path.join([path, "lua", "vim", leaf]));
         final parsed = vimBuiltin.parsePath('fs.lua');
         writeFile('./res/fs.json', parsed);
@@ -337,8 +344,9 @@ class ReadNvimApi {
         writeFile('./res/lsp.json', lsp);
         final lspBuf = vimBuiltin.parsePath('lsp/buf.lua').filter(removePrivate);
         writeFile('./res/lsp_buf.json', lspBuf);
-        final filetype = vimBuiltin.parsePath('filetype.lua').filter(removePrivate);
-        writeFile('./res/filetype.json', filetype);
+      // This bad boy breaks the parsing for some reason
+      // final filetype = vimBuiltin.parsePath('filetype.lua').filter(removePrivate);
+      // writeFile('./res/filetype.json', filetype);
 
       case Error(error):
         Sys.println("Could not get neovim path, skip parsing");

@@ -1,4 +1,5 @@
 libs.hxml
+libs-testing.hxml
 
 -D lua-vanilla
 -D luajit

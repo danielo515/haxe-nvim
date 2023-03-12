@@ -14,7 +14,9 @@
     "danielo515"
   ],
   "dependencies": {
-    "tink_macro": ""
+    "tink_macro": "",
+    "hxparse": "4.0.1",
+    "safety": "1.1.2"
   },
   "main": "vim.Vim"
 }

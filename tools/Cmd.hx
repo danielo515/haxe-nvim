@@ -3,13 +3,24 @@ package tools;
 import haxe.io.Path;
 import sys.io.Process;
 
+function readStd(source:haxe.io.Input):String {
+  return try {
+    source.readAll().toString();
+  }
+  catch (e:Dynamic) {
+    "";
+  };
+}
+
 function executeCommand(cmd, args, readStder = false):Result< String > {
   final res = new Process(cmd, args);
   return switch (res.exitCode(true)) {
     case 0:
-      Ok(!readStder ? res.stdout.readAll().toString() : res.stderr.readAll().toString());
+      final stdOut = readStd(res.stdout);
+      Ok(!readStder ? stdOut : readStd(res.stderr));
     case _:
-      Error(res.stderr.readLine());
+      Log.print("Error executing command: " + cmd + " " + args.join(" "));
+      Error(readStd(res.stderr));
   }
 }
 
@@ -29,7 +40,7 @@ function getHomeFolder():String {
 
 /*
   Returns a temporary folder to be used.
-  It tries to folow the XDG spec, and if not
+  It tries to follow the XDG spec, and if not
   tries to use platform specific folders reading env variables.
   If that is not available, fallback to the user home folder
   with the provided namespace.

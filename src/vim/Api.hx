@@ -28,7 +28,7 @@ typedef UserCommandOpts = TableWrapper< {
 abstract AutoCmdOpts(Table< String, Dynamic >) {
   public inline function new(
     pattern:String,
-    cb,
+    cb:FunctionOrString,
     group:Group,
     description:String,
     once = false,
@@ -36,12 +36,17 @@ abstract AutoCmdOpts(Table< String, Dynamic >) {
   ) {
     this = Table.create(null, {
       pattern: pattern,
-      callback: cb,
       group: group,
       desc: description,
       once: once,
       nested: nested,
     });
+    switch (cb) {
+      case Cb(f):
+        this.callback = f;
+      case Str(cmd):
+        this.command = cmd;
+    }
   }
 }
 

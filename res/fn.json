@@ -103,7 +103,7 @@
       "  mylist->add(val1)->add(val2)",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -245,7 +245,7 @@
     "parameters": [
       [
         "Null<Window>",
-        "winid"
+        "?winid"
       ]
     ],
     "fullyQualified_name": "vim.fn.argc",
@@ -284,11 +284,11 @@
     "parameters": [
       [
         "Null<Window>",
-        "winnr"
+        "?winnr"
       ],
       [
         "Null<Int>",
-        "tabnr"
+        "?tabnr"
       ]
     ],
     "fullyQualified_name": "vim.fn.arglistid",
@@ -316,11 +316,11 @@
     "parameters": [
       [
         "Null<Int>",
-        "nr"
+        "?nr"
       ],
       [
         "Null<Window>",
-        "winid"
+        "?winid"
       ]
     ],
     "fullyQualified_name": "vim.fn.argv",
@@ -345,7 +345,7 @@
       "  the argument list.  Returns an empty List if the {winid}",
       "  argument is invalid."
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -415,7 +415,7 @@
       ],
       [
         "Null<Dynamic>",
-        "msg"
+        "?msg"
       ]
     ],
     "fullyQualified_name": "vim.fn.assert_equal",
@@ -441,7 +441,7 @@
       ],
       [
         "Null<Dynamic>",
-        "msg"
+        "?msg"
       ]
     ],
     "fullyQualified_name": "vim.fn.assert_equalfile",
@@ -463,7 +463,7 @@
       ],
       [
         "Null<Dynamic>",
-        "msg"
+        "?msg"
       ]
     ],
     "fullyQualified_name": "vim.fn.assert_exception",
@@ -485,7 +485,7 @@
       ],
       [
         "Null<Dynamic>",
-        "error"
+        "?error"
       ]
     ],
     "fullyQualified_name": "vim.fn.assert_fails",
@@ -507,7 +507,7 @@
       ],
       [
         "Null<Dynamic>",
-        "msg"
+        "?msg"
       ]
     ],
     "fullyQualified_name": "vim.fn.assert_false",
@@ -537,7 +537,7 @@
       ],
       [
         "Null<Dynamic>",
-        "msg"
+        "?msg"
       ]
     ],
     "fullyQualified_name": "vim.fn.assert_inrange",
@@ -564,7 +564,7 @@
       ],
       [
         "Null<Dynamic>",
-        "msg"
+        "?msg"
       ]
     ],
     "fullyQualified_name": "vim.fn.assert_match",
@@ -607,7 +607,7 @@
       ],
       [
         "Null<Dynamic>",
-        "msg"
+        "?msg"
       ]
     ],
     "fullyQualified_name": "vim.fn.assert_notequal",
@@ -634,7 +634,7 @@
       ],
       [
         "Null<Dynamic>",
-        "msg"
+        "?msg"
       ]
     ],
     "fullyQualified_name": "vim.fn.assert_notmatch",
@@ -673,7 +673,7 @@
       ],
       [
         "Null<Dynamic>",
-        "msg"
+        "?msg"
       ]
     ],
     "fullyQualified_name": "vim.fn.assert_true",
@@ -983,7 +983,7 @@
     "parameters": [
       [
         "Null<Buffer>",
-        "buf"
+        "?buf"
       ]
     ],
     "fullyQualified_name": "vim.fn.bufname",
@@ -1036,11 +1036,11 @@
     "parameters": [
       [
         "Null<Buffer>",
-        "buf"
+        "?buf"
       ],
       [
         "Null<Dynamic>",
-        "create"
+        "?create"
       ]
     ],
     "fullyQualified_name": "vim.fn.bufnr",
@@ -1264,7 +1264,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "dict"
+        "?dict"
       ]
     ],
     "fullyQualified_name": "vim.fn.call",
@@ -1334,7 +1334,7 @@
       ],
       [
         "Null<Dynamic>",
-        "stream"
+        "?stream"
       ]
     ],
     "fullyQualified_name": "vim.fn.chanclose",
@@ -1420,7 +1420,7 @@
       ],
       [
         "Null<Dynamic>",
-        "utf8"
+        "?utf8"
       ]
     ],
     "fullyQualified_name": "vim.fn.char2nr",
@@ -1521,7 +1521,7 @@
       ],
       [
         "Null<Dynamic>",
-        "countcc"
+        "?countcc"
       ]
     ],
     "fullyQualified_name": "vim.fn.charidx",
@@ -1633,7 +1633,7 @@
     "parameters": [
       [
         "Null<Window>",
-        "win"
+        "?win"
       ]
     ],
     "fullyQualified_name": "vim.fn.clearmatches",
@@ -1817,7 +1817,7 @@
     "parameters": [
       [
         "Null<Dynamic>",
-        "what"
+        "?what"
       ]
     ],
     "fullyQualified_name": "vim.fn.complete_info",
@@ -1902,15 +1902,15 @@
       ],
       [
         "Null<Dynamic>",
-        "choices"
+        "?choices"
       ],
       [
         "Null<Dynamic>",
-        "default"
+        "?default"
       ],
       [
         "Null<Dynamic>",
-        "type"
+        "?type"
       ]
     ],
     "fullyQualified_name": "vim.fn.confirm",
@@ -2086,11 +2086,11 @@
       ],
       [
         "Null<Dynamic>",
-        "ic"
+        "?ic"
       ],
       [
         "Null<Int>",
-        "start"
+        "?start"
       ]
     ],
     "fullyQualified_name": "vim.fn.count",
@@ -2125,15 +2125,15 @@
     "parameters": [
       [
         "Null<Dynamic>",
-        "num"
+        "?num"
       ],
       [
         "Null<Dynamic>",
-        "dbpath"
+        "?dbpath"
       ],
       [
         "Null<Dynamic>",
-        "prepend"
+        "?prepend"
       ]
     ],
     "fullyQualified_name": "vim.fn.cscope_connection",
@@ -2190,7 +2190,7 @@
     "parameters": [
       [
         "Null<Int>",
-        "index"
+        "?index"
       ]
     ],
     "fullyQualified_name": "vim.fn.ctxget",
@@ -2220,7 +2220,7 @@
     "parameters": [
       [
         "Null<Dynamic>",
-        "types"
+        "?types"
       ]
     ],
     "fullyQualified_name": "vim.fn.ctxpush",
@@ -2245,7 +2245,7 @@
       ],
       [
         "Null<Int>",
-        "index"
+        "?index"
       ]
     ],
     "fullyQualified_name": "vim.fn.ctxset",
@@ -2277,7 +2277,7 @@
     "name": "cursor",
     "parameters": [
       [
-        "Array<Dynamic>",
+        "lua.Table<Int,Dynamic>",
         "list"
       ]
     ],
@@ -2360,7 +2360,7 @@
       ],
       [
         "Null<Dynamic>",
-        "noref"
+        "?noref"
       ]
     ],
     "fullyQualified_name": "vim.fn.deepcopy",
@@ -2404,7 +2404,7 @@
       ],
       [
         "Null<Dynamic>",
-        "flags"
+        "?flags"
       ]
     ],
     "fullyQualified_name": "vim.fn.delete",
@@ -2452,7 +2452,7 @@
       ],
       [
         "Null<Dynamic>",
-        "last"
+        "?last"
       ]
     ],
     "fullyQualified_name": "vim.fn.deletebufline",
@@ -2700,7 +2700,7 @@
     "parameters": [
       [
         "Null<Dynamic>",
-        "listall"
+        "?listall"
       ]
     ],
     "fullyQualified_name": "vim.fn.digraph_getlist",
@@ -2724,7 +2724,7 @@
       "  GetNumber()->digraph_getlist()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -2983,7 +2983,7 @@
       ],
       [
         "Null<Dynamic>",
-        "silent"
+        "?silent"
       ]
     ],
     "fullyQualified_name": "vim.fn.execute",
@@ -3212,7 +3212,7 @@
       ],
       [
         "Null<Bool>",
-        "nosuf"
+        "?nosuf"
       ]
     ],
     "fullyQualified_name": "vim.fn.expand",
@@ -3371,7 +3371,7 @@
       ],
       [
         "Null<Dynamic>",
-        "expr3"
+        "?expr3"
       ]
     ],
     "fullyQualified_name": "vim.fn.extend",
@@ -3419,7 +3419,7 @@
       "  mylist->extend(otherlist)",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -3435,7 +3435,7 @@
       ],
       [
         "Null<Dynamic>",
-        "mode"
+        "?mode"
       ]
     ],
     "fullyQualified_name": "vim.fn.feedkeys",
@@ -3628,7 +3628,7 @@
       "  mylist->filter(expr2)",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -3644,11 +3644,11 @@
       ],
       [
         "Null<Dynamic>",
-        "path"
+        "?path"
       ],
       [
         "Null<Dynamic>",
-        "count"
+        "?count"
       ]
     ],
     "fullyQualified_name": "vim.fn.finddir",
@@ -3691,11 +3691,11 @@
       ],
       [
         "Null<Dynamic>",
-        "path"
+        "?path"
       ],
       [
         "Null<Dynamic>",
-        "count"
+        "?count"
       ]
     ],
     "fullyQualified_name": "vim.fn.findfile",
@@ -3725,12 +3725,12 @@
     "name": "flatten",
     "parameters": [
       [
-        "Array<Dynamic>",
+        "lua.Table<Int,Dynamic>",
         "list"
       ],
       [
         "Null<Dynamic>",
-        "maxdepth"
+        "?maxdepth"
       ]
     ],
     "fullyQualified_name": "vim.fn.flatten",
@@ -3760,7 +3760,7 @@
       "  mylist->flatten()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -4154,11 +4154,11 @@
       ],
       [
         "Null<Dynamic>",
-        "arglist"
+        "?arglist"
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "dict"
+        "?dict"
       ]
     ],
     "fullyQualified_name": "vim.fn.funcref",
@@ -4195,11 +4195,11 @@
       ],
       [
         "Null<Dynamic>",
-        "arglist"
+        "?arglist"
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "dict"
+        "?dict"
       ]
     ],
     "fullyQualified_name": "",
@@ -4308,7 +4308,7 @@
     "parameters": [
       [
         "Null<Dynamic>",
-        "atexit"
+        "?atexit"
       ]
     ],
     "fullyQualified_name": "vim.fn.garbagecollect",
@@ -4370,7 +4370,7 @@
     "parameters": [
       [
         "Null<lua.Table<String, Dynamic>>",
-        "dict"
+        "?dict"
       ]
     ],
     "fullyQualified_name": "vim.fn.getbufinfo",
@@ -4447,7 +4447,7 @@
       "  GetBufnr()->getbufinfo()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -4468,7 +4468,7 @@
       ],
       [
         "Null<Int>",
-        "end_"
+        "?end_"
       ]
     ],
     "fullyQualified_name": "vim.fn.getbufline",
@@ -4501,7 +4501,7 @@
       "Can also be used as a |method|: >",
       "  GetBufnr()->getbufline(lnum)"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -4520,7 +4520,7 @@
       ],
       [
         "Null<Dynamic>",
-        "def"
+        "?def"
       ]
     ],
     "fullyQualified_name": "vim.fn.getbufvar",
@@ -4562,7 +4562,7 @@
     "parameters": [
       [
         "Null<Buffer>",
-        "buf"
+        "?buf"
       ]
     ],
     "fullyQualified_name": "vim.fn.getchangelist",
@@ -4587,7 +4587,7 @@
       "  GetBufnr()->getchangelist()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -4598,7 +4598,7 @@
     "parameters": [
       [
         "Null<Dynamic>",
-        "expr"
+        "?expr"
       ]
     ],
     "fullyQualified_name": "vim.fn.getchar",
@@ -4726,7 +4726,7 @@
       "  GetMark()->getcharpos()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -4768,7 +4768,7 @@
     "parameters": [
       [
         "Null<Dynamic>",
-        "expr"
+        "?expr"
       ]
     ],
     "fullyQualified_name": "vim.fn.getcharstr",
@@ -4918,7 +4918,7 @@
       ],
       [
         "Null<Dynamic>",
-        "filtered"
+        "?filtered"
       ]
     ],
     "fullyQualified_name": "vim.fn.getcompletion",
@@ -4986,7 +4986,7 @@
       "  GetPattern()->getcompletion('color')",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -4997,7 +4997,7 @@
     "parameters": [
       [
         "Null<Window>",
-        "winid"
+        "?winid"
       ]
     ],
     "fullyQualified_name": "vim.fn.getcurpos",
@@ -5032,7 +5032,7 @@
       "  GetWinid()->getcurpos()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -5043,7 +5043,7 @@
     "parameters": [
       [
         "Null<Window>",
-        "winid"
+        "?winid"
       ]
     ],
     "fullyQualified_name": "vim.fn.getcursorcharpos",
@@ -5062,7 +5062,7 @@
       "  GetWinid()->getcursorcharpos()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -5074,11 +5074,11 @@
     "parameters": [
       [
         "Null<Window>",
-        "winnr"
+        "?winnr"
       ],
       [
         "Null<Int>",
-        "tabnr"
+        "?tabnr"
       ]
     ],
     "fullyQualified_name": "vim.fn.getcwd",
@@ -5146,7 +5146,7 @@
     "parameters": [
       [
         "Null<Dynamic>",
-        "name"
+        "?name"
       ]
     ],
     "fullyQualified_name": "vim.fn.getfontname",
@@ -5305,11 +5305,11 @@
     "parameters": [
       [
         "Null<Window>",
-        "winnr"
+        "?winnr"
       ],
       [
         "Null<Int>",
-        "tabnr"
+        "?tabnr"
       ]
     ],
     "fullyQualified_name": "vim.fn.getjumplist",
@@ -5339,7 +5339,7 @@
       "",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -5355,7 +5355,7 @@
       ],
       [
         "Null<Int>",
-        "end_"
+        "?end_"
       ]
     ],
     "fullyQualified_name": "vim.fn.getline",
@@ -5392,7 +5392,7 @@
       "",
       "<    To get lines from another buffer see |getbufline()|"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -5408,7 +5408,7 @@
       ],
       [
         "Null<Dynamic>",
-        "what"
+        "?what"
       ]
     ],
     "fullyQualified_name": "vim.fn.getloclist",
@@ -5456,7 +5456,7 @@
     "parameters": [
       [
         "Null<Buffer>",
-        "buf"
+        "?buf"
       ]
     ],
     "fullyQualified_name": "vim.fn.getmarklist",
@@ -5484,7 +5484,7 @@
       "  GetBufnr()->getmarklist()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -5495,7 +5495,7 @@
     "parameters": [
       [
         "Null<Window>",
-        "win"
+        "?win"
       ]
     ],
     "fullyQualified_name": "vim.fn.getmatches",
@@ -5530,7 +5530,7 @@
       "  :unlet m",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -5631,7 +5631,7 @@
       "    GetMark()->getpos()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -5642,7 +5642,7 @@
     "parameters": [
       [
         "Null<Dynamic>",
-        "what"
+        "?what"
       ]
     ],
     "fullyQualified_name": "vim.fn.getqflist",
@@ -5762,15 +5762,15 @@
     "parameters": [
       [
         "Null<Dynamic>",
-        "regname"
+        "?regname"
       ],
       [
         "Null<Dynamic>",
-        "p1"
+        "?p1"
       ],
       [
-        "Null<Array<Dynamic>>",
-        "list"
+        "Null<lua.Table<Int,Dynamic>>",
+        "?list"
       ]
     ],
     "fullyQualified_name": "vim.fn.getreg",
@@ -5815,7 +5815,7 @@
     "parameters": [
       [
         "Null<Dynamic>",
-        "regname"
+        "?regname"
       ]
     ],
     "fullyQualified_name": "vim.fn.getreginfo",
@@ -5859,7 +5859,7 @@
     "parameters": [
       [
         "Null<Dynamic>",
-        "regname"
+        "?regname"
       ]
     ],
     "fullyQualified_name": "vim.fn.getregtype",
@@ -5890,7 +5890,7 @@
     "parameters": [
       [
         "Null<Int>",
-        "tabnr"
+        "?tabnr"
       ]
     ],
     "fullyQualified_name": "vim.fn.gettabinfo",
@@ -5912,7 +5912,7 @@
       "  GetTabnr()->gettabinfo()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -5931,7 +5931,7 @@
       ],
       [
         "Null<Dynamic>",
-        "def"
+        "?def"
       ]
     ],
     "fullyQualified_name": "vim.fn.gettabvar",
@@ -5974,7 +5974,7 @@
       ],
       [
         "Null<Dynamic>",
-        "def"
+        "?def"
       ]
     ],
     "fullyQualified_name": "vim.fn.gettabwinvar",
@@ -6021,7 +6021,7 @@
     "parameters": [
       [
         "Null<Window>",
-        "winnr"
+        "?winnr"
       ]
     ],
     "fullyQualified_name": "vim.fn.gettagstack",
@@ -6069,7 +6069,7 @@
     "parameters": [
       [
         "Null<Window>",
-        "winid"
+        "?winid"
       ]
     ],
     "fullyQualified_name": "vim.fn.getwininfo",
@@ -6112,7 +6112,7 @@
       "  GetWinnr()->getwininfo()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -6123,7 +6123,7 @@
     "parameters": [
       [
         "Null<Dynamic>",
-        "timeout"
+        "?timeout"
       ]
     ],
     "fullyQualified_name": "vim.fn.getwinpos",
@@ -6153,7 +6153,7 @@
       "  GetTimeout()->getwinpos()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -6202,7 +6202,7 @@
       ],
       [
         "Null<Dynamic>",
-        "def"
+        "?def"
       ]
     ],
     "fullyQualified_name": "vim.fn.getwinvar",
@@ -6236,7 +6236,7 @@
       ],
       [
         "Null<Bool>",
-        "nosuf"
+        "?nosuf"
       ]
     ],
     "fullyQualified_name": "vim.fn.glob",
@@ -6338,15 +6338,15 @@
       ],
       [
         "Null<Dynamic>",
-        "nosuf"
+        "?nosuf"
       ],
       [
-        "Null<Array<Dynamic>>",
-        "list"
+        "Null<lua.Table<Int,Dynamic>>",
+        "?list"
       ],
       [
         "Null<Dynamic>",
-        "allinks"
+        "?allinks"
       ]
     ],
     "fullyQualified_name": "vim.fn.globpath",
@@ -6518,11 +6518,11 @@
     "parameters": [
       [
         "Null<Window>",
-        "winnr"
+        "?winnr"
       ],
       [
         "Null<Int>",
-        "tabnr"
+        "?tabnr"
       ]
     ],
     "fullyQualified_name": "vim.fn.haslocaldir",
@@ -6566,11 +6566,11 @@
       ],
       [
         "Null<Dynamic>",
-        "mode"
+        "?mode"
       ],
       [
         "Null<Dynamic>",
-        "abbr"
+        "?abbr"
       ]
     ],
     "fullyQualified_name": "vim.fn.hasmapto",
@@ -6674,7 +6674,7 @@
       ],
       [
         "Null<Dynamic>",
-        "item"
+        "?item"
       ]
     ],
     "fullyQualified_name": "vim.fn.histdel",
@@ -6734,7 +6734,7 @@
       ],
       [
         "Null<Int>",
-        "index"
+        "?index"
       ]
     ],
     "fullyQualified_name": "vim.fn.histget",
@@ -6978,11 +6978,11 @@
       ],
       [
         "Null<Int>",
-        "start"
+        "?start"
       ],
       [
         "Null<Dynamic>",
-        "ic"
+        "?ic"
       ]
     ],
     "fullyQualified_name": "vim.fn.index",
@@ -7228,7 +7228,7 @@
       ],
       [
         "Null<String>",
-        "text"
+        "?text"
       ]
     ],
     "fullyQualified_name": "vim.fn.inputsecret",
@@ -7267,7 +7267,7 @@
       ],
       [
         "Null<Dynamic>",
-        "idx"
+        "?idx"
       ]
     ],
     "fullyQualified_name": "vim.fn.insert",
@@ -7295,7 +7295,7 @@
       "  mylist->insert(item)",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [],
@@ -7485,7 +7485,7 @@
       "Can also be used as a |method|: >",
       "  mydict->items()"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -7544,7 +7544,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "opts"
+        "?opts"
       ]
     ],
     "fullyQualified_name": "vim.fn.jobstart",
@@ -7678,7 +7678,7 @@
       ],
       [
         "Null<Dynamic>",
-        "timeout"
+        "?timeout"
       ]
     ],
     "fullyQualified_name": "vim.fn.jobwait",
@@ -7715,12 +7715,12 @@
     "name": "join",
     "parameters": [
       [
-        "Array<Dynamic>",
+        "lua.Table<Int,Dynamic>",
         "list"
       ],
       [
         "Null<Dynamic>",
-        "sep"
+        "?sep"
       ]
     ],
     "fullyQualified_name": "vim.fn.join",
@@ -7830,7 +7830,7 @@
       "  mydict->keys()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -8015,7 +8015,7 @@
       ],
       [
         "Null<Window>",
-        "winid"
+        "?winid"
       ]
     ],
     "fullyQualified_name": "vim.fn.line",
@@ -8130,12 +8130,12 @@
     "name": "list2str",
     "parameters": [
       [
-        "Array<Dynamic>",
+        "lua.Table<Int,Dynamic>",
         "list"
       ],
       [
         "Null<Dynamic>",
-        "utf8"
+        "?utf8"
       ]
     ],
     "fullyQualified_name": "vim.fn.list2str",
@@ -8253,7 +8253,7 @@
       ],
       [
         "Null<Dynamic>",
-        "expr1"
+        "?expr1"
       ]
     ],
     "fullyQualified_name": "vim.fn.luaeval",
@@ -8344,7 +8344,7 @@
       "  mylist->map(expr2)",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -8361,15 +8361,15 @@
       ],
       [
         "Null<Dynamic>",
-        "mode"
+        "?mode"
       ],
       [
         "Null<Dynamic>",
-        "abbr"
+        "?abbr"
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "dict"
+        "?dict"
       ]
     ],
     "fullyQualified_name": "vim.fn.maparg",
@@ -8458,11 +8458,11 @@
       ],
       [
         "Null<Dynamic>",
-        "mode"
+        "?mode"
       ],
       [
         "Null<Dynamic>",
-        "abbr"
+        "?abbr"
       ]
     ],
     "fullyQualified_name": "vim.fn.mapcheck",
@@ -8565,11 +8565,11 @@
       ],
       [
         "Null<Int>",
-        "start"
+        "?start"
       ],
       [
         "Null<Dynamic>",
-        "count"
+        "?count"
       ]
     ],
     "fullyQualified_name": "vim.fn.match",
@@ -8672,15 +8672,15 @@
       ],
       [
         "Null<Dynamic>",
-        "priority"
+        "?priority"
       ],
       [
         "Null<Dynamic>",
-        "id"
+        "?id"
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "dict"
+        "?dict"
       ]
     ],
     "fullyQualified_name": "vim.fn.matchadd",
@@ -8771,15 +8771,15 @@
       ],
       [
         "Null<Dynamic>",
-        "priority"
+        "?priority"
       ],
       [
         "Null<Dynamic>",
-        "id"
+        "?id"
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "dict"
+        "?dict"
       ]
     ],
     "fullyQualified_name": "vim.fn.matchaddpos",
@@ -8861,7 +8861,7 @@
       "  GetMatch()->matcharg()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -8876,7 +8876,7 @@
       ],
       [
         "Null<Window>",
-        "win"
+        "?win"
       ]
     ],
     "fullyQualified_name": "vim.fn.matchdelete",
@@ -8913,11 +8913,11 @@
       ],
       [
         "Null<Int>",
-        "start"
+        "?start"
       ],
       [
         "Null<Dynamic>",
-        "count"
+        "?count"
       ]
     ],
     "fullyQualified_name": "vim.fn.matchend",
@@ -8963,7 +8963,7 @@
     "name": "matchfuzzy",
     "parameters": [
       [
-        "Array<Dynamic>",
+        "lua.Table<Int,Dynamic>",
         "list"
       ],
       [
@@ -8972,7 +8972,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "dict"
+        "?dict"
       ]
     ],
     "fullyQualified_name": "vim.fn.matchfuzzy",
@@ -9049,7 +9049,7 @@
       "        \\ {'matchseq': 1})",
       "<    results in ['two one']."
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -9061,7 +9061,7 @@
     "name": "matchfuzzypos",
     "parameters": [
       [
-        "Array<Dynamic>",
+        "lua.Table<Int,Dynamic>",
         "list"
       ],
       [
@@ -9070,7 +9070,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "dict"
+        "?dict"
       ]
     ],
     "fullyQualified_name": "vim.fn.matchfuzzypos",
@@ -9100,7 +9100,7 @@
       "```",
       "results in [[{\"id\": 10, \"text\": \"hello\"}], [[2, 3]], [127]]"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -9120,11 +9120,11 @@
       ],
       [
         "Null<Int>",
-        "start"
+        "?start"
       ],
       [
         "Null<Dynamic>",
-        "count"
+        "?count"
       ]
     ],
     "fullyQualified_name": "vim.fn.matchlist",
@@ -9147,7 +9147,7 @@
       "  GetText()->matchlist('word')",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -9167,11 +9167,11 @@
       ],
       [
         "Null<Int>",
-        "start"
+        "?start"
       ],
       [
         "Null<Dynamic>",
-        "count"
+        "?count"
       ]
     ],
     "fullyQualified_name": "vim.fn.matchstr",
@@ -9217,11 +9217,11 @@
       ],
       [
         "Null<Int>",
-        "start"
+        "?start"
       ],
       [
         "Null<Dynamic>",
-        "count"
+        "?count"
       ]
     ],
     "fullyQualified_name": "vim.fn.matchstrpos",
@@ -9254,7 +9254,7 @@
       "  GetText()->matchstrpos('word')",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -9300,7 +9300,7 @@
       ],
       [
         "Null<Dynamic>",
-        "modes"
+        "?modes"
       ]
     ],
     "fullyQualified_name": "vim.fn.menu_get",
@@ -9353,7 +9353,7 @@
       "  } ]",
       "<"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -9368,7 +9368,7 @@
       ],
       [
         "Null<Dynamic>",
-        "mode"
+        "?mode"
       ]
     ],
     "fullyQualified_name": "vim.fn.menu_info",
@@ -9498,11 +9498,11 @@
       ],
       [
         "Null<Dynamic>",
-        "path"
+        "?path"
       ],
       [
         "Null<Dynamic>",
-        "prot"
+        "?prot"
       ]
     ],
     "fullyQualified_name": "vim.fn.mkdir",
@@ -9548,7 +9548,7 @@
     "parameters": [
       [
         "Null<Dynamic>",
-        "expr"
+        "?expr"
       ]
     ],
     "fullyQualified_name": "vim.fn.mode",
@@ -9619,12 +9619,12 @@
     "name": "msgpackdump",
     "parameters": [
       [
-        "Array<Dynamic>",
+        "lua.Table<Int,Dynamic>",
         "list"
       ],
       [
         "Null<Dynamic>",
-        "type"
+        "?type"
       ]
     ],
     "fullyQualified_name": "vim.fn.msgpackdump",
@@ -9649,7 +9649,7 @@
       "4. Other strings and |Blob|s are always dumped as BIN strings.",
       "5. Points 3. and 4. do not apply to |msgpack-special-dict|s."
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -9741,7 +9741,7 @@
       "  representing extension type. Second is",
       "  |readfile()|-style list of strings."
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -9787,7 +9787,7 @@
       ],
       [
         "Null<Dynamic>",
-        "utf8"
+        "?utf8"
       ]
     ],
     "fullyQualified_name": "vim.fn.nr2char",
@@ -9861,7 +9861,7 @@
       ],
       [
         "Null<Dynamic>",
-        "len"
+        "?len"
       ]
     ],
     "fullyQualified_name": "vim.fn.pathshorten",
@@ -10487,7 +10487,7 @@
     "parameters": [
       [
         "Null<Dynamic>",
-        "expr"
+        "?expr"
       ]
     ],
     "fullyQualified_name": "vim.fn.rand",
@@ -10528,11 +10528,11 @@
       ],
       [
         "Null<Dynamic>",
-        "max"
+        "?max"
       ],
       [
         "Null<Dynamic>",
-        "stride"
+        "?stride"
       ]
     ],
     "fullyQualified_name": "vim.fn.range",
@@ -10560,7 +10560,7 @@
       "  GetExpr()->range()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -10575,7 +10575,7 @@
       ],
       [
         "Null<Dynamic>",
-        "expr"
+        "?expr"
       ]
     ],
     "fullyQualified_name": "vim.fn.readdir",
@@ -10617,7 +10617,7 @@
       "  GetDirName()->readdir()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -10633,11 +10633,11 @@
       ],
       [
         "Null<Dynamic>",
-        "type"
+        "?type"
       ],
       [
         "Null<Dynamic>",
-        "max"
+        "?max"
       ]
     ],
     "fullyQualified_name": "vim.fn.readfile",
@@ -10680,7 +10680,7 @@
       "  GetFileName()->readfile()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -10699,7 +10699,7 @@
       ],
       [
         "Null<Dynamic>",
-        "initial"
+        "?initial"
       ]
     ],
     "fullyQualified_name": "vim.fn.reduce",
@@ -10778,11 +10778,11 @@
     "parameters": [
       [
         "Null<Int>",
-        "start"
+        "?start"
       ],
       [
         "Null<Int>",
-        "end_"
+        "?end_"
       ]
     ],
     "fullyQualified_name": "vim.fn.reltime",
@@ -10810,7 +10810,7 @@
       "```",
       "Note: |localtime()| returns the current (non-relative) time."
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -11032,7 +11032,7 @@
       "Can also be used as a |method|: >",
       "  mylist->reverse()"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -11087,12 +11087,12 @@
         "event"
       ],
       [
-        "Null<Array<Dynamic>>",
-        "args"
+        "Null<lua.Table<Int,Dynamic>>",
+        "?args"
       ],
       [
         "Null<Dynamic>",
-        "..."
+        "?..."
       ]
     ],
     "fullyQualified_name": "vim.fn.rpcnotify",
@@ -11122,12 +11122,12 @@
         "method"
       ],
       [
-        "Null<Array<Dynamic>>",
-        "args"
+        "Null<lua.Table<Int,Dynamic>>",
+        "?args"
       ],
       [
         "Null<Dynamic>",
-        "..."
+        "?..."
       ]
     ],
     "fullyQualified_name": "vim.fn.rpcrequest",
@@ -11153,7 +11153,7 @@
       ],
       [
         "Null<Dynamic>",
-        "argv"
+        "?argv"
       ]
     ],
     "fullyQualified_name": "vim.fn.rpcstart",
@@ -11287,7 +11287,7 @@
       "  GetRow()->screenchars(col)",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -11431,19 +11431,19 @@
       ],
       [
         "Null<Dynamic>",
-        "flags"
+        "?flags"
       ],
       [
         "Null<Dynamic>",
-        "stopline"
+        "?stopline"
       ],
       [
         "Null<Dynamic>",
-        "timeout"
+        "?timeout"
       ],
       [
         "Null<Dynamic>",
-        "skip"
+        "?skip"
       ]
     ],
     "fullyQualified_name": "vim.fn.search",
@@ -11569,7 +11569,7 @@
     "parameters": [
       [
         "Null<lua.Table<String, Dynamic>>",
-        "options"
+        "?options"
       ]
     ],
     "fullyQualified_name": "vim.fn.searchcount",
@@ -11721,11 +11721,11 @@
       ],
       [
         "Null<Dynamic>",
-        "global"
+        "?global"
       ],
       [
         "Null<Dynamic>",
-        "thisblock"
+        "?thisblock"
       ]
     ],
     "fullyQualified_name": "vim.fn.searchdecl",
@@ -11781,19 +11781,19 @@
       ],
       [
         "Null<Dynamic>",
-        "flags"
+        "?flags"
       ],
       [
         "Null<Dynamic>",
-        "skip"
+        "?skip"
       ],
       [
         "Null<Dynamic>",
-        "stopline"
+        "?stopline"
       ],
       [
         "Null<Dynamic>",
-        "timeout"
+        "?timeout"
       ]
     ],
     "fullyQualified_name": "vim.fn.searchpair",
@@ -11919,19 +11919,19 @@
       ],
       [
         "Null<Dynamic>",
-        "flags"
+        "?flags"
       ],
       [
         "Null<Dynamic>",
-        "skip"
+        "?skip"
       ],
       [
         "Null<Dynamic>",
-        "stopline"
+        "?stopline"
       ],
       [
         "Null<Dynamic>",
-        "timeout"
+        "?timeout"
       ]
     ],
     "fullyQualified_name": "vim.fn.searchpairpos",
@@ -11947,7 +11947,7 @@
       "```",
       "See |match-parens| for a bigger and more useful example."
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -11965,19 +11965,19 @@
       ],
       [
         "Null<Dynamic>",
-        "flags"
+        "?flags"
       ],
       [
         "Null<Dynamic>",
-        "stopline"
+        "?stopline"
       ],
       [
         "Null<Dynamic>",
-        "timeout"
+        "?timeout"
       ],
       [
         "Null<Dynamic>",
-        "skip"
+        "?skip"
       ]
     ],
     "fullyQualified_name": "vim.fn.searchpos",
@@ -12005,7 +12005,7 @@
       "    GetPattern()->searchpos()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -12032,7 +12032,7 @@
     "parameters": [
       [
         "Null<Dynamic>",
-        "address"
+        "?address"
       ]
     ],
     "fullyQualified_name": "vim.fn.serverstart",
@@ -12201,7 +12201,7 @@
     "name": "setcellwidths",
     "parameters": [
       [
-        "Array<Dynamic>",
+        "lua.Table<Int,Dynamic>",
         "list"
       ]
     ],
@@ -12249,7 +12249,7 @@
         "expr"
       ],
       [
-        "Array<Dynamic>",
+        "lua.Table<Int,Dynamic>",
         "list"
       ]
     ],
@@ -12330,7 +12330,7 @@
       ],
       [
         "Null<Int>",
-        "pos"
+        "?pos"
       ]
     ],
     "fullyQualified_name": "vim.fn.setcmdline",
@@ -12391,7 +12391,7 @@
     "name": "setcursorcharpos",
     "parameters": [
       [
-        "Array<Dynamic>",
+        "lua.Table<Int,Dynamic>",
         "list"
       ]
     ],
@@ -12554,16 +12554,16 @@
         "nr"
       ],
       [
-        "Array<Dynamic>",
+        "lua.Table<Int,Dynamic>",
         "list"
       ],
       [
         "Null<Dynamic>",
-        "action"
+        "?action"
       ],
       [
         "Null<Dynamic>",
-        "what"
+        "?what"
       ]
     ],
     "fullyQualified_name": "vim.fn.setloclist",
@@ -12600,12 +12600,12 @@
     "name": "setmatches",
     "parameters": [
       [
-        "Array<Dynamic>",
+        "lua.Table<Int,Dynamic>",
         "list"
       ],
       [
         "Null<Window>",
-        "win"
+        "?win"
       ]
     ],
     "fullyQualified_name": "vim.fn.setmatches",
@@ -12636,7 +12636,7 @@
         "expr"
       ],
       [
-        "Array<Dynamic>",
+        "lua.Table<Int,Dynamic>",
         "list"
       ]
     ],
@@ -12707,16 +12707,16 @@
     "name": "setqflist",
     "parameters": [
       [
-        "Array<Dynamic>",
+        "lua.Table<Int,Dynamic>",
         "list"
       ],
       [
         "Null<Dynamic>",
-        "action"
+        "?action"
       ],
       [
         "Null<Dynamic>",
-        "what"
+        "?what"
       ]
     ],
     "fullyQualified_name": "vim.fn.setqflist",
@@ -12858,7 +12858,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "options"
+        "?options"
       ]
     ],
     "fullyQualified_name": "vim.fn.setreg",
@@ -13039,7 +13039,7 @@
       ],
       [
         "Null<Dynamic>",
-        "action"
+        "?action"
       ]
     ],
     "fullyQualified_name": "vim.fn.settagstack",
@@ -13161,7 +13161,7 @@
       ],
       [
         "Null<Dynamic>",
-        "special"
+        "?special"
       ]
     ],
     "fullyQualified_name": "vim.fn.shellescape",
@@ -13216,7 +13216,7 @@
     "parameters": [
       [
         "Null<Int>",
-        "col"
+        "?col"
       ]
     ],
     "fullyQualified_name": "vim.fn.shiftwidth",
@@ -13259,7 +13259,7 @@
     "name": "sign_define",
     "parameters": [
       [
-        "Array<Dynamic>",
+        "lua.Table<Int,Dynamic>",
         "list"
       ]
     ],
@@ -13267,7 +13267,7 @@
     "docs": [
       "List  define or update a list of signs"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -13278,14 +13278,14 @@
     "parameters": [
       [
         "Null<Dynamic>",
-        "name"
+        "?name"
       ]
     ],
     "fullyQualified_name": "vim.fn.sign_getdefined",
     "docs": [
       "List  get a list of defined signs"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -13297,18 +13297,18 @@
     "parameters": [
       [
         "Null<Buffer>",
-        "buf"
+        "?buf"
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "dict"
+        "?dict"
       ]
     ],
     "fullyQualified_name": "vim.fn.sign_getplaced",
     "docs": [
       "List  get a list of placed signs"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -13362,7 +13362,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "dict"
+        "?dict"
       ]
     ],
     "fullyQualified_name": "vim.fn.sign_place",
@@ -13379,7 +13379,7 @@
     "name": "sign_placelist",
     "parameters": [
       [
-        "Array<Dynamic>",
+        "lua.Table<Int,Dynamic>",
         "list"
       ]
     ],
@@ -13387,7 +13387,7 @@
     "docs": [
       "List  place a list of signs"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -13397,7 +13397,7 @@
     "name": "sign_undefine",
     "parameters": [
       [
-        "Array<Dynamic>",
+        "lua.Table<Int,Dynamic>",
         "list"
       ]
     ],
@@ -13405,7 +13405,7 @@
     "docs": [
       "List  undefine a list of signs"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -13420,7 +13420,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "dict"
+        "?dict"
       ]
     ],
     "fullyQualified_name": "vim.fn.sign_unplace",
@@ -13437,7 +13437,7 @@
     "name": "sign_unplacelist",
     "parameters": [
       [
-        "Array<Dynamic>",
+        "lua.Table<Int,Dynamic>",
         "list"
       ]
     ],
@@ -13445,7 +13445,7 @@
     "docs": [
       "List  unplace a list of signs"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -13565,7 +13565,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "opts"
+        "?opts"
       ]
     ],
     "fullyQualified_name": "vim.fn.sockconnect",
@@ -13602,16 +13602,16 @@
     "name": "sort",
     "parameters": [
       [
-        "Array<Dynamic>",
+        "lua.Table<Int,Dynamic>",
         "list"
       ],
       [
         "Null<Function>",
-        "func"
+        "?func"
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "dict"
+        "?dict"
       ]
     ],
     "fullyQualified_name": "vim.fn.sort",
@@ -13702,7 +13702,7 @@
       "  eval mylist->sort({i1, i2 -> i1 - i2})",
       "<"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -13740,7 +13740,7 @@
     "parameters": [
       [
         "Null<Dynamic>",
-        "sentence"
+        "?sentence"
       ]
     ],
     "fullyQualified_name": "vim.fn.spellbadword",
@@ -13791,11 +13791,11 @@
       ],
       [
         "Null<Dynamic>",
-        "max"
+        "?max"
       ],
       [
         "Null<Dynamic>",
-        "capital"
+        "?capital"
       ]
     ],
     "fullyQualified_name": "vim.fn.spellsuggest",
@@ -13825,7 +13825,7 @@
       "  GetWord()->spellsuggest()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -13842,11 +13842,11 @@
       ],
       [
         "Null<Dynamic>",
-        "pattern"
+        "?pattern"
       ],
       [
         "Null<Dynamic>",
-        "keepempty"
+        "?keepempty"
       ]
     ],
     "fullyQualified_name": "vim.fn.split",
@@ -13884,7 +13884,7 @@
       "  GetString()->split()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -13929,7 +13929,7 @@
     "parameters": [
       [
         "Null<Dynamic>",
-        "expr"
+        "?expr"
       ]
     ],
     "fullyQualified_name": "vim.fn.srand",
@@ -13953,7 +13953,7 @@
       "  userinput->srand()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -14042,7 +14042,7 @@
       ],
       [
         "Null<Dynamic>",
-        "quoted"
+        "?quoted"
       ]
     ],
     "fullyQualified_name": "vim.fn.str2float",
@@ -14087,7 +14087,7 @@
       ],
       [
         "Null<Dynamic>",
-        "utf8"
+        "?utf8"
       ]
     ],
     "fullyQualified_name": "vim.fn.str2list",
@@ -14110,7 +14110,7 @@
       "Can also be used as a |method|: >",
       "  GetString()->str2list()"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -14126,7 +14126,7 @@
       ],
       [
         "Null<Dynamic>",
-        "base"
+        "?base"
       ]
     ],
     "fullyQualified_name": "vim.fn.str2nr",
@@ -14175,7 +14175,7 @@
       ],
       [
         "Null<Dynamic>",
-        "len"
+        "?len"
       ]
     ],
     "fullyQualified_name": "vim.fn.strcharpart",
@@ -14213,7 +14213,7 @@
       ],
       [
         "Null<Dynamic>",
-        "skipcc"
+        "?skipcc"
       ]
     ],
     "fullyQualified_name": "vim.fn.strchars",
@@ -14266,7 +14266,7 @@
       ],
       [
         "Null<Int>",
-        "col"
+        "?col"
       ]
     ],
     "fullyQualified_name": "vim.fn.strdisplaywidth",
@@ -14304,7 +14304,7 @@
       ],
       [
         "Null<Dynamic>",
-        "time"
+        "?time"
       ]
     ],
     "fullyQualified_name": "vim.fn.strftime",
@@ -14383,7 +14383,7 @@
       ],
       [
         "Null<Int>",
-        "start"
+        "?start"
       ]
     ],
     "fullyQualified_name": "vim.fn.stridx",
@@ -14507,11 +14507,11 @@
       ],
       [
         "Null<Dynamic>",
-        "len"
+        "?len"
       ],
       [
         "Null<Dynamic>",
-        "chars"
+        "?chars"
       ]
     ],
     "fullyQualified_name": "vim.fn.strpart",
@@ -14618,7 +14618,7 @@
       ],
       [
         "Null<Int>",
-        "start"
+        "?start"
       ]
     ],
     "fullyQualified_name": "vim.fn.strridx",
@@ -14724,8 +14724,8 @@
         "nr"
       ],
       [
-        "Null<Array<Dynamic>>",
-        "list"
+        "Null<lua.Table<Int,Dynamic>>",
+        "?list"
       ]
     ],
     "fullyQualified_name": "vim.fn.submatch",
@@ -14981,7 +14981,7 @@
       ],
       [
         "Null<Dynamic>",
-        "mode"
+        "?mode"
       ]
     ],
     "fullyQualified_name": "vim.fn.synIDattr",
@@ -15104,7 +15104,7 @@
       "  synconcealed(lnum, 5)   [1, 'X', 2]",
       "  synconcealed(lnum, 6)   [0, '', 0]"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -15145,7 +15145,7 @@
       "character in a line and the first column in an empty line are",
       "valid positions."
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -15160,7 +15160,7 @@
       ],
       [
         "Null<Dynamic>",
-        "input"
+        "?input"
       ]
     ],
     "fullyQualified_name": "vim.fn.system",
@@ -15240,11 +15240,11 @@
       ],
       [
         "Null<Dynamic>",
-        "input"
+        "?input"
       ],
       [
         "Null<Dynamic>",
-        "keepempty"
+        "?keepempty"
       ]
     ],
     "fullyQualified_name": "vim.fn.systemlist",
@@ -15268,7 +15268,7 @@
       "  :echo GetCmd()->systemlist()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -15279,7 +15279,7 @@
     "parameters": [
       [
         "Null<Dynamic>",
-        "arg"
+        "?arg"
       ]
     ],
     "fullyQualified_name": "vim.fn.tabpagebuflist",
@@ -15303,7 +15303,7 @@
       "  GetTabpage()->tabpagebuflist()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -15314,7 +15314,7 @@
     "parameters": [
       [
         "Null<Dynamic>",
-        "arg"
+        "?arg"
       ]
     ],
     "fullyQualified_name": "vim.fn.tabpagenr",
@@ -15347,7 +15347,7 @@
       ],
       [
         "Null<Dynamic>",
-        "arg"
+        "?arg"
       ]
     ],
     "fullyQualified_name": "vim.fn.tabpagewinnr",
@@ -15384,7 +15384,7 @@
       "Returns a |List| with the file names used to search for tags",
       "  for the current buffer.  This is the 'tags' option expanded."
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -15399,7 +15399,7 @@
       ],
       [
         "Null<Dynamic>",
-        "filename"
+        "?filename"
       ]
     ],
     "fullyQualified_name": "vim.fn.taglist",
@@ -15451,7 +15451,7 @@
       "  GetTagpattern()->taglist()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -15549,7 +15549,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "opts"
+        "?opts"
       ]
     ],
     "fullyQualified_name": "vim.fn.termopen",
@@ -15586,7 +15586,7 @@
     "parameters": [
       [
         "Null<Dynamic>",
-        "id"
+        "?id"
       ]
     ],
     "fullyQualified_name": "vim.fn.timer_info",
@@ -15610,7 +15610,7 @@
       "  GetTimer()->timer_info()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [],
@@ -15664,7 +15664,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "options"
+        "?options"
       ]
     ],
     "fullyQualified_name": "vim.fn.timer_start",
@@ -15849,11 +15849,11 @@
       ],
       [
         "Null<Dynamic>",
-        "mask"
+        "?mask"
       ],
       [
         "Null<Dynamic>",
-        "dir"
+        "?dir"
       ]
     ],
     "fullyQualified_name": "vim.fn.trim",
@@ -16059,7 +16059,7 @@
       "    blocks.  Each item may again have an \"alt\"",
       "    item."
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -16071,16 +16071,16 @@
     "name": "uniq",
     "parameters": [
       [
-        "Array<Dynamic>",
+        "lua.Table<Int,Dynamic>",
         "list"
       ],
       [
         "Null<Function>",
-        "func"
+        "?func"
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "dict"
+        "?dict"
       ]
     ],
     "fullyQualified_name": "vim.fn.uniq",
@@ -16101,7 +16101,7 @@
       "  mylist->uniq()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -16126,7 +16126,7 @@
       "  mydict->values()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -16242,7 +16242,7 @@
     "parameters": [
       [
         "Null<Dynamic>",
-        "expr"
+        "?expr"
       ]
     ],
     "fullyQualified_name": "vim.fn.visualmode",
@@ -16285,7 +16285,7 @@
       ],
       [
         "Null<Dynamic>",
-        "interval"
+        "?interval"
       ]
     ],
     "fullyQualified_name": "vim.fn.wait",
@@ -16345,7 +16345,7 @@
       ],
       [
         "Null<Dynamic>",
-        "silent"
+        "?silent"
       ]
     ],
     "fullyQualified_name": "vim.fn.win_execute",
@@ -16389,7 +16389,7 @@
       "  GetBufnr()->win_findbuf()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -16401,11 +16401,11 @@
     "parameters": [
       [
         "Null<Window>",
-        "win"
+        "?win"
       ],
       [
         "Null<Dynamic>",
-        "tab"
+        "?tab"
       ]
     ],
     "fullyQualified_name": "vim.fn.win_getid",
@@ -16434,7 +16434,7 @@
     "parameters": [
       [
         "Null<Int>",
-        "nr"
+        "?nr"
       ]
     ],
     "fullyQualified_name": "vim.fn.win_gettype",
@@ -16509,7 +16509,7 @@
       "  GetWinid()->win_id2tabwin()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -16634,7 +16634,7 @@
       "  GetWinid()->win_screenpos()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -16654,7 +16654,7 @@
       ],
       [
         "Null<lua.Table<String, Dynamic>>",
-        "options"
+        "?options"
       ]
     ],
     "fullyQualified_name": "vim.fn.win_splitmove",
@@ -16785,7 +16785,7 @@
     "parameters": [
       [
         "Null<Int>",
-        "tabnr"
+        "?tabnr"
       ]
     ],
     "fullyQualified_name": "vim.fn.winlayout",
@@ -16825,7 +16825,7 @@
       "  GetTabnr()->winlayout()",
       "```"
     ],
-    "return_type": "Array<Dynamic>"
+    "return_type": "lua.Table<Int,Dynamic>"
   },
   {
     "annotations": [
@@ -16852,7 +16852,7 @@
     "parameters": [
       [
         "Null<Dynamic>",
-        "arg"
+        "?arg"
       ]
     ],
     "fullyQualified_name": "vim.fn.winnr",
@@ -17065,7 +17065,7 @@
       ],
       [
         "Null<Dynamic>",
-        "flags"
+        "?flags"
       ]
     ],
     "fullyQualified_name": "vim.fn.writefile",

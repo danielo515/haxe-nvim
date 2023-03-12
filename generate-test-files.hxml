@@ -1,0 +1,6 @@
+libs.hxml
+
+-cp tools
+-main tools.luaParser.GenerateDocLexerTest
+
+--interp

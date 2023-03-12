@@ -1,5 +1,6 @@
 package vim;
 
+import haxe.Constraints.Function;
 import lua.Table;
 import haxe.extern.EitherType;
 import lua.NativeStringTools;
@@ -8,6 +9,11 @@ typedef ArgComplete = vim.types.ArgComplete;
 abstract Tabpage(Int) {}
 abstract Client(Int) {}
 abstract Group(Int) {}
+
+enum FunctionOrString {
+  Cb(cb:Function);
+  Str(cmd:String);
+}
 
 abstract GroupOpts(Table< String, Bool >) {
   public inline function new(clear:Bool) {
@@ -274,4 +280,36 @@ typedef VimGOpts = {
   var mapleader:String;
   /* Local leader key to use */
   var maplocalleader:String;
+}
+
+abstract Vector3< A, B, C >(lua.Table< Int, Dynamic >) {
+  inline public function first():A {
+    return this[1];
+  }
+
+  inline public function second():B {
+    return this[2];
+  }
+
+  inline public function last():C {
+    return this[3];
+  }
+}
+
+abstract Vector4< A, B, C, D >(lua.Table< Int, Dynamic >) {
+  inline public function first():A {
+    return this[1];
+  }
+
+  inline public function second():B {
+    return this[2];
+  }
+
+  inline public function third():C {
+    return this[3];
+  }
+
+  inline public function last():D {
+    return this[4];
+  }
 }
