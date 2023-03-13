@@ -74,7 +74,11 @@ function main() {
   command(
     "CopyGhUrl",
     "Copy current file github URL",
-    args -> copyGhUrl(args.count > 0 ? ':${args.count}' : "")
+    args -> copyGhUrl(switch (args.range) {
+      case 1: ':${args.line1}';
+      case 2: ':${args.line1}-${args.line2}';
+      case _: "";
+    })
   );
 
   command(
