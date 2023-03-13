@@ -72,6 +72,31 @@ extern class Api {
       ?range:CmdRange,
     } >
   ):Void;
+
+  /**
+    Same as create user command, but this is specifically typed
+    for completion callbacks.
+    Completion callback should take the following arguments:
+      ArgLead, CmdLine, CursorPos
+      Where:
+      ArgLead: The current value of the argument being completed
+      CmdLine: The full command line text
+      CursorPos: The current cursor position in the command line
+   */
+  @:native('nvim_create_user_command')
+  static function nvim_create_user_command_complete_cb(
+    command_name:String,
+    command:LuaObj< CommandCallbackArgs > -> Void,
+    opts:TableWrapper< {
+      desc:String,
+      force:Bool,
+      complete:(String, String, Int) -> lua.Table< Int, String >,
+      nargs:Nargs,
+      ?bang:Bool,
+      ?range:CmdRange,
+    } >
+  ):Void;
+
   static inline function create_user_command_completion(
     command_name:String,
     command:LuaObj< CommandCallbackArgs > -> Void,

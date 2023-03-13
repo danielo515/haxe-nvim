@@ -39,6 +39,23 @@ function main() {
     }
   );
 
+  vim.Api.nvim_create_user_command_complete_cb("HaxeCmdCompletion", (args) -> {
+    Vim.print(args);
+    final spellRes = Spell.check("Hello bru! Hau are you?");
+    Vim.print(spellRes[1].first());
+    vim.Ui.select(t(["a"]), {prompt: "Pick one sexy option"}, (choice, _) -> Vim.print(choice));
+  }, {
+    desc: "Testing from haxe for completion callback",
+    force: true,
+    bang: true,
+    nargs: ExactlyOne,
+    range: WholeFile,
+    complete: (lead:String, full:String, x:Int) -> {
+      Vim.print(lead, full, x);
+      return t(["afa", "bea", lead + "bro"]);
+    }
+  });
+
   Vimx.autocmd('HaxeEvent', [BufWritePost], "*.hx", "Created from haxe", () -> {
     var filename = Vim.expand(ExpandString.plus(CurentFile, FullPath));
     Vim.print('Hello from axe', filename);
@@ -95,7 +112,12 @@ function runGh(args):Null< lua.Table< Int, String > > {
 function openInGh(?line) {
   final currentFile = vim.Fn.expand(CurentFile);
   final curentBranch = get_branch();
-  runGh(["browse", currentFile + line, "--branch", curentBranch[1]]);
+  runGh([
+    "browse",
+    currentFile + line,
+    "--branch",
+    curentBranch[1]
+  ]);
 }
 
 function get_branch() {
@@ -126,7 +148,13 @@ function nexTab() {
 function copyGhUrl(?line) {
   final currentFile = vim.Fn.expand(new ExpandString(CurentFile) + RelativePath);
   final curentBranch = get_branch();
-  var lines = runGh(["browse", currentFile + line, "--no-browser", "--branch", curentBranch[1]]);
+  var lines = runGh([
+    "browse",
+    currentFile + line,
+    "--no-browser",
+    "--branch",
+    curentBranch[1]
+  ]);
   switch (lines) {
     case null:
       Vim.print("No URL");
