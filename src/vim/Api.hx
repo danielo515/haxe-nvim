@@ -13,6 +13,8 @@ typedef CommandCallbackArgs = {
   final line1:Int;
   final line2:Int;
   final count:Int;
+  /* If the command is a range command, this is the number of range edges 0-2 */
+  final range:Int;
   final reg:String;
   final mods:String;
 }

@@ -48,7 +48,7 @@ function main() {
     desc: "Testing from haxe for completion callback",
     force: true,
     bang: true,
-    nargs: ExactlyOne,
+    nargs: Any,
     range: WholeFile,
     complete: (lead:String, full:String, x:Int) -> {
       Vim.print(lead, full, x);
@@ -65,7 +65,11 @@ function main() {
   command(
     "OpenInGh",
     "Open the current file in github",
-    args -> openInGh(args.count > 0 ? ':${args.count}' : "")
+    args -> openInGh(switch (args.range) {
+      case 1: ':${args.line1}';
+      case 2: ':${args.line1}-${args.line2}';
+      case _: "";
+    })
   );
   command(
     "CopyGhUrl",

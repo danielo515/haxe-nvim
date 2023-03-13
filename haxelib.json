@@ -7,9 +7,9 @@
     "externs"
   ],
   "description": "Create neovim plugins using Haxe",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "classPath": "src/",
-  "releasenote": "properly working as a lib",
+  "releasenote": "better user arguments support",
   "contributors": [
     "danielo515"
   ],
