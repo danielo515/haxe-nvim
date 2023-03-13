@@ -85,6 +85,7 @@ function main() {
     (args) -> {
       final version = packer.Packer.get_plugin_version(args.args);
       Vim.print(version);
+      Vimx.copyToClipboard(version);
     },
     ExactlyOne
   );
