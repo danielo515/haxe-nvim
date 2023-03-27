@@ -12,7 +12,7 @@ using Safety;
 
 final pathSeparator = Loop.os_uname().sysname == 'Windows' ? '\\' : '/';
 
-@:expose("vimx")
+@:expose("vimx") @:native("vimx")
 class Vimx {
   public static final autogroups:StringMap< Group > = new StringMap();
 
@@ -127,5 +127,15 @@ class Vimx {
     } else {
       return null;
     }
+  }
+
+  @:native('safeRequire')
+  public static function require< T >(name):Null< T > {
+    final module = lua.Lua.pcall(lua.Lua.require, name);
+    return if (module.status) {
+      module.value;
+    } else {
+      null;
+    };
   }
 }

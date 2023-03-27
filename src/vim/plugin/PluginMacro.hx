@@ -15,13 +15,7 @@ class PluginMacro {
         case {name: "libName", kind: FVar(_, {expr: EConst(CString(val, _))})}:
           final built = macro class X {
             inline static public function require():Null< $returnType > {
-              final module = lua.Lua.pcall(lua.Lua.require, $v{val});
-              final value = if (module.status) {
-                module.value;
-              } else {
-                null;
-              };
-              return value;
+              return vim.Vimx.require($v{val});
             }
           };
           built.fields[0];
