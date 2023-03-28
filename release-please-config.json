@@ -1,0 +1,9 @@
+{
+  "extra-files": [
+    {
+      "type": "json",
+      "path": "haxelib.json",
+      "jsonpath": "$.version"
+    }
+  ]
+}
