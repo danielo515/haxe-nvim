@@ -1,4 +1,9 @@
 {
+  "bootstrap-sha":"72e30c275d61e6c89091c4c1228c9956acca8804",
+  "packages":{
+    ".": {
+      "release-type": "node",
+  }, 
   "extra-files": [
     {
       "type": "json",
