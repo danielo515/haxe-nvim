@@ -29,14 +29,20 @@ inline function pairs< T >(table:LuaArray< T >) {
   return lua.PairTools.ipairsIterator(table);
 }
 
+/**
+  Given a table and a function that returns a boolean, returns the next value
+  right after the first value that satisfies the function.
+  It is different from the usual find function because it does not returns
+  the value that satisfies the predicate, but the next one in the table.
+ */
 function findNext< T >(table:LuaArray< T >, fn:T -> Bool):Null< T > {
   final p = Lua.ipairs(table);
   final next = p.next;
   final t = p.table;
   function loop(next, table, nextP:NextResult< Int, T >) {
-    return if (fn(
-      nextP.value
-    ))next(table, nextP.index).value else loop(next, table, next(table, nextP.index));
+    return if (fn(nextP.value)) {
+      next(table, nextP.index).value;
+    } else loop(next, table, next(table, nextP.index));
   }
   return loop(next, t, next(t, p.index));
 }
