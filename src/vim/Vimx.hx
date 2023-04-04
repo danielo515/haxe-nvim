@@ -110,7 +110,7 @@ class Vimx {
     Little wrapper that returns true if a file exists and is readable
    */
   public static function file_exists(path:String):Bool {
-    return if (Fn.filereadable(path) == 0) {
+    return if (Fn.filereadable(path) == 1) {
       true;
     } else {
       false;
