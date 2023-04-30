@@ -4,21 +4,16 @@
 
 This is a work in progress. It is very usable, in fact I use it in my personal configs and in one Neovim plugin with great success, but the API may change.
 
-
 ## Not a plugin
 
 **This is not a Neovim plugin** , it is a Haxe library to help you write neovim configurations and plugins using Haxe programming language
-
-## Just a mirror
-
-This repository is, as today 2023-01-02 a mirror of my personal dotfiles. The reason is point 1 on this important information list. I am still developing this library and use it daily for my Neovim configuration, so I want the convenience of having it in my personal dotfiles repository. You can open issues on this repository, but don't try to contribute to it because this repository is automatically updated from my personal dotfiles.
 
 ## How to contribute
 
 I am just a newcomer to Haxe, so there are lots of places where I will appreciate contributions.
 Here is a list of things that are very welcome
 - [ ] A cool logo. If anything this project needs is a cool logo. 
-- [ ] Proper configurations to publish this to haxelib
+- [x] Proper configurations to publish this to haxelib
 - [ ] A better lua annotations parser. I don't want to depend on anything but Haxe. Currently this library uses a very dumb parser for the Lua annotations. If you want to help there and improve it or write a new one you are welcome
 - [ ] Try this out. Yeah, just having this used by someone but me will probably be beneficial.
 - [ ] Write more neovim externs! This library tries to generate most extenrs automatically, but some manual work is unavoidable (because how wild the Neovim api is in terms of types). If you want to contribute and add new and better definitions for NeoVim methods, this is also welcome
@@ -53,6 +48,7 @@ This library goes even further and not only prevents you from putting a `"string
 # Example usage
 
 If you want an example or a bootstrap to start your own neovim plugin using haxe-nvim, take a look at the [template plugin](https://github.com/danielo515/haxe-nvim-example-plugin)
+If you want an example of a personal configuration using it, here is [kickstart.hx](https://github.com/danielo515/kickstart.hx)
 
 # Acknowledgments
 
