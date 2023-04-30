@@ -1,6 +1,7 @@
 package vim.plugin;
 
 using haxe.macro.TypeTools;
+using haxe.macro.ExprTools;
 
 import haxe.macro.Context;
 import haxe.macro.Expr;

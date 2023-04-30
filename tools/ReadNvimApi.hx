@@ -1,4 +1,8 @@
-import sys.FileSystem;
+package tools;
+
+import tools.Log;
+import byte.ByteData;
+import tools.luaParser.LuaParser;
 import haxe.Json;
 import tools.Result;
 import tools.GitRepo;
@@ -6,7 +10,6 @@ import tools.Cmd;
 import haxe.io.Path;
 import sys.io.Process;
 import sys.io.File;
-import org.msgpack.MsgPack;
 
 using Lambda;
 using StringTools;
@@ -344,8 +347,16 @@ class ReadNvimApi {
         writeFile('./res/lsp.json', lsp);
         final lspBuf = vimBuiltin.parsePath('lsp/buf.lua').filter(removePrivate);
         writeFile('./res/lsp_buf.json', lspBuf);
-      // This bad boy breaks the parsing for some reason
-      // final filetype = vimBuiltin.parsePath('filetype.lua').filter(removePrivate);
+        // This bad boy breaks the parsing for some reason
+        final filetypeContent = File.getBytes(Path.join([path, 'lua', 'vim', 'filetype.lua']));
+        final parser = new LuaParser(ByteData.ofBytes(filetypeContent), 'filetype.lua');
+        var parsed = parser.parse();
+        Log.print2("parsed=====>", parsed);
+        while (parsed != Tok.Eof) {
+          parsed = parser.parse();
+          Log.print2("parsed=====>", parsed);
+        }
+        trace("NO more");
       // writeFile('./res/filetype.json', filetype);
 
       case Error(error):

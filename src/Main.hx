@@ -1,3 +1,4 @@
+import vim.Api;
 import vim.Vimx;
 import plenary.Job;
 import vim.Vim;
@@ -9,6 +10,14 @@ using lua.Table;
 using vim.TableTools;
 using Lambda;
 using Test;
+
+function createSiblingFile():Void {
+  final path = Vim.expand(ExpandString.plus(CurentFile, Head));
+  final currentFileName = vim.Fn.expand(ExpandString.plus(CurentFile, Tail));
+  vim.Ui.input({prompt: 'newFileName'}, (filename) -> {
+    Vim.cmd("e " + path + "/" + filename);
+  });
+}
 
 inline function command(name, description, fn, ?nargs) {
   vim.Api.nvim_create_user_command(name, fn, {
@@ -88,6 +97,12 @@ function main() {
     ExactlyOne
   );
   command(
+    "CreateSiblingFile",
+    "Create a file next to the current one",
+    (_) -> createSiblingFile(),
+    None
+  );
+  command(
     "GetPluginVersion",
     "Gets the git version of a installed packer plugin",
     (args) -> {
@@ -97,9 +112,19 @@ function main() {
     },
     ExactlyOne
   );
+  command("Scratch", "creates a scratch buffer", (_) -> {
+    final buffer = Api.nvim_create_buf(false, true);
+    Api.nvim_win_set_buf(CurrentWindow, buffer);
+  });
   // final keymaps = vim.Api.nvim_buf_get_keymap(CurrentBuffer, "n");
   // Vim.print(keymaps.map(x -> '${x.lhs} -> ${x.rhs} ${x.desc}'));
   vim.Keymap.set(Normal, "tl", nexTab, {desc: "Go to next tab", silent: true, expr: false});
+  vim.Keymap.set(
+    Normal,
+    "<c-m-f>",
+    ":FzfLua lines<cr>",
+    {desc: "Search in open files", silent: true, expr: false}
+  );
   // show the effects of a search / replace in a live preview window
   Vim.o.inccommand = "split";
 }
@@ -175,5 +200,6 @@ function copyGhUrl(?line) {
 
 @:expose("setup")
 function setup() {
+  main();
   Vim.print("ran setup");
 }

@@ -8,7 +8,7 @@ using StringTools;
 using buddy.Should;
 
 @colorize
-class LuaDocParserTest extends buddy.SingleSuite {
+class LuaDocParserTest extends buddy.BuddySuite {
   public function new() {
     describe("vim/filetype.lua", {
       it(

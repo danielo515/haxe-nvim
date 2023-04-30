@@ -1,6 +1,8 @@
 libs.hxml
 
+-D analyzer-optimize
+
 -cp tools
--main ReadNvimApi
+-main tools.ReadNvimApi
 
 --interp
