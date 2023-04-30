@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/danielo515/haxe-nvim/compare/v1.1.0...v1.1.1) (2023-04-30)
+
+
+### Bug Fixes
+
+* command mode for mappins ([a1251e9](https://github.com/danielo515/haxe-nvim/commit/a1251e93ac49769dedccb341bc0155bd759564a7))
+
 ## [1.1.0](https://github.com/danielo515/haxe-nvim/compare/v1.0.0...v1.1.0) (2023-04-30)
 
 
