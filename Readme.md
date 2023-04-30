@@ -47,7 +47,7 @@ This library goes even further and not only prevents you from putting a `"string
 
 # Example usage
 
-If you want an example or a bootstrap to start your own neovim plugin using haxe-nvim, take a look at the [template plugin](https://github.com/danielo515/haxe-nvim-example-plugin)
+If you want an example or a bootstrap to start your own neovim plugin using haxe-nvim, take a look at the [template plugin](https://github.com/danielo515/haxe-nvim-example-plugin).
 If you want an example of a personal configuration using it, here is [kickstart.hx](https://github.com/danielo515/kickstart.hx)
 
 # Acknowledgments
