@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/danielo515/haxe-nvim/compare/v1.0.0...v1.1.0) (2023-04-30)
+
+
+### Features
+
+* run all the tests ([1ce559e](https://github.com/danielo515/haxe-nvim/commit/1ce559e5843a658f920cbdb9b00d33713cfc9038))
+
+
+### Bug Fixes
+
+* file readable ([ba40b15](https://github.com/danielo515/haxe-nvim/commit/ba40b15ea8363fa5c86764c0ce355173b605ce47))
+
 ## 1.0.0 (2023-04-04)
 
 ### Features
@@ -16,4 +28,3 @@
 ### Bug Fixes
 
 * file readable ([ba40b15](https://github.com/danielo515/haxe-nvim/commit/ba40b15ea8363fa5c86764c0ce355173b605ce47))
-
