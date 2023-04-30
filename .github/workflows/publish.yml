@@ -20,6 +20,7 @@ jobs:
     - name: Run haxe tests
       run: |
         haxelib install --always libs.hxml
+        haxe build.hxml
         haxe test-macro.hxml
         haxe tests.hxml
     - name: Run test that should fail
