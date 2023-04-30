@@ -272,6 +272,7 @@ enum abstract VimMode(String) {
   final Visual = "v";
   final Insert = "i";
   final Select = "x";
+  final Command = "c";
   final OperatorPending = "o";
 }
 

@@ -595,6 +595,7 @@ ___Main_Main_Fields_.main = function()
     vim.api.nvim_win_set_buf(0, vim.api.nvim_create_buf(false, true));
   end, ({bang = false, complete = nil, desc = "creates a scratch buffer", force = true, nargs = nargs, range = true}));
   vim.keymap.set("n", "tl", ___Main_Main_Fields_.nexTab, ({desc = "Go to next tab", expr = false, silent = true}));
+  vim.keymap.set("c", "<C-A>", "<Home>", ({desc = "Home in cmd", expr = false, silent = true}));
   vim.keymap.set("n", "<c-m-f>", ":FzfLua lines<cr>", ({desc = "Search in open files", expr = false, silent = true}));
   vim.o.inccommand = "split";
 end

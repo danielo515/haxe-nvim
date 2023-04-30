@@ -119,6 +119,7 @@ function main() {
   // final keymaps = vim.Api.nvim_buf_get_keymap(CurrentBuffer, "n");
   // Vim.print(keymaps.map(x -> '${x.lhs} -> ${x.rhs} ${x.desc}'));
   vim.Keymap.set(Normal, "tl", nexTab, {desc: "Go to next tab", silent: true, expr: false});
+  vim.Keymap.set(Command, "<C-A>", "<Home>", {desc: "Home in cmd", silent: true, expr: false});
   vim.Keymap.set(
     Normal,
     "<c-m-f>",
