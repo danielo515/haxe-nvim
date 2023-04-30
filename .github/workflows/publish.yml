@@ -22,6 +22,21 @@ jobs:
         haxelib install --always libs.hxml
         haxe test-macro.hxml
         haxe tests.hxml
+    - name: Run test that should fail
+      run: |
+        ./run-fail-test.sh
+    - name: Ensure lua code output doesn't change
+      uses: tj-actions/verify-changed-files@v13
+      id: changedfiles
+      with:
+        files: |
+          ./
+    - name: Fail if there are changed files (should not be the case)
+      if: steps.changedfiles.outputs.files_changed == 'true'
+      run: |
+        echo "Changed files: ${{ steps.changedfiles.outputs.changed_files }}"
+        git --no-pager diff "${{ steps.changedfiles.outputs.changed_files }}"
+        exit 1
 
   release:
     name: Check version & Create release
