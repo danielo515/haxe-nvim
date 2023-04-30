@@ -30,7 +30,7 @@ jobs:
       id: changedfiles
       with:
         files: |
-          ./
+          ./output
     - name: Fail if there are changed files (should not be the case)
       if: steps.changedfiles.outputs.files_changed == 'true'
       run: |
