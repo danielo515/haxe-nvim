@@ -27,6 +27,8 @@ jobs:
         haxe build.hxml
     - name: Generate API
       run: |
+        git config user.name github-actions[bot]
+        git config user.email github-actions[bot]@users.noreply.github.com
         haxe build-api.hxml
     - name: Run test that should fail
       run: |
