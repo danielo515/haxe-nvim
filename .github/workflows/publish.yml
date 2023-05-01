@@ -31,6 +31,7 @@ jobs:
       with:
         repository: folke/neodev.nvim.git
         path: neodev
+        branch: main
     - name: Generate API
       run: |
         haxe build-api.hxml --path /home/runner/work/haxe-nvim/haxe-nvim/neodev
