@@ -44,6 +44,7 @@ jobs:
       with:
         files: |
           lua/danielo_nvim
+          res/
     - name: Fail if there are changed files (should not be the case)
       if: steps.changedfiles.outputs.files_changed == 'true'
       run: |
