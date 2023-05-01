@@ -32,6 +32,10 @@ jobs:
         repository: folke/neodev.nvim.git
         path: neodev
         ref: main
+    - name: install neovim
+      uses: MunifTanjim/setup-neovim-action@v1
+      with:
+        tag: stable
     - name: Generate API
       run: |
         haxe build-api.hxml --path /home/runner/work/haxe-nvim/haxe-nvim/neodev
