@@ -30,10 +30,10 @@ jobs:
       uses: actions/checkout@v3
       with:
         repository: folke/neodev.nvim.git
-        path: /home/runner/.config/.haxe/nvim-api 
+        path: neodev
     - name: Generate API
       run: |
-        haxe build-api.hxml
+        haxe build-api.hxml --path /home/runner/work/haxe-nvim/haxe-nvim/neodev
     - name: Run test that should fail
       run: |
         ./run-fail-test.sh
