@@ -25,11 +25,14 @@ jobs:
     - name: Build
       run: |
         haxe build.hxml
+
+    - name: Clone neodev
+      uses: actions/checkout@v3
+      with:
+        repository: git@github.com:folke/neodev.nvim.git
+        path: .config/.haxe/nvim-api
     - name: Generate API
       run: |
-        git config user.name github-actions[bot]
-        git config user.email github-actions[bot]@users.noreply.github.com
-        git remote add gh-token "https://${{ secrets.GITHUB_TOKEN }}@github.com/google-github-actions/release-please-action.git"
         haxe build-api.hxml
     - name: Run test that should fail
       run: |
