@@ -305,13 +305,19 @@ class ReadNvimApi {
   }
 
   static function main() {
-    final tmpDir = switch (getTmpDir("nvim-api")) {
-      case Ok(dirPath):
-        Sys.println('Using $dirPath as temp folder');
-        dirPath;
-      case Error(msg):
-        Sys.println('Failed getting temp dir: $msg');
-        throw "TMP_DIR_FAIL";
+    final tmpDir = switch (Sys.args()) {
+      case ['--path', path]:
+        Log.print2('Got path: ', path);
+        path;
+      case _:
+        switch (getTmpDir("nvim-api")) {
+          case Ok(dirPath):
+            Sys.println('Using $dirPath as temp folder');
+            dirPath;
+          case Error(msg):
+            Sys.println('Failed getting temp dir: $msg');
+            throw "TMP_DIR_FAIL";
+        }
     }
     switch (GitRepo.clone(luadevRepo, tmpDir)) {
       case Ok(output):
