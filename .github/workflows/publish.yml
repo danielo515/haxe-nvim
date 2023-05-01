@@ -29,8 +29,8 @@ jobs:
     - name: Clone neodev
       uses: actions/checkout@v3
       with:
-        repository: git@github.com:folke/neodev.nvim.git
-        path: .config/.haxe/nvim-api
+        repository: folke/neodev.nvim.git
+        path: /home/runner/.config/.haxe/nvim-api 
     - name: Generate API
       run: |
         haxe build-api.hxml
