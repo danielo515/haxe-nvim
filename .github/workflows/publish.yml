@@ -25,6 +25,9 @@ jobs:
     - name: Build
       run: |
         haxe build.hxml
+    - name: Generate API
+      run: |
+        haxe build-api.hxml
     - name: Run test that should fail
       run: |
         ./run-fail-test.sh
