@@ -112,6 +112,13 @@ function main() {
     },
     ExactlyOne
   );
+  command(
+    "Replace",
+    "Replace the current buffer with the contents of the clipboard",
+    (_) -> {
+      Vim.cmd("normal! GVggP");
+    }
+  );
   command("Scratch", "creates a scratch buffer", (_) -> {
     final buffer = Api.nvim_create_buf(false, true);
     Api.nvim_win_set_buf(CurrentWindow, buffer);

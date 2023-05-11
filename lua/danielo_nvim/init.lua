@@ -591,6 +591,10 @@ ___Main_Main_Fields_.main = function()
     vimx.copyToClipboard(version);
   end, ({bang = false, complete = nil, desc = "Gets the git version of a installed packer plugin", force = true, nargs = 1, range = true}));
   local nargs = nil;
+  vim.api.nvim_create_user_command("Replace", function(_) 
+    vim.cmd("normal! GVggP");
+  end, ({bang = false, complete = nil, desc = "Replace the current buffer with the contents of the clipboard", force = true, nargs = nargs, range = true}));
+  local nargs = nil;
   vim.api.nvim_create_user_command("Scratch", function(_) 
     vim.api.nvim_win_set_buf(0, vim.api.nvim_create_buf(false, true));
   end, ({bang = false, complete = nil, desc = "creates a scratch buffer", force = true, nargs = nargs, range = true}));
