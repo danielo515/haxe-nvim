@@ -201,6 +201,7 @@ local Math = _hx_e()
 local String = _hx_e()
 local Std = _hx_e()
 local Test = _hx_e()
+__haxe_ds_Option = _hx_e()
 __haxe_iterators_ArrayIterator = _hx_e()
 __haxe_iterators_ArrayKeyValueIterator = _hx_e()
 __lua_StringMap = _hx_e()
@@ -599,6 +600,21 @@ ___Main_Main_Fields_.main = function()
     vim.api.nvim_win_set_buf(0, vim.api.nvim_create_buf(false, true));
   end, ({bang = false, complete = nil, desc = "creates a scratch buffer", force = true, nargs = nargs, range = true}));
   vim.keymap.set("n", "tl", ___Main_Main_Fields_.nexTab, ({desc = "Go to next tab", expr = false, silent = true}));
+  vim.keymap.set("n", "<C-G>", function() 
+    local _hx_1_outcome_status, _hx_1_outcome_value = _G.pcall(vim.cmd, "cnext");
+    local result = (function() 
+      local _hx_2
+      if (_hx_1_outcome_status) then 
+      _hx_2 = __haxe_ds_Option.Some(_hx_1_outcome_value); else 
+      _hx_2 = __haxe_ds_Option.None; end
+      return _hx_2
+    end )();
+    local tmp = result[1];
+    if (tmp) == 0 then 
+      vim.pretty_print("All good", result[2]);
+    elseif (tmp) == 1 then 
+      _hx_box_mr(_hx_table.pack(_G.pcall(vim.cmd, "cfirst")), {"status", "value"}); end;
+  end, ({desc = "Next error or go to first", expr = false, silent = true}));
   vim.keymap.set("c", "<C-A>", "<Home>", ({desc = "Home in cmd", expr = false, silent = true}));
   vim.keymap.set("n", "<c-m-f>", ":FzfLua lines<cr>", ({desc = "Search in open files", expr = false, silent = true}));
   vim.o.inccommand = "split";
@@ -864,6 +880,10 @@ Test["or"] = function(v,fallback)
   end;
 end
 
+__haxe_ds_Option.Some = function(v) local _x = _hx_tab_array({[0]="Some",0,v,__enum__=__haxe_ds_Option}, 3); return _x; end 
+__haxe_ds_Option.None = _hx_tab_array({[0]="None",1,__enum__ = __haxe_ds_Option},2)
+
+
 __haxe_iterators_ArrayIterator.new = function(array) 
   local self = _hx_new(__haxe_iterators_ArrayIterator.prototype)
   __haxe_iterators_ArrayIterator.super(self,array)
@@ -1032,6 +1052,14 @@ vimx.read_json_file = function(path)
     do return vim.fn.json_decode(_G.table.concat(vim.fn.readfile(path))) end;
   else
     do return nil end;
+  end;
+end
+vimx.cmd = function(command) 
+  local _hx_1_outcome_status, _hx_1_outcome_value = _G.pcall(vim.cmd, command);
+  if (_hx_1_outcome_status) then 
+    do return __haxe_ds_Option.Some(_hx_1_outcome_value) end;
+  else
+    do return __haxe_ds_Option.None end;
   end;
 end
 vimx.safeRequire = function(name) 

@@ -126,6 +126,20 @@ function main() {
   // final keymaps = vim.Api.nvim_buf_get_keymap(CurrentBuffer, "n");
   // Vim.print(keymaps.map(x -> '${x.lhs} -> ${x.rhs} ${x.desc}'));
   vim.Keymap.set(Normal, "tl", nexTab, {desc: "Go to next tab", silent: true, expr: false});
+  vim.Keymap.set(
+    Normal,
+    "<C-G>",
+    () -> {
+      final result = Vimx.cmd("cnext");
+      switch (result) {
+        case None:
+          Vimx.cmd("cfirst");
+        case Some(res):
+          Vim.print("All good", res);
+      }
+    },
+    {desc: "Next error or go to first", silent: true, expr: false}
+  );
   vim.Keymap.set(Command, "<C-A>", "<Home>", {desc: "Home in cmd", silent: true, expr: false});
   vim.Keymap.set(
     Normal,

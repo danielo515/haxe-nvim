@@ -1,5 +1,6 @@
 package vim;
 
+import lua.Result;
 import haxe.Constraints.Function;
 import lua.Table;
 import vim.Vim.Fn;
@@ -127,6 +128,15 @@ class Vimx {
     } else {
       return null;
     }
+  }
+
+  public static inline function cmd(command:String):Option< String > {
+    final outcome = lua.Lua.pcall(Vim.cmd, command);
+    return if (outcome.status) {
+      Some(outcome.value);
+    } else {
+      None;
+    };
   }
 
   @:native('safeRequire')
