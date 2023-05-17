@@ -134,8 +134,7 @@ function main() {
       switch (result) {
         case None:
           Vimx.cmd("cfirst");
-        case Some(res):
-          Vim.print("All good", res);
+        case _:
       }
     },
     {desc: "Next error or go to first", silent: true, expr: false}

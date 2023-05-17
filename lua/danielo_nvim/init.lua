@@ -602,18 +602,15 @@ ___Main_Main_Fields_.main = function()
   vim.keymap.set("n", "tl", ___Main_Main_Fields_.nexTab, ({desc = "Go to next tab", expr = false, silent = true}));
   vim.keymap.set("n", "<C-G>", function() 
     local _hx_1_outcome_status, _hx_1_outcome_value = _G.pcall(vim.cmd, "cnext");
-    local result = (function() 
+    if (((function() 
       local _hx_2
       if (_hx_1_outcome_status) then 
       _hx_2 = __haxe_ds_Option.Some(_hx_1_outcome_value); else 
       _hx_2 = __haxe_ds_Option.None; end
       return _hx_2
-    end )();
-    local tmp = result[1];
-    if (tmp) == 0 then 
-      vim.pretty_print("All good", result[2]);
-    elseif (tmp) == 1 then 
-      _hx_box_mr(_hx_table.pack(_G.pcall(vim.cmd, "cfirst")), {"status", "value"}); end;
+    end )())[1] == 1) then 
+      _hx_box_mr(_hx_table.pack(_G.pcall(vim.cmd, "cfirst")), {"status", "value"});
+    end;
   end, ({desc = "Next error or go to first", expr = false, silent = true}));
   vim.keymap.set("c", "<C-A>", "<Home>", ({desc = "Home in cmd", expr = false, silent = true}));
   vim.keymap.set("n", "<c-m-f>", ":FzfLua lines<cr>", ({desc = "Search in open files", expr = false, silent = true}));
