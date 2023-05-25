@@ -612,8 +612,21 @@ ___Main_Main_Fields_.main = function()
       _hx_box_mr(_hx_table.pack(_G.pcall(vim.cmd, "cfirst")), {"status", "value"});
     end;
   end, ({desc = "Next error or go to first", expr = false, silent = true}));
+  vim.keymap.set("n", "<C-S-G>", function() 
+    local _hx_3_outcome_status, _hx_3_outcome_value = _G.pcall(vim.cmd, "cprev");
+    if (((function() 
+      local _hx_4
+      if (_hx_3_outcome_status) then 
+      _hx_4 = __haxe_ds_Option.Some(_hx_3_outcome_value); else 
+      _hx_4 = __haxe_ds_Option.None; end
+      return _hx_4
+    end )())[1] == 1) then 
+      _hx_box_mr(_hx_table.pack(_G.pcall(vim.cmd, "clast")), {"status", "value"});
+    end;
+  end, ({desc = "Prev error or go wrap to last", expr = false, silent = true}));
   vim.keymap.set("c", "<C-A>", "<Home>", ({desc = "Home in cmd", expr = false, silent = true}));
   vim.keymap.set("n", "<c-m-f>", ":FzfLua lines<cr>", ({desc = "Search in open files", expr = false, silent = true}));
+  vim.keymap.set("n", "<leader>sl", ":FzfLua lines<cr>", ({desc = "Search [l]ines in open files", expr = false, silent = true}));
   vim.o.inccommand = "split";
 end
 ___Main_Main_Fields_.runGh = function(args) 

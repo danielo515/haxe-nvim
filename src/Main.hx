@@ -139,12 +139,31 @@ function main() {
     },
     {desc: "Next error or go to first", silent: true, expr: false}
   );
+  vim.Keymap.set(
+    Normal,
+    "<C-S-G>",
+    () -> {
+      final result = Vimx.cmd("cprev");
+      switch (result) {
+        case None:
+          Vimx.cmd("clast");
+        case _:
+      }
+    },
+    {desc: "Prev error or go wrap to last", silent: true, expr: false}
+  );
   vim.Keymap.set(Command, "<C-A>", "<Home>", {desc: "Home in cmd", silent: true, expr: false});
   vim.Keymap.set(
     Normal,
     "<c-m-f>",
     ":FzfLua lines<cr>",
     {desc: "Search in open files", silent: true, expr: false}
+  );
+  vim.Keymap.set(
+    Normal,
+    "<leader>sl",
+    ":FzfLua lines<cr>",
+    {desc: "Search [l]ines in open files", silent: true, expr: false}
   );
   // show the effects of a search / replace in a live preview window
   Vim.o.inccommand = "split";
