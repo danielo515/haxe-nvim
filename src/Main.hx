@@ -30,6 +30,40 @@ inline function command(name, description, fn, ?nargs) {
   });
 }
 
+// Derive looks like this
+// #[derive(Debug, Clone)]
+function add_missing_derive(toAdd:String) {
+  final lines = Api.nvim_buf_get_lines(CurrentBuffer, 0, -1, false).toArray();
+  final deriveLines = lines.filter(x -> x.contains("#[derive("));
+  final derives = [for (line in deriveLines) {
+    final content = line.split("derive(")[1].split(")")[0];
+    final elements = content.split(",").map(x -> x.trim());
+    {
+      "line": line,
+      "elements": elements
+    };
+  }];
+  trace(derives);
+  final newDeriveList = derives.filter(x -> !x.elements.contains(toAdd)).map((x) -> {
+    {
+      "line": x.line,
+      "elements": x.elements.concat([toAdd])
+    };
+  });
+  trace(newDeriveList);
+  final newLines = lines.map(x -> {
+    final match = newDeriveList.find(y -> y.line == x);
+    if (match != null) {
+      final newDerive = "#[derive(" + match.elements.join(", ") + ")]";
+      trace(newDerive);
+      return newDerive;
+    } else {
+      return x;
+    }
+  });
+  Api.nvim_buf_set_lines(CurrentBuffer, 0, -1, false, Table.fromArray(newLines));
+}
+
 function main() {
   vim.Api.create_user_command_completion(
     "HaxeCmd",
@@ -97,6 +131,13 @@ function main() {
     ExactlyOne
   );
   command(
+    "AddMissingDerive",
+    "Add a missing derive to the current file",
+    (args) -> add_missing_derive(args.args),
+    ExactlyOne
+
+  );
+  command(
     "CreateSiblingFile",
     "Create a file next to the current one",
     (_) -> createSiblingFile(),
@@ -125,6 +166,25 @@ function main() {
     "<c-m-f>",
     ":FzfLua lines<cr>",
     {desc: "Search in open files", silent: true, expr: false}
+  );
+  vim.Keymap.set(
+    Normal,
+    "<leader>sl",
+    ":FzfLua lines<cr>",
+    {desc: "Search [l]ines in open files", silent: true, expr: false}
+  );
+  vim.Keymap.set(
+    Normal,
+    "<C-s>",
+    ":%s/\\v",
+    {desc: "Search and replace whole file", silent: true, expr: false}
+  );
+  // nmap("<M-Tab>", ":b#<cr>", "Alternate file", true)
+  vim.Keymap.set(
+    Normal,
+    "<M-Tab>",
+    ":b#<cr>",
+    {desc: "Alternate file", silent: true, expr: false}
   );
   // show the effects of a search / replace in a live preview window
   Vim.o.inccommand = "split";

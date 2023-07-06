@@ -196,13 +196,18 @@ local Enum = _hx_e();
 
 local _hx_exports = _hx_exports or {}
 local Array = _hx_e()
+local Lambda = _hx_e()
 ___Main_Main_Fields_ = _hx_e()
 local Math = _hx_e()
 local String = _hx_e()
 local Std = _hx_e()
+local StringTools = _hx_e()
 local Test = _hx_e()
+__haxe_Log = _hx_e()
+__haxe_ds_Option = _hx_e()
 __haxe_iterators_ArrayIterator = _hx_e()
 __haxe_iterators_ArrayKeyValueIterator = _hx_e()
+__lua_PairTools = _hx_e()
 __lua_StringMap = _hx_e()
 __packer__Packer_Packer_Fields_ = _hx_e()
 __plenary_Job = _G.require("plenary.job")
@@ -526,6 +531,18 @@ Array.prototype.resize = function(self,len)
   end;
 end
 
+Lambda.new = {}
+Lambda.find = function(it,f) 
+  local v = it:iterator();
+  while (v:hasNext()) do 
+    local v = v:next();
+    if (f(v)) then 
+      do return v end;
+    end;
+  end;
+  do return nil end;
+end
+
 ___Main_Main_Fields_.new = {}
 ___Main_Main_Fields_.createSiblingFile = function() 
   local path = vim.fn.expand(_G.string.format("%s%s", "%", ":h"));
@@ -533,6 +550,183 @@ ___Main_Main_Fields_.createSiblingFile = function()
   vim.ui.input(({completion = nil, prompt = "newFileName"}), function(filename) 
     vim.cmd(Std.string(Std.string(Std.string("e ") .. Std.string(path)) .. Std.string("/")) .. Std.string(filename));
   end);
+end
+___Main_Main_Fields_.add_missing_derive = function(toAdd) 
+  local length = nil;
+  local tab = __lua_PairTools.copy(vim.api.nvim_buf_get_lines(0, 0, -1, false));
+  local length = length;
+  local lines;
+  if (length == nil) then 
+    length = _hx_table.maxn(tab);
+    if (length > 0) then 
+      local head = tab[1];
+      _G.table.remove(tab, 1);
+      tab[0] = head;
+      lines = _hx_tab_array(tab, length);
+    else
+      lines = _hx_tab_array({}, 0);
+    end;
+  else
+    lines = _hx_tab_array(tab, length);
+  end;
+  local _g = _hx_tab_array({}, 0);
+  local _g1 = 0;
+  local _g2 = lines;
+  while (_g1 < _g2.length) do 
+    local i = _g2[_g1];
+    _g1 = _g1 + 1;
+    local startIndex = nil;
+    if (startIndex == nil) then 
+      startIndex = 1;
+    else
+      startIndex = startIndex + 1;
+    end;
+    local r = _G.string.find(i, "#[derive(", startIndex, true);
+    if ((function() 
+      local _hx_1
+      if ((r ~= nil) and (r > 0)) then 
+      _hx_1 = r - 1; else 
+      _hx_1 = -1; end
+      return _hx_1
+    end )() ~= -1) then 
+      _g:push(i);
+    end;
+  end;
+  local deriveLines = _g;
+  local _g = _hx_tab_array({}, 0);
+  local _g1 = 0;
+  while (_g1 < deriveLines.length) do 
+    local line = deriveLines[_g1];
+    _g1 = _g1 + 1;
+    local idx = 1;
+    local ret = _hx_tab_array({}, 0);
+    while (idx ~= nil) do 
+      local newidx = 0;
+      if (#"derive(" > 0) then 
+        newidx = _G.string.find(line, "derive(", idx, true);
+      else
+        if (idx >= #line) then 
+          newidx = nil;
+        else
+          newidx = idx + 1;
+        end;
+      end;
+      if (newidx ~= nil) then 
+        ret:push(_G.string.sub(line, idx, newidx - 1));
+        idx = newidx + #"derive(";
+      else
+        ret:push(_G.string.sub(line, idx, #line));
+        idx = nil;
+      end;
+    end;
+    local _this = ret[1];
+    local idx = 1;
+    local ret = _hx_tab_array({}, 0);
+    while (idx ~= nil) do 
+      local newidx = 0;
+      if (#")" > 0) then 
+        newidx = _G.string.find(_this, ")", idx, true);
+      else
+        if (idx >= #_this) then 
+          newidx = nil;
+        else
+          newidx = idx + 1;
+        end;
+      end;
+      if (newidx ~= nil) then 
+        ret:push(_G.string.sub(_this, idx, newidx - 1));
+        idx = newidx + #")";
+      else
+        ret:push(_G.string.sub(_this, idx, #_this));
+        idx = nil;
+      end;
+    end;
+    local content = ret[0];
+    local idx = 1;
+    local ret = _hx_tab_array({}, 0);
+    while (idx ~= nil) do 
+      local newidx = 0;
+      if (#"," > 0) then 
+        newidx = _G.string.find(content, ",", idx, true);
+      else
+        if (idx >= #content) then 
+          newidx = nil;
+        else
+          newidx = idx + 1;
+        end;
+      end;
+      if (newidx ~= nil) then 
+        ret:push(_G.string.sub(content, idx, newidx - 1));
+        idx = newidx + #",";
+      else
+        ret:push(_G.string.sub(content, idx, #content));
+        idx = nil;
+      end;
+    end;
+    local _g1 = _hx_tab_array({}, 0);
+    local _g2 = 0;
+    local _g3 = ret;
+    while (_g2 < _g3.length) do 
+      local i = _g3[_g2];
+      _g2 = _g2 + 1;
+      _g1:push(StringTools.trim(i));
+    end;
+    _g:push(_hx_o({__fields__={line=true,elements=true},line=line,elements=_g1}));
+  end;
+  local derives = _g;
+  __haxe_Log.trace(derives, _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/Main.hx",lineNumber=46,className="_Main.Main_Fields_",methodName="add_missing_derive"}));
+  local _g = _hx_tab_array({}, 0);
+  local _g1 = 0;
+  local _g2 = derives;
+  while (_g1 < _g2.length) do 
+    local i = _g2[_g1];
+    _g1 = _g1 + 1;
+    if (not i.elements:contains(toAdd)) then 
+      _g:push(i);
+    end;
+  end;
+  local _g1 = _hx_tab_array({}, 0);
+  local _g2 = 0;
+  local _g = _g;
+  while (_g2 < _g.length) do 
+    local i = _g[_g2];
+    _g2 = _g2 + 1;
+    _g1:push(_hx_o({__fields__={line=true,elements=true},line=i.line,elements=i.elements:concat(_hx_tab_array({[0]=toAdd}, 1))}));
+  end;
+  local newDeriveList = _g1;
+  __haxe_Log.trace(newDeriveList, _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/Main.hx",lineNumber=53,className="_Main.Main_Fields_",methodName="add_missing_derive"}));
+  local _g = _hx_tab_array({}, 0);
+  local _g1 = 0;
+  local _g2 = lines;
+  while (_g1 < _g2.length) do 
+    local i = _g2[_g1];
+    _g1 = _g1 + 1;
+    local x = _hx_tab_array({[0]=i}, 1);
+    local match = Lambda.find(newDeriveList, (function(x) 
+      do return function(y) 
+        do return y.line == x[0] end;
+      end end;
+    end)(x));
+    local tmp;
+    if (match ~= nil) then 
+      local newDerive = Std.string(Std.string("#[derive(") .. Std.string(match.elements:join(", "))) .. Std.string(")]");
+      __haxe_Log.trace(newDerive, _hx_o({__fields__={fileName=true,lineNumber=true,className=true,methodName=true},fileName="src/Main.hx",lineNumber=58,className="_Main.Main_Fields_",methodName="add_missing_derive"}));
+      tmp = newDerive;
+    else
+      tmp = x[0];
+    end;
+    _g:push(tmp);
+  end;
+  local newLines = _g;
+  local ret = ({});
+  local _g = 0;
+  local _g1 = newLines.length;
+  while (_g < _g1) do 
+    _g = _g + 1;
+    local idx = _g - 1;
+    ret[idx + 1] = newLines[idx];
+  end;
+  vim.api.nvim_buf_set_lines(0, 0, -1, false, ret);
 end
 ___Main_Main_Fields_.main = function() 
   vim.api.nvim_create_user_command("HaxeCmd", function(args) 
@@ -582,6 +776,9 @@ ___Main_Main_Fields_.main = function()
   vim.api.nvim_create_user_command("CopyMessagesToClipboard", function(args) 
     ___Main_Main_Fields_.copy_messages_to_clipboard(args.args);
   end, ({bang = false, complete = nil, desc = "Copy the n number of messages to clipboard", force = true, nargs = 1, range = true}));
+  vim.api.nvim_create_user_command("AddMissingDerive", function(args) 
+    ___Main_Main_Fields_.add_missing_derive(args.args);
+  end, ({bang = false, complete = nil, desc = "Add a missing derive to the current file", force = true, nargs = 1, range = true}));
   vim.api.nvim_create_user_command("CreateSiblingFile", function(_) 
     ___Main_Main_Fields_.createSiblingFile();
   end, ({bang = false, complete = nil, desc = "Create a file next to the current one", force = true, nargs = 0, range = true}));
@@ -597,6 +794,9 @@ ___Main_Main_Fields_.main = function()
   vim.keymap.set("n", "tl", ___Main_Main_Fields_.nexTab, ({desc = "Go to next tab", expr = false, silent = true}));
   vim.keymap.set("c", "<C-A>", "<Home>", ({desc = "Home in cmd", expr = false, silent = true}));
   vim.keymap.set("n", "<c-m-f>", ":FzfLua lines<cr>", ({desc = "Search in open files", expr = false, silent = true}));
+  vim.keymap.set("n", "<leader>sl", ":FzfLua lines<cr>", ({desc = "Search [l]ines in open files", expr = false, silent = true}));
+  vim.keymap.set("n", "<C-s>", ":%s/\\v", ({desc = "Search and replace whole file", expr = false, silent = true}));
+  vim.keymap.set("n", "<M-Tab>", ":b#<cr>", ({desc = "Alternate file", expr = false, silent = true}));
   vim.o.inccommand = "split";
 end
 ___Main_Main_Fields_.runGh = function(args) 
@@ -851,6 +1051,69 @@ Std.int = function(x)
   end;
 end
 
+StringTools.new = {}
+StringTools.isSpace = function(s,pos) 
+  if (((#s == 0) or (pos < 0)) or (pos >= #s)) then 
+    do return false end;
+  end;
+  local c = _G.string.byte(s, pos + 1);
+  if (not ((c > 8) and (c < 14))) then 
+    do return c == 32 end;
+  else
+    do return true end;
+  end;
+end
+StringTools.ltrim = function(s) 
+  local l = #s;
+  local r = 0;
+  while ((r < l) and StringTools.isSpace(s, r)) do 
+    r = r + 1;
+  end;
+  if (r > 0) then 
+    local pos = r;
+    local len = l - r;
+    if ((len == nil) or (len > (pos + #s))) then 
+      len = #s;
+    else
+      if (len < 0) then 
+        len = #s + len;
+      end;
+    end;
+    if (pos < 0) then 
+      pos = #s + pos;
+    end;
+    if (pos < 0) then 
+      pos = 0;
+    end;
+    do return _G.string.sub(s, pos + 1, pos + len) end;
+  else
+    do return s end;
+  end;
+end
+StringTools.rtrim = function(s) 
+  local l = #s;
+  local r = 0;
+  while ((r < l) and StringTools.isSpace(s, (l - r) - 1)) do 
+    r = r + 1;
+  end;
+  if (r > 0) then 
+    local len = l - r;
+    if ((len == nil) or (len > #s)) then 
+      len = #s;
+    else
+      if (len < 0) then 
+        len = #s + len;
+      end;
+    end;
+    do return _G.string.sub(s, 1, len) end;
+  else
+    do return s end;
+  end;
+end
+StringTools.trim = function(s) 
+  do return StringTools.ltrim(StringTools.rtrim(s)) end;
+end
+
 Test.new = {}
 Test["or"] = function(v,fallback) 
   if (v ~= nil) then 
@@ -859,6 +1122,33 @@ Test["or"] = function(v,fallback)
     do return fallback end;
   end;
 end
+
+__haxe_Log.new = {}
+__haxe_Log.formatOutput = function(v,infos) 
+  local str = Std.string(v);
+  if (infos == nil) then 
+    do return str end;
+  end;
+  local pstr = Std.string(Std.string(infos.fileName) .. Std.string(":")) .. Std.string(infos.lineNumber);
+  if (infos.customParams ~= nil) then 
+    local _g = 0;
+    local _g1 = infos.customParams;
+    while (_g < _g1.length) do 
+      local v = _g1[_g];
+      _g = _g + 1;
+      str = Std.string(str) .. Std.string((Std.string(", ") .. Std.string(Std.string(v))));
+    end;
+  end;
+  do return Std.string(Std.string(pstr) .. Std.string(": ")) .. Std.string(str) end;
+end
+__haxe_Log.trace = function(v,infos) 
+  local str = __haxe_Log.formatOutput(v, infos);
+  _hx_print(str);
+end
+
+__haxe_ds_Option.Some = function(v) local _x = _hx_tab_array({[0]="Some",0,v,__enum__=__haxe_ds_Option}, 3); return _x; end 
+__haxe_ds_Option.None = _hx_tab_array({[0]="None",1,__enum__ = __haxe_ds_Option},2)
+
 
 __haxe_iterators_ArrayIterator.new = function(array) 
   local self = _hx_new(__haxe_iterators_ArrayIterator.prototype)
@@ -890,6 +1180,13 @@ __haxe_iterators_ArrayKeyValueIterator.new = function(array)
 end
 __haxe_iterators_ArrayKeyValueIterator.super = function(self,array) 
   self.array = array;
+end
+
+__lua_PairTools.new = {}
+__lua_PairTools.copy = function(table1) 
+  local ret = ({});
+  for k,v in _G.pairs(table1) do ret[k] = v end;
+  do return ret end;
 end
 
 __lua_StringMap.new = function() 
@@ -1084,6 +1381,8 @@ local _hx_static_init = function()
   
   
 end
+
+_hx_print = print or (function() end)
 
 _hx_box_mr = function(x,nt)
     res = _hx_o({__fields__={}})
