@@ -305,13 +305,19 @@ class ReadNvimApi {
   }
 
   static function main() {
-    final tmpDir = switch (getTmpDir("nvim-api")) {
-      case Ok(dirPath):
-        Sys.println('Using $dirPath as temp folder');
-        dirPath;
-      case Error(msg):
-        Sys.println('Failed getting temp dir: $msg');
-        throw "TMP_DIR_FAIL";
+    final tmpDir = switch (Sys.args()) {
+      case ['--path', path]:
+        Log.print2('Got path: ', path);
+        path;
+      case _:
+        switch (getTmpDir("nvim-api")) {
+          case Ok(dirPath):
+            Sys.println('Using $dirPath as temp folder');
+            dirPath;
+          case Error(msg):
+            Sys.println('Failed getting temp dir: $msg');
+            throw "TMP_DIR_FAIL";
+        }
     }
     switch (GitRepo.clone(luadevRepo, tmpDir)) {
       case Ok(output):
@@ -351,13 +357,19 @@ class ReadNvimApi {
         final filetypeContent = File.getBytes(Path.join([path, 'lua', 'vim', 'filetype.lua']));
         final parser = new LuaParser(ByteData.ofBytes(filetypeContent), 'filetype.lua');
         var parsed = parser.parse();
-        Log.print2("parsed=====>", parsed);
-        while (parsed != Tok.Eof) {
-          parsed = parser.parse();
-          Log.print2("parsed=====>", parsed);
+        final fileTypeTypes = [];
+        try {
+          while (parsed != Tok.Eof) {
+            fileTypeTypes.push(parsed);
+            parsed = parser.parse();
+          }
         }
-        trace("NO more");
-      // writeFile('./res/filetype.json', filetype);
+        catch (e) {
+          Log.print2("Failed while parsing filetype.lua: ", e);
+        }
+        Log.print2("parsed =====> ", fileTypeTypes);
+        Log.print("===== Parsing done ===== ");
+      // writeFile('./res/filetype.json', fileTypeTypes);
 
       case Error(error):
         Sys.println("Could not get neovim path, skip parsing");

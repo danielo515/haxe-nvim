@@ -788,10 +788,38 @@ ___Main_Main_Fields_.main = function()
     vimx.copyToClipboard(version);
   end, ({bang = false, complete = nil, desc = "Gets the git version of a installed packer plugin", force = true, nargs = 1, range = true}));
   local nargs = nil;
+  vim.api.nvim_create_user_command("Replace", function(_) 
+    vim.cmd("normal! GVggP");
+  end, ({bang = false, complete = nil, desc = "Replace the current buffer with the contents of the clipboard", force = true, nargs = nargs, range = true}));
+  local nargs = nil;
   vim.api.nvim_create_user_command("Scratch", function(_) 
     vim.api.nvim_win_set_buf(0, vim.api.nvim_create_buf(false, true));
   end, ({bang = false, complete = nil, desc = "creates a scratch buffer", force = true, nargs = nargs, range = true}));
   vim.keymap.set("n", "tl", ___Main_Main_Fields_.nexTab, ({desc = "Go to next tab", expr = false, silent = true}));
+  vim.keymap.set("n", "<C-G>", function() 
+    local _hx_1_outcome_status, _hx_1_outcome_value = _G.pcall(vim.cmd, "cnext");
+    if (((function() 
+      local _hx_2
+      if (_hx_1_outcome_status) then 
+      _hx_2 = __haxe_ds_Option.Some(_hx_1_outcome_value); else 
+      _hx_2 = __haxe_ds_Option.None; end
+      return _hx_2
+    end )())[1] == 1) then 
+      _hx_box_mr(_hx_table.pack(_G.pcall(vim.cmd, "cfirst")), {"status", "value"});
+    end;
+  end, ({desc = "Next error or go to first", expr = false, silent = true}));
+  vim.keymap.set("n", "<C-S-G>", function() 
+    local _hx_3_outcome_status, _hx_3_outcome_value = _G.pcall(vim.cmd, "cprev");
+    if (((function() 
+      local _hx_4
+      if (_hx_3_outcome_status) then 
+      _hx_4 = __haxe_ds_Option.Some(_hx_3_outcome_value); else 
+      _hx_4 = __haxe_ds_Option.None; end
+      return _hx_4
+    end )())[1] == 1) then 
+      _hx_box_mr(_hx_table.pack(_G.pcall(vim.cmd, "clast")), {"status", "value"});
+    end;
+  end, ({desc = "Prev error or go wrap to last", expr = false, silent = true}));
   vim.keymap.set("c", "<C-A>", "<Home>", ({desc = "Home in cmd", expr = false, silent = true}));
   vim.keymap.set("n", "<c-m-f>", ":FzfLua lines<cr>", ({desc = "Search in open files", expr = false, silent = true}));
   vim.keymap.set("n", "<leader>sl", ":FzfLua lines<cr>", ({desc = "Search [l]ines in open files", expr = false, silent = true}));
@@ -1325,6 +1353,14 @@ vimx.read_json_file = function(path)
     do return vim.fn.json_decode(_G.table.concat(vim.fn.readfile(path))) end;
   else
     do return nil end;
+  end;
+end
+vimx.cmd = function(command) 
+  local _hx_1_outcome_status, _hx_1_outcome_value = _G.pcall(vim.cmd, command);
+  if (_hx_1_outcome_status) then 
+    do return __haxe_ds_Option.Some(_hx_1_outcome_value) end;
+  else
+    do return __haxe_ds_Option.None end;
   end;
 end
 vimx.safeRequire = function(name) 

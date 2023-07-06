@@ -153,6 +153,13 @@ function main() {
     },
     ExactlyOne
   );
+  command(
+    "Replace",
+    "Replace the current buffer with the contents of the clipboard",
+    (_) -> {
+      Vim.cmd("normal! GVggP");
+    }
+  );
   command("Scratch", "creates a scratch buffer", (_) -> {
     final buffer = Api.nvim_create_buf(false, true);
     Api.nvim_win_set_buf(CurrentWindow, buffer);
@@ -160,6 +167,32 @@ function main() {
   // final keymaps = vim.Api.nvim_buf_get_keymap(CurrentBuffer, "n");
   // Vim.print(keymaps.map(x -> '${x.lhs} -> ${x.rhs} ${x.desc}'));
   vim.Keymap.set(Normal, "tl", nexTab, {desc: "Go to next tab", silent: true, expr: false});
+  vim.Keymap.set(
+    Normal,
+    "<C-G>",
+    () -> {
+      final result = Vimx.cmd("cnext");
+      switch (result) {
+        case None:
+          Vimx.cmd("cfirst");
+        case _:
+      }
+    },
+    {desc: "Next error or go to first", silent: true, expr: false}
+  );
+  vim.Keymap.set(
+    Normal,
+    "<C-S-G>",
+    () -> {
+      final result = Vimx.cmd("cprev");
+      switch (result) {
+        case None:
+          Vimx.cmd("clast");
+        case _:
+      }
+    },
+    {desc: "Prev error or go wrap to last", silent: true, expr: false}
+  );
   vim.Keymap.set(Command, "<C-A>", "<Home>", {desc: "Home in cmd", silent: true, expr: false});
   vim.Keymap.set(
     Normal,
