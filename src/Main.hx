@@ -137,6 +137,7 @@ function main() {
     ExactlyOne
 
   );
+  command("RustPrettier", "Format with prettier", (_) -> Vim.cmd("!prettier % -w"), None);
   command(
     "CreateSiblingFile",
     "Create a file next to the current one",

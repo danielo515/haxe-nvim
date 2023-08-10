@@ -204,7 +204,6 @@ local Std = _hx_e()
 local StringTools = _hx_e()
 local Test = _hx_e()
 __haxe_Log = _hx_e()
-__haxe_ds_Option = _hx_e()
 __haxe_iterators_ArrayIterator = _hx_e()
 __haxe_iterators_ArrayKeyValueIterator = _hx_e()
 __lua_PairTools = _hx_e()
@@ -779,6 +778,9 @@ ___Main_Main_Fields_.main = function()
   vim.api.nvim_create_user_command("AddMissingDerive", function(args) 
     ___Main_Main_Fields_.add_missing_derive(args.args);
   end, ({bang = false, complete = nil, desc = "Add a missing derive to the current file", force = true, nargs = 1, range = true}));
+  vim.api.nvim_create_user_command("RustPrettier", function(_) 
+    vim.cmd("!prettier % -w");
+  end, ({bang = false, complete = nil, desc = "Format with prettier", force = true, nargs = 0, range = true}));
   vim.api.nvim_create_user_command("CreateSiblingFile", function(_) 
     ___Main_Main_Fields_.createSiblingFile();
   end, ({bang = false, complete = nil, desc = "Create a file next to the current one", force = true, nargs = 0, range = true}));
@@ -1145,10 +1147,6 @@ __haxe_Log.trace = function(v,infos)
   local str = __haxe_Log.formatOutput(v, infos);
   _hx_print(str);
 end
-
-__haxe_ds_Option.Some = function(v) local _x = _hx_tab_array({[0]="Some",0,v,__enum__=__haxe_ds_Option}, 3); return _x; end 
-__haxe_ds_Option.None = _hx_tab_array({[0]="None",1,__enum__ = __haxe_ds_Option},2)
-
 
 __haxe_iterators_ArrayIterator.new = function(array) 
   local self = _hx_new(__haxe_iterators_ArrayIterator.prototype)
