@@ -23,6 +23,7 @@ extern class Fn {
   static function executable(binaryName:String):Int;
   static function json_encode(value:Dynamic):String;
   static function json_decode(json:String):Table< String, Dynamic >;
+  public static function has(feature:String):Int;
   // static function readfile(fname:String, ?type:String, ?max:Int):LuaArray< String >;
 }
 
@@ -51,13 +52,17 @@ extern class Loop {
   public static function os_uname():Table< String, String >;
 }
 
+ function is09(): Bool {
+  return Fn.has('nvim-0.9') == 1;
+}
+
 @:native("vim")
 extern class Vim {
   public static final o:vim.types.Opt;
   public static final go:vim.types.GOpt;
   public static final g:VimGOpts;
   public static final wo:WOpts;
-  @:native("pretty_print")
+  // @:native("pretty_print")
   static function print(args:Rest< Dynamic >):Void;
   static inline function expand(string:ExpandString):String {
     return Fn.expand(string);
